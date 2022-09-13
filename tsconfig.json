@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "outDir": "./dist/",
+      "noImplicitAny": true, // не дает использовать переменные без указания типа
+      "module": "ESNext", // в основно ESNext или es6
+      "target": "es5", // указывается версия, в которую будет компилироваться код для браузера
+      "jsx": "react", // позволяет писать код реакта (<div onClick={...}>...</div>)
+      "allowJs": true, // если true, обрабатывает не только ts файлы, но и js
+      "moduleResolution": "node", // node или classic, в основном node
+      "esModuleInterop": true, // позволяет использовать привычный импорт, вместо require
+      "allowSyntheticDefaultImports": true // настраивает дефолтный импорт (без * as)
+    },
+    "ts-node": { // нужно для стандартных импортов
+        "compilerOptions": {
+          "module": "CommonJS"
+        }
+      }
+  }
