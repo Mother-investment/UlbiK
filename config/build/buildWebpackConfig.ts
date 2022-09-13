@@ -5,9 +5,10 @@ import { buildResolvers } from './buildResolvers'
 
 import type { Configuration } from 'webpack'
 import type { BuildOptions } from './types/config'
+import { buildDevServer } from './buildDevServer'
 
 export function buildWebpackConfig(options: BuildOptions): Configuration {
-    const {mode, paths} = options
+    const { mode, paths, isDev } = options
     return {
         mode: mode, // мод сборки
         entry: paths.entry,
@@ -20,6 +21,8 @@ export function buildWebpackConfig(options: BuildOptions): Configuration {
         module: {
             rules: buildLoaders() // обработка файлов, не являющихся js (ts, css,..)
         },
-        resolve: buildResolvers()
+        resolve: buildResolvers(),
+        devtool: isDev ? 'inline-source-map' : undefined,
+        devServer: isDev ? buildDevServer(options) : undefined
     }
 }
