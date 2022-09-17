@@ -8,6 +8,9 @@
       "allowJs": true, // если true, обрабатывает не только ts файлы, но и js
       "moduleResolution": "node", // node или classic, в основном node
       "baseUrl": ".", // нужно для абсолютного импорта
+      "paths": {
+        "*": ["./src/*"]
+      },
       "esModuleInterop": true, // позволяет использовать привычный импорт, вместо require
       "allowSyntheticDefaultImports": true // настраивает дефолтный импорт (без * as)
     },
