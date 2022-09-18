@@ -6,6 +6,7 @@ import { MainPage } from 'pages/MainPage'
 import { useTheme } from './providers/ThemeProvider'
 import { AboutPage } from 'pages/AboutPage'
 import { classNames } from 'shared'
+import { AppRouter } from './providers/router'
 
 const App: React.FC = () => {
     const { theme, toggleTheme } = useTheme()
@@ -16,12 +17,7 @@ const App: React.FC = () => {
             <br />
             <Link to='/'>Main</Link>
             <Link to='/about'>About</Link>
-            <Suspense fallback={<div>Loading..</div>}>
-                <Routes>
-                    <Route path={'/'} element={<MainPage />} />
-                    <Route path={'/about'} element={<AboutPage />} />
-                </Routes>
-            </Suspense>
+            <AppRouter />
         </div>
     )
 }
