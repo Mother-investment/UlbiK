@@ -7,17 +7,16 @@ import { useTheme } from './providers/ThemeProvider'
 import { AboutPage } from 'pages/AboutPage'
 import { classNames } from 'shared'
 import { AppRouter } from './providers/router'
+import { Navbar } from 'widgets/navbar'
 
 const App: React.FC = () => {
     const { theme, toggleTheme } = useTheme()
 
     return (
         <div className={classNames('app', {}, [theme])}>
-            <button className='toggleTheme' onClick={toggleTheme}>Toggle Theme</button>
-            <br />
-            <Link to='/'>Main</Link>
-            <Link to='/about'>About</Link>
+            <Navbar />
             <AppRouter />
+            <button className='toggleTheme' onClick={toggleTheme}>Toggle Theme</button>
         </div>
     )
 }
