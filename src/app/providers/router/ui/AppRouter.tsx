@@ -6,7 +6,7 @@ import { routeConfig } from "shared/config/routeConfig/routeConfig"
 
 interface IProps {}
 
-const AppRouter: React.FC<IProps> = () => {
+export const AppRouter: React.FC<IProps> = () => {
     return (
         <Suspense fallback={<div>Loading..</div>}>
             <Routes>
@@ -17,5 +17,3 @@ const AppRouter: React.FC<IProps> = () => {
         </Suspense>
     )
 }
-
-export default AppRouter
