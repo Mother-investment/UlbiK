@@ -13,3 +13,12 @@
         margin-left: 15px;
     }
 }
+
+.switchers {
+    display: flex;
+    align-items: center;
+    &Item {
+        margin-right: 10px;
+        color: var(--inverted-secondary-color);
+    }
+}

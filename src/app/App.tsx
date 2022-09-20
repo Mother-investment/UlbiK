@@ -4,17 +4,20 @@ import { classNames } from 'shared'
 import { AppRouter } from './providers/Router'
 import { Navbar } from 'widgets/Navbar'
 import { Sidebar } from 'widgets/Sidebar'
+import { Suspense } from 'react'
 
 const App: React.FC = () => {
     const { theme } = useTheme()
 
     return (
         <div className={classNames('app', {}, [theme])}>
-            <Navbar />
-            <div className='contentPage'>
-                <Sidebar />
-                <AppRouter />
-            </div>
+            <Suspense fallback=''>
+                <Navbar />
+                <div className='contentPage'>
+                    <Sidebar />
+                    <AppRouter />
+                </div>
+            </Suspense>
         </div>
     )
 }
