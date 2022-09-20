@@ -11,3 +11,10 @@
 
     min-height: 100vh;
 }
+
+.contentPage {
+    display: flex;
+}
+.pageWrapper {
+    flex-grow: 1;
+}
