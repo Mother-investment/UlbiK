@@ -9,11 +9,11 @@ className?: string
 }
 
 export const ThemeSwitcher:React.FC<ThemeSwitcherProps> = (props) => {
-    const {className, ...otherProps} = props
-    const { theme, toggleTheme } = useTheme()
-    return (
-        <Button theme={ThemeButton.CLEAR} className={classNames(cls.ThemeSwitcher, {}, [className])} onClick={toggleTheme}>
-            <Icon className={cls.themeIcon} />
-        </Button>
-    )
+	const { className, ...otherProps } = props
+	const { theme, toggleTheme } = useTheme()
+	return (
+		<Button theme={ThemeButton.CLEAR} className={classNames(cls.ThemeSwitcher, {}, [className])} onClick={toggleTheme}>
+			<Icon className={cls.themeIcon} />
+		</Button>
+	)
 }

@@ -9,20 +9,20 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ className }) => {
-    return (
-        <div className={classNames(cls.Navbar, {}, [className])}>
-            <div className={cls.switchers}>
-                <ThemeSwitcher className={cls.switchersItem} />
-                <LangSwitcher className={cls.switchersItem} />
-            </div>
-            <nav className={cls.navigation}>
-                <AppLink className={cls.navigationItem} theme={AppLinkTheme.SECONDARY} to='/'>
+	return (
+		<div className={classNames(cls.Navbar, {}, [className])}>
+			<div className={cls.switchers}>
+				<ThemeSwitcher className={cls.switchersItem} />
+				<LangSwitcher className={cls.switchersItem} />
+			</div>
+			<nav className={cls.navigation}>
+				<AppLink className={cls.navigationItem} theme={AppLinkTheme.SECONDARY} to='/'>
                     Main
-                </AppLink>
-                <AppLink className={cls.navigationItem} theme={AppLinkTheme.SECONDARY} to='/about'>
+				</AppLink>
+				<AppLink className={cls.navigationItem} theme={AppLinkTheme.SECONDARY} to='/about'>
                     About
-                </AppLink>
-            </nav>
-        </div>
-    )
+				</AppLink>
+			</nav>
+		</div>
+	)
 }

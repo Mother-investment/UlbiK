@@ -7,16 +7,16 @@ className?: string
 }
 
 export const Sidebar:React.FC<SidebarProps> = (props) => {
-const {className, ...otherProps} = props
+	const { className, ...otherProps } = props
 
-    const [collapsed, setCollapsed] = useState(false)
-    const onToggle = () => {
-        setCollapsed(prev => !prev)
-    }
+	const [collapsed, setCollapsed] = useState(false)
+	const onToggle = () => {
+		setCollapsed(prev => !prev)
+	}
 
-    return (
-        <div className={classNames(cls.Sidebar, {[cls.collapsed]: collapsed}, [className])}>
-            <button onClick={onToggle}>toggle</button>
-        </div>
-    )
+	return (
+		<div className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}>
+			<button onClick={onToggle}>toggle</button>
+		</div>
+	)
 }
