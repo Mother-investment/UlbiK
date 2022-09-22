@@ -1,12 +1,11 @@
 .Sidebar {
-    height: calc(100vh - var(--navbar-height));
-    width: var(--sidebar-width);
-    background: var(--inverted-bg-color);
-
-    position: relative;
-    transition: width 0.3s;
+	background: var(--inverted-bg-color);
+	height: calc(100vh - var(--navbar-height));
+	position: relative;
+	transition: width 0.3s;
+	width: var(--sidebar-width);
 }
 
 .collapsed {
-    width: var(--sidebar-width-collapsed);
+	width: var(--sidebar-width-collapsed);
 }

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { AppLink, classNames } from 'shared'
 import { AppLinkTheme } from 'shared/ui/AppLink/AppLink'
 import { LangSwitcher } from 'widgets/LangSwitcher'
@@ -8,7 +9,10 @@ interface NavbarProps {
     className?: string
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ className }) => {
+export const Navbar: React.FC<NavbarProps> = (props) => {
+	const { className, ...otherProps } = props
+	const { t } = useTranslation()
+
 	return (
 		<div className={classNames(cls.Navbar, {}, [className])}>
 			<div className={cls.switchers}>
@@ -17,10 +21,10 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
 			</div>
 			<nav className={cls.navigation}>
 				<AppLink className={cls.navigationItem} theme={AppLinkTheme.SECONDARY} to='/'>
-                    Main
+					{t('Главная страница')}
 				</AppLink>
 				<AppLink className={cls.navigationItem} theme={AppLinkTheme.SECONDARY} to='/about'>
-                    About
+					{t('О странице')}
 				</AppLink>
 			</nav>
 		</div>

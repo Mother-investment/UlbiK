@@ -1,24 +1,25 @@
 .Navbar {
-    width: 100%;
-    height: var(--navbar-height);
-    background: var(--inverted-bg-color);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
+	align-items: center;
+	background: var(--inverted-bg-color);
+	display: flex;
+	height: var(--navbar-height);
+	justify-content: space-between;
+	padding: 20px;
+	width: 100%;
 }
 
 .navigation {
-    &Item {
-        margin-left: 15px;
-    }
+	&Item {
+		margin-left: 15px;
+	}
 }
 
 .switchers {
-    display: flex;
-    align-items: center;
-    &Item {
-        margin-right: 10px;
-        color: var(--inverted-secondary-color);
-    }
+	align-items: center;
+	display: flex;
+
+	&Item {
+		color: var(--inverted-secondary-color);
+		margin-right: 10px;
+	}
 }

@@ -4,17 +4,16 @@
 @import 'themes/normal';
 
 .app {
-    font: var(--font-m);
-
-    background: var(--bg-color);
-    color: var(--primary-color);
-
-    min-height: 100vh;
+	background: var(--bg-color);
+	color: var(--primary-color);
+	font: var(--font-m);
+	min-height: 100vh;
 }
 
 .contentPage {
-    display: flex;
+	display: flex;
 }
+
 .pageWrapper {
-    flex-grow: 1;
+	flex-grow: 1;
 }
