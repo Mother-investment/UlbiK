@@ -9,7 +9,7 @@ className?: string
 
 export const Sidebar:React.FC<SidebarProps> = (props) => {
 	const { className, ...otherProps } = props
-	const { t } = useTranslation()
+	const { t } = useTranslation('common')
 
 	const [collapsed, setCollapsed] = useState(false)
 	const onToggle = () => {

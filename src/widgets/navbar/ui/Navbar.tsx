@@ -11,7 +11,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = (props) => {
 	const { className, ...otherProps } = props
-	const { t } = useTranslation()
+	const { t } = useTranslation('common')
 
 	return (
 		<div className={classNames(cls.Navbar, {}, [className])}>
