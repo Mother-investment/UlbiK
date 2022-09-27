@@ -48,5 +48,5 @@
         "semi": ["error", "never"],
         "i18next/no-literal-string": ["error", {"markupOnly": true, "onlyAttribute": ["csrfdsa"]}] // атрибуты, которые проверяются https://github.com/edvardchen/eslint-plugin-i18next/blob/next/v5.md
     },
-    "ignorePatterns": ["src/**/*.test.ts", "**/*.config.ts"]
+    "ignorePatterns": ["src/**/*.test.ts", "src/**/*.test.tsx", "**/*.config.ts"]
 }
