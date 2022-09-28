@@ -9,3 +9,8 @@
 .collapsed {
 	width: var(--sidebar-width-collapsed);
 }
+
+.button {
+	background-color: var(--inverted-secondary-color);
+	color: var(--inverted-bg-color);
+}

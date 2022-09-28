@@ -1,10 +1,16 @@
 import { render, screen } from '@testing-library/react'
-import React from 'react'
-import { Button } from './Button'
+import { Button } from 'shared'
+import { ThemeButton } from 'shared/ui/Button/Button'
 
-describe('button', () => {
-	test('with only first param', () => {
+describe('Button', () => {
+	test('Test render', () => {
 		render(<Button>TEST</Button>)
 		expect(screen.getByText('TEST')).toBeInTheDocument()
+	})
+
+	test('Test clear theme', () => {
+		render(<Button theme={ThemeButton.CLEAR}>TEST</Button>)
+		expect(screen.getByText('TEST')).toHaveClass('clear')
+		screen.debug()
 	})
 })

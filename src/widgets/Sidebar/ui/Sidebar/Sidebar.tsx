@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { classNames } from 'shared'
+import { Button, classNames } from 'shared'
+import { ThemeButton } from 'shared/ui/Button/Button'
 import cls from './Sidebar.module.scss'
 
 interface SidebarProps {
@@ -17,8 +18,8 @@ export const Sidebar:React.FC<SidebarProps> = (props) => {
 	}
 
 	return (
-		<div className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}>
-			<button onClick={onToggle}>{t('Переключить')}</button>
+		<div data-testid="sidebar" className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}>
+			<Button data-testid="sidebar-toggle" theme={ThemeButton.CLEAR} className={classNames(cls.button, {}, [className])} onClick={onToggle}>{t('Переключить')}</Button>
 		</div>
 	)
 }

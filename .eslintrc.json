@@ -12,8 +12,6 @@
         "plugin:@typescript-eslint/recommended",
         "plugin:i18next/recommended"
     ],
-    "overrides": [
-    ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
@@ -43,10 +41,18 @@
         "@typescript-eslint/ban-types": "warn",
         "@typescript-eslint/no-empty-interface":"warn",
         "indent": ["error", "tab"],
-        "linebreak-style": ["error", "windows"],
+        "linebreak-style": ["off", "windows"],
         "quotes": ["error", "single"],
         "semi": ["error", "never"],
-        "i18next/no-literal-string": ["error", {"markupOnly": true, "onlyAttribute": ["csrfdsa"]}] // атрибуты, которые проверяются https://github.com/edvardchen/eslint-plugin-i18next/blob/next/v5.md
+        "i18next/no-literal-string": ["error", {"markupOnly": true, "ignoreAttribute": ["to", "data-testid"]}] // атрибуты, которые проверяются https://github.com/edvardchen/eslint-plugin-i18next/blob/next/v5.md
     },
-    "ignorePatterns": ["src/**/*.test.ts", "src/**/*.test.tsx", "**/*.config.ts"]
+    "overrides": [
+        {
+            "files": ["**/src/**/*.test.{ts,tsx}"],
+            "rules": {
+                "i18next/no-literal-string": "off"
+            }
+        }
+    ],
+    "ignorePatterns": ["**/*.config.ts"]
 }
