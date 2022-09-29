@@ -20,7 +20,10 @@
         }
     },
     "include": [
-      "./config/jest/**/*.{ts,tsx}",
-      "./src/**/*.{ts,tsx}"
+      "./config/jest/jestEmptyComponent.tsx",
+      "./config/jest/setupTests.ts",
+      "./config/storybook/webpack.config.ts",
+      "./src/**/*.ts",
+      "./src/**/*.tsx"
     ]
   }

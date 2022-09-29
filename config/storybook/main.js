@@ -1,15 +1,15 @@
 // eslint-disable-next-line no-undef
 module.exports = {
-	'stories': [
-		'../../src/**/*.stories.@(js|jsx|ts|tsx)'
+	stories: [
+		'../../src/**/*.stories.@(js|jsx|ts|tsx)',
 	],
-	'addons': [
+	addons: [
 		'@storybook/addon-links',
 		'@storybook/addon-essentials',
-		'@storybook/addon-interactions'
+		'@storybook/addon-interactions',
 	],
-	'framework': '@storybook/react',
-	'core': {
-		'builder': '@storybook/builder-webpack5'
+	framework: '@storybook/react',
+	core: {
+		builder: 'webpack5',
 	}
 }
