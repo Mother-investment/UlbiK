@@ -2,7 +2,7 @@
     "compilerOptions": {
       "outDir": "./dist/",
       "noImplicitAny": true, // не дает использовать переменные без указания типа
-      "module": "esnext", // в основно ESNext или es6
+      "module": "ESNext", // в основно ESNext или es6
       "target": "es5", // указывается версия, в которую будет компилироваться код для браузера
       "jsx": "react-jsx", // позволяет писать код реакта (<div onClick={...}>...</div>)
       "allowJs": true, // если true, обрабатывает не только ts файлы, но и js

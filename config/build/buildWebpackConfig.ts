@@ -7,9 +7,10 @@ import type { BuildOptions } from './types/config'
 import { buildDevServer } from './buildDevServer'
 
 export function buildWebpackConfig(options: BuildOptions): Configuration {
-	const { mode, paths, isDev } = options
+	const { paths, mode, isDev } = options
+
 	return {
-		mode: mode, // мод сборки
+		mode, // мод сборки
 		entry: paths.entry,
 		output: {
 			filename: '[name].[contenthash].js', // файл сборки
