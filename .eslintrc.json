@@ -55,5 +55,5 @@
             }
         }
     ],
-    "ignorePatterns": ["**/*.config.ts"]
+    "ignorePatterns": ["**/*.config.ts", "/build"]
 }

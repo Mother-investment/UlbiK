@@ -30,7 +30,8 @@ export default {
     "node"
   ],
   moduleDirectories: [
-    "node_modules"
+    "node_modules",
+    "<rootDir>"
   ],
   modulePaths: [
     '<rootDir>src'
