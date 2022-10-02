@@ -7,22 +7,8 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
 		test: /\.svg$/,
 		use: ['@svgr/webpack']
 	}
-	const cssLoader = buildCssLoader(isDev)
-	const typescriptLoader = {
-		test: /\.tsx?$/,
-		use: 'ts-loader',
-		exclude: /node_modules/
-	}
-	const fileLoader = {
-		test: /\.(png|jpe?g|gif)$/i,
-		use: [
-			{
-				loader: 'file-loader'
-			}
-		]
-	}
 	const babelLoader = {
-		test: /\.(js|ts|jsx|tsx)$/,
+		test: /\.(js|jsx|tsx)$/,
 		exclude: /node_modules/,
 		use: {
 			loader: 'babel-loader',
@@ -41,5 +27,29 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
 		}
 	}
 
-	return [fileLoader, svgLoader, cssLoader, babelLoader, typescriptLoader] // порядок лоудеров в массиве важен
+	const cssLoader = buildCssLoader(isDev)
+
+	// Если не используем тайпскрипт - нужен babel-loader
+	const typescriptLoader = {
+		test: /\.tsx?$/,
+		use: 'ts-loader',
+		exclude: /node_modules/
+	}
+
+	const fileLoader = {
+		test: /\.(png|jpe?g|gif|woff2|woff)$/i,
+		use: [
+			{
+				loader: 'file-loader'
+			}
+		]
+	}
+
+	return [
+		fileLoader,
+		svgLoader,
+		babelLoader,
+		typescriptLoader,
+		cssLoader
+	]
 }
