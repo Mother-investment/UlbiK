@@ -1,9 +1,16 @@
+# This is a basic workflow to help you get started with Actions
+
 name: linting, testing, building
+
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   pipeline:
     runs-on: ubuntu-latest
@@ -11,12 +18,14 @@ jobs:
       matrix:
         node-version: [ 17.x ]
 
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
       - name: Staring Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: "17.x"
       - name: install modules
         run: npm install
       - name: build production project
