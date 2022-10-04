@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,aAAa,CAAC;EACb,WAAW,EAAE,MAAM;EACnB,OAAO,EAAE,IAAI;EACb,IAAI,EAAE,aAAa;EACnB,MAAM,EAAE,IAAI;EACZ,eAAe,EAAE,MAAM;CACvB",
+    "sources": [
+        "NotFoundPage.module.scss"
+    ],
+    "names": [],
+    "file": "NotFoundPage.module.css"
+}

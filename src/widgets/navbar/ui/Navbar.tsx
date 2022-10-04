@@ -20,12 +20,6 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 				<LangSwitcher className={cls.switchersItem} />
 			</div>
 			<nav className={cls.navigation}>
-				<AppLink className={cls.navigationItem} theme={AppLinkTheme.SECONDARY} to='/'>
-					{t('Главная страница')}
-				</AppLink>
-				<AppLink className={cls.navigationItem} theme={AppLinkTheme.SECONDARY} to='/about'>
-					{t('О странице')}
-				</AppLink>
 			</nav>
 		</div>
 	)

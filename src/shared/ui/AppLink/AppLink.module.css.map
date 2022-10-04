@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACR,KAAK,EAAE,oBAAoB;CAC3B;;AAED,AAAA,QAAQ,CAAC;EACR,KAAK,EAAE,6BAA6B;CACpC;;AAED,AAAA,UAAU,CAAC;EACV,KAAK,EAAE,+BAA+B;CACtC",
+    "sources": [
+        "AppLink.module.scss"
+    ],
+    "names": [],
+    "file": "AppLink.module.css"
+}
