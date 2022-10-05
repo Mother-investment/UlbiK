@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { AppLink, classNames } from 'shared'
-import { AppLinkTheme } from 'shared/ui/AppLink/AppLink'
+import { classNames } from 'shared'
 import { LangSwitcher } from 'widgets/LangSwitcher'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import cls from './Navbar.module.scss'

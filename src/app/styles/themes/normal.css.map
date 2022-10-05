@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,MAAM,CAAC;EACN,UAAU,CAAA,QAAC;EACX,mBAAmB,CAAA,QAAC;EACpB,eAAe,CAAA,QAAC;EAChB,iBAAiB,CAAA,QAAC;EAClB,wBAAwB,CAAA,QAAC;EACzB,0BAA0B,CAAA,QAAC;EAC3B,iBAAiB,CAAA,QAAC;CAClB",
-    "sources": [
-        "normal.scss"
-    ],
-    "names": [],
-    "file": "normal.css"
-}

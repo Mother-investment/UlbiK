@@ -6,14 +6,10 @@
 	width: var(--sidebar-width);
 }
 
-.collapsed {
-	width: var(--sidebar-width-collapsed);
-}
-
 .collapseBtn {
+	bottom: 40px;
 	position: absolute;
 	right: 40px;
-	top: 40px;
 }
 
 .items {
@@ -22,6 +18,29 @@
 	margin: 20px;
 }
 
-.link {
+.item {
+	align-items: center;
+	display: flex;
 	margin-top: 10px;
+}
+
+.link {
+	margin-left: 10px;
+	opacity: 1;
+	transition: 0.5s opacity;
+}
+
+.icon {
+	fill: var(--inverted-primary-color);
+}
+
+.collapsed {
+	width: var(--sidebar-width-collapsed);
+
+	.link {
+		margin-left: 0;
+		opacity: 0;
+		transition: 0.3s opacity;
+		width: 0;
+	}
 }
