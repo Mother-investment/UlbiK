@@ -20,7 +20,8 @@
     "plugins": [
         "react",
         "@typescript-eslint",
-        "i18next"
+        "i18next",
+        "react-hooks"
     ],
     "rules": {
         // "no-duplicate-imports": ["error", { "includeExports": true }],
@@ -45,7 +46,9 @@
         "quotes": ["error", "single"],
         "semi": ["error", "never"],
         "react/display-name": "off",
-        "i18next/no-literal-string": ["error", {"markupOnly": true, "ignoreAttribute": ["to", "data-testid"]}] // атрибуты, которые проверяются https://github.com/edvardchen/eslint-plugin-i18next/blob/next/v5.md
+        "i18next/no-literal-string": ["error", {"markupOnly": true, "ignoreAttribute": ["to", "data-testid"]}], // атрибуты, которые проверяются https://github.com/edvardchen/eslint-plugin-i18next/blob/next/v5.md
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "error"
     },
     "overrides": [
         {

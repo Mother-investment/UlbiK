@@ -1,4 +1,3 @@
-import './styles/index.scss'
 import { useTheme } from './providers/ThemeProvider'
 import { classNames } from 'shared'
 import { AppRouter } from './providers/Router'
@@ -10,7 +9,7 @@ const App: React.FC = () => {
 	const { theme } = useTheme()
 
 	return (
-		<div className={classNames('app', {}, [theme])}>
+		<div className={classNames('app', {}, [theme])} id='app'>
 			<Suspense fallback=''>
 				<Navbar />
 				<div className='contentPage'>

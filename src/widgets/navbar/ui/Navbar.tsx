@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { classNames } from 'shared'
+import { Button, classNames, Modal } from 'shared'
 import { LangSwitcher } from 'widgets/LangSwitcher'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import cls from './Navbar.module.scss'
@@ -12,6 +13,8 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 	const { className, ...otherProps } = props
 	const { t } = useTranslation('common')
 
+	const [isOpen, setIsOpen] = useState(false)
+
 	return (
 		<div className={classNames(cls.Navbar, {}, [className])}>
 			<div className={cls.switchers}>
@@ -19,7 +22,11 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 				<LangSwitcher className={cls.switchersItem} />
 			</div>
 			<nav className={cls.navigation}>
+				<Button onClick={() => setIsOpen(true)}>{t('О странице')}</Button>
 			</nav>
+			<Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+				123
+			</Modal>
 		</div>
 	)
 }
