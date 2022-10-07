@@ -1,12 +1,12 @@
 name: linting, testing, building
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   pipeline:
-    runs-on: ubuntu-latest
+    runs-on: 'ubuntu-latest'
     strategy:
       matrix:
         node-version: [ 17.x ]
