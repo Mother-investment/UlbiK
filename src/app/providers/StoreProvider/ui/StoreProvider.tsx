@@ -1,9 +1,7 @@
 import { ReactNode } from 'react'
 import { Provider } from 'react-redux'
-import { classNames } from 'shared'
-import { StateSchema } from 'shared/config/store/StateSchema'
-import { createReduxStore } from 'shared/config/store/store'
-import cls from './StoreProvider.module.scss'
+import { StateSchema } from '../config/StateSchema'
+import { createReduxStore } from '../config/store'
 
 interface StoreProviderProps {
 	children?: ReactNode
