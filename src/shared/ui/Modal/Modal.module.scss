@@ -19,8 +19,9 @@
 }
 
 .content {
-	background: rgb(255 255 255);
+	background: var(--inverted-bg-color);
 	border-radius: 12px;
+	color: var(--inverted-secondary-color);
 	max-width: 60%;
 	padding: 20px;
 	transform: scale(0.5);
