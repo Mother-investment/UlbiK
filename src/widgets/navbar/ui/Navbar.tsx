@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { LoginModal } from 'features/AuthByUsername'
+import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button, classNames, Modal } from 'shared'
+import { Button, classNames } from 'shared'
 import { LangSwitcher } from 'widgets/LangSwitcher'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import cls from './Navbar.module.scss'
@@ -15,6 +16,13 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 
 	const [isOpen, setIsOpen] = useState(false)
 
+	const onCloseModal = useCallback(() => {
+		setIsOpen(false)
+	}, [])
+	const onShowModal = useCallback(() => {
+		setIsOpen(true)
+	}, [])
+
 	return (
 		<div className={classNames(cls.Navbar, {}, [className])}>
 			<div className={cls.switchers}>
@@ -22,11 +30,9 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 				<LangSwitcher className={cls.switchersItem} />
 			</div>
 			<nav className={cls.navigation}>
-				<Button onClick={() => setIsOpen(true)}>{t('О странице')}</Button>
+				<Button onClick={onShowModal}>{t('О странице')}</Button>
 			</nav>
-			<Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-				123
-			</Modal>
+			<LoginModal isOpen={isOpen} onClose={onCloseModal} />
 		</div>
 	)
 }
