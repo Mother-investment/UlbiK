@@ -12,7 +12,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = (props) => {
 	const { className, ...otherProps } = props
-	const { t } = useTranslation('common')
+	const { t } = useTranslation()
 
 	const [isOpen, setIsOpen] = useState(false)
 
@@ -30,7 +30,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 				<LangSwitcher className={cls.switchersItem} />
 			</div>
 			<nav className={cls.navigation}>
-				<Button onClick={onShowModal}>{t('О странице')}</Button>
+				<Button onClick={onShowModal}>{t('Войти')}</Button>
 			</nav>
 			<LoginModal isOpen={isOpen} onClose={onCloseModal} />
 		</div>
