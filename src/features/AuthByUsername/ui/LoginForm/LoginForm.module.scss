@@ -4,8 +4,18 @@
 	width: 400px;
 }
 
-.input {
+.item {
+	align-items: center;
+	display: flex;
 	margin-top: 10px;
+}
+
+.text {
+	width: 70px;
+}
+
+.input {
+	width: 300px;
 }
 
 .loginBtn {

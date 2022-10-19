@@ -29,6 +29,12 @@ Outline.args = {
 	theme: ButtonTheme.OUTLINE
 }
 
+export const OutlineInverted = Template.bind({})
+OutlineInverted.args = {
+	children: 'Text',
+	theme: ButtonTheme.OUTLINE_INVERTED
+}
+
 export const OutlineSizeL = Template.bind({})
 OutlineSizeL.args = {
 	children: 'Text',
@@ -76,4 +82,11 @@ SquareXL.args = {
 	theme: ButtonTheme.BACKGROUND_INVERTED,
 	square: true,
 	size: ButtonSize.XL
+}
+
+export const Disabled = Template.bind({})
+Disabled.args = {
+	children: '>',
+	theme: ButtonTheme.OUTLINE,
+	disabled: true
 }

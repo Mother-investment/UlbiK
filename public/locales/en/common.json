@@ -6,5 +6,11 @@
   "Страница не найдена": "Page not found",
   "Произошла ошибка": " An error has occurred",
   "Обновить страницу": " Refresh the page",
-  "Войти": "Login"
+  "Войти": "Login",
+  "Логин": "Login",
+  "Пароль": "Password",
+  "Авторизация": "Authorization",
+  "Выйти": "Logout",
+  "Вы ввели неверный логин или пароль": " You entered an incorrect username or password",
+  "О сайте": "About site"
 }

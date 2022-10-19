@@ -5,6 +5,8 @@ import { Button, classNames } from 'shared'
 import { LangSwitcher } from 'widgets/LangSwitcher'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import cls from './Navbar.module.scss'
+import { useSelector, useDispatch } from 'react-redux'
+import { getUserAuthData, userActions } from 'entities/User'
 
 interface NavbarProps {
     className?: string
@@ -12,9 +14,10 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = (props) => {
 	const { className, ...otherProps } = props
-	const { t } = useTranslation()
-
+	const { t } = useTranslation('common')
+	const dispatch = useDispatch()
 	const [isOpen, setIsOpen] = useState(false)
+	const authData = useSelector(getUserAuthData)
 
 	const onCloseModal = useCallback(() => {
 		setIsOpen(false)
@@ -22,6 +25,9 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 	const onShowModal = useCallback(() => {
 		setIsOpen(true)
 	}, [])
+	const onLogout = useCallback(() => {
+		dispatch(userActions.logout())
+	}, [dispatch])
 
 	return (
 		<div className={classNames(cls.Navbar, {}, [className])}>
@@ -30,7 +36,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 				<LangSwitcher className={cls.switchersItem} />
 			</div>
 			<nav className={cls.navigation}>
-				<Button onClick={onShowModal}>{t('Войти')}</Button>
+				<Button onClick={authData ? onLogout : onShowModal}>{authData ? t('Выйти') : t('Войти')}</Button>
 			</nav>
 			<LoginModal isOpen={isOpen} onClose={onCloseModal} />
 		</div>
