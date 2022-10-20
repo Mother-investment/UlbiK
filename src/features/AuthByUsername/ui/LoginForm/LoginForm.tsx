@@ -13,12 +13,12 @@ import { loginByUsername } from '../../model/services/loginByUsername/loginByUse
 import { TextTheme } from 'shared/ui/text/Text'
 import { getUserAuthData } from 'entities/User'
 
-interface LoginFormProps {
+export interface LoginFormProps {
 	className?: string
 	onClose: () => void
 }
 
-export const LoginForm:React.FC<LoginFormProps> = memo((props) => {
+const LoginForm:React.FC<LoginFormProps> = memo((props) => {
 	const { className, onClose, ...otherProps } = props
 	const username = useSelector(getUsername)
 	const password = useSelector(getPassword)
@@ -62,3 +62,5 @@ export const LoginForm:React.FC<LoginFormProps> = memo((props) => {
 function closeHandler() {
 	throw new Error('Function not implemented.')
 }
+
+export default LoginForm
