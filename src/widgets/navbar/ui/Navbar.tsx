@@ -14,7 +14,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = (props) => {
 	const { className, ...otherProps } = props
-	const { t } = useTranslation('common')
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const [isOpen, setIsOpen] = useState(false)
 	const authData = useSelector(getUserAuthData)

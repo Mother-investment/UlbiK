@@ -25,7 +25,7 @@ const LoginForm:React.FC<LoginFormProps> = memo((props) => {
 	const { error, isLoading } = useSelector(getErrorAndIsLoading)
 	const authData = useSelector(getUserAuthData)
 
-	const { t } = useTranslation('common')
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
 
 	const onChangeUsername = useCallback((value: string) => {

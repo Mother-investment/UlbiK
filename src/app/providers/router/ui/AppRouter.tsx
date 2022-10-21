@@ -6,7 +6,7 @@ import { routeConfig } from 'shared/config/routeConfig/routeConfig'
 interface IProps {}
 
 export const AppRouter: React.FC<IProps> = () => {
-	const { t } = useTranslation('common')
+	const { t } = useTranslation()
 	return (
 		<Suspense fallback={<div>{t('Загрузка')}</div>}>
 			<Routes>

@@ -14,7 +14,7 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = (props) => {
 	const { className, ...otherProps } = props
-	const { t } = useTranslation('common')
+	const { t } = useTranslation()
 
 	const [collapsed, setCollapsed] = useState(false)
 	const onToggle = () => {

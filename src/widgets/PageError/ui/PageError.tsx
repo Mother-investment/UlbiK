@@ -9,7 +9,7 @@ className?: string
 
 export const PageError:React.FC<PageErrorProps> = (props) => {
 	const { className, ...otherProps } = props
-	const { t } = useTranslation('common')
+	const { t } = useTranslation()
 
 	const reloadPage = () => {
 		location.reload()

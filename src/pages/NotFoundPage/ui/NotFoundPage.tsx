@@ -8,7 +8,7 @@ className?: string
 
 export const NotFoundPage:React.FC<NotFoundPageProps> = (props) => {
 	const { className, ...otherProps } = props
-	const { t } = useTranslation('common')
+	const { t } = useTranslation()
 
 	return (
 		<div className={classNames(cls.NotFoundPage, {}, [className])}>

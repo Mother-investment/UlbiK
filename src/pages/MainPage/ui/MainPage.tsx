@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 type MainPageProps = {}
 
 const MainPage: React.FC<MainPageProps> = () => {
-	const { t } = useTranslation('common')
+	const { t } = useTranslation()
 
 	return (
 		<div>
