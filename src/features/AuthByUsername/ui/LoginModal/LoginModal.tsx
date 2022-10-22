@@ -1,3 +1,4 @@
+/* eslint-disable i18next/no-literal-string */
 import { Suspense } from 'react'
 import { classNames, Modal } from 'shared'
 import { LoginFormAsync } from '../LoginForm/LoginForm.async'
@@ -14,7 +15,7 @@ export const LoginModal:React.FC<LoginModalProps> = (props) => {
 
 	return (
 		<Modal className={classNames(cls.LoginModal, {}, [className])} isOpen={isOpen} onClose={onClose}>
-			<Suspense fallback=''>
+			<Suspense fallback={'Loading'}>
 				<LoginFormAsync onClose={onClose} />
 			</Suspense>
 		</Modal>

@@ -1,5 +1,0 @@
-export { counterReducer } from './model/slice/counterSlice'
-export { getCounter } from './model/selectors/getCounter/getCounter'
-export { getCounterValue } from './model/selectors/getCounterValue/getCounterValue'
-export { Counter } from './ui/Counter'
-export type { CounterSchema } from './model/types/counterSchema'

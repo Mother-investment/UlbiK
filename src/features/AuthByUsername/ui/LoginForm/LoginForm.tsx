@@ -59,8 +59,4 @@ const LoginForm:React.FC<LoginFormProps> = memo((props) => {
 	)
 })
 
-function closeHandler() {
-	throw new Error('Function not implemented.')
-}
-
 export default LoginForm

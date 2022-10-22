@@ -1,18 +1,23 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import { Sidebar } from 'widgets/Sidebar'
-import { renderWithTranslation } from 'shared'
 import { componentRender } from 'shared/lib/tests/componentRender/componentRender'
+import { StateSchema } from 'app/providers/StoreProvider'
+
 
 describe('Sidebar', () => {
-	test('with only first param', () => {
+	test('with only first param', async () => {
 		componentRender(<Sidebar />)
-		expect(screen.getByTestId('sidebar')).toBeInTheDocument()
+		await waitFor(() => {
+			expect(screen.getByTestId('sidebar')).toBeInTheDocument()
+		})
 	})
-	test('test toggle', () => {
+	test('test toggle', async () => {
 		componentRender(<Sidebar />)
 		const toggleBtn = screen.getByTestId('sidebar-toggle')
-		expect(screen.getByTestId('sidebar')).toBeInTheDocument()
-		fireEvent.click(toggleBtn)
-		expect(screen.getByTestId('sidebar')).toHaveClass('collapsed')
+		await waitFor(() => {
+			expect(screen.getByTestId('sidebar')).toBeInTheDocument()
+			fireEvent.click(toggleBtn)
+			expect(screen.getByTestId('sidebar')).toHaveClass('collapsed')
+		})
 	})
 })

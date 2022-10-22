@@ -21,7 +21,7 @@ export function buildPlugins({ paths, isDev }: BuildOptions): WebpackPluginInsta
 			__IS_DEV__: JSON.stringify(isDev),
 		})
 	]
-	
+
 	plugins.push(new BundleAnalyzerPlugin({
 		openAnalyzer: false
 	}))
