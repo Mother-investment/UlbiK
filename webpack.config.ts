@@ -11,6 +11,7 @@ export default (env: BuildEnv): Configuration => {
         html: path.resolve(__dirname, 'public', 'index.html'),
         src: path.resolve(__dirname, 'src')
     }
+    
 
     const mode = env.mode || 'development'
     const PORT = env.port || 3000
