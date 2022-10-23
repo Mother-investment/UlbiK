@@ -3,15 +3,17 @@ import cls from './LoginForm.module.scss'
 import { useTranslation } from 'react-i18next'
 import { Input } from 'shared/ui/Input/Input'
 import { ButtonTheme } from 'shared/ui/Button/Button'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import { memo, useCallback, useEffect } from 'react'
-import { loginActions } from '../../model/slice/loginSlice'
+import { loginActions, loginReducer } from '../../model/slice/loginSlice'
 import { getUsername } from '../../model/selectors/getLoginState/getUsername'
 import { getPassword } from '../../model/selectors/getLoginState/getPassword'
-import { getErrorAndIsLoading } from '../../model/selectors/getLoginState/getErrorAndIsLoading'
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername'
 import { TextTheme } from 'shared/ui/text/Text'
 import { getUserAuthData } from 'entities/User'
+import { ReduxStoreWithManager } from 'app/providers/StoreProvider'
+import { getError } from '../../model/selectors/getLoginState/getError'
+import { getIsLoading } from '../../model/selectors/getLoginState/getIsLoading'
 
 export interface LoginFormProps {
 	className?: string
@@ -20,13 +22,29 @@ export interface LoginFormProps {
 
 const LoginForm:React.FC<LoginFormProps> = memo((props) => {
 	const { className, onClose, ...otherProps } = props
-	const username = useSelector(getUsername)
-	const password = useSelector(getPassword)
-	const { error, isLoading } = useSelector(getErrorAndIsLoading)
-	const authData = useSelector(getUserAuthData)
-
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
+	const store = useStore() as ReduxStoreWithManager
+
+	const username = useSelector(getUsername)
+	const password = useSelector(getPassword)
+	const isLoading = useSelector(getIsLoading)
+	const error = useSelector(getError)
+	const authData = useSelector(getUserAuthData)
+
+	useEffect(() =>{
+		store.reducerManager.add('loginForm', loginReducer)
+		dispatch({ type:'@INIT loginForm redicer' })
+
+		return () => {
+			store.reducerManager.remove('loginForm')
+			dispatch({ type:'@DESTROY loginForm redicer' })
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+	useEffect(() => {
+		if(authData){onClose()}
+	},[authData, onClose])
 
 	const onChangeUsername = useCallback((value: string) => {
 		dispatch(loginActions.setUsername(value))
@@ -37,10 +55,6 @@ const LoginForm:React.FC<LoginFormProps> = memo((props) => {
 	const onClickLogin = useCallback(() => {
 		dispatch(loginByUsername({ username, password }))
 	}, [dispatch, password, username])
-
-	useEffect(() => {
-		if(authData){onClose()}
-	},[authData, onClose])
 
 	return (
 		<div className={classNames(cls.LoginForm, {}, [className])}>

@@ -25,6 +25,7 @@
     ],
     "rules": {
         // "no-duplicate-imports": ["error", { "includeExports": true }],
+        "@typescript-eslint/ban-ts-comment": "warn",
         "template-curly-spacing": "error",
         "space-in-parens": ["error", "never"],
         "rest-spread-spacing": ["error", "never"],
