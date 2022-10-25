@@ -1,4 +1,5 @@
 
+export { ReducerList, DynamicModuleLoader } from './lib/components/DynamicModuleLoader/DynamicModuleLoader'
 export { Text } from './ui/text/Text'
 export { Portal } from './ui/Portal/Portal'
 export { Modal } from './ui/Modal/Modal'
