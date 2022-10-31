@@ -1,4 +1,5 @@
 
+export { TestAsyncThunk } from './lib/tests/TestAsyncThunk/TestAsyncThunk'
 export { ReducerList, DynamicModuleLoader } from './lib/components/DynamicModuleLoader/DynamicModuleLoader'
 export { Text } from './ui/text/Text'
 export { Portal } from './ui/Portal/Portal'
