@@ -1,4 +1,4 @@
-
+export { useAppDispatch } from './lib/hooks/useAppDispatch/useAppDispatch'
 export { TestAsyncThunk } from './lib/tests/TestAsyncThunk/TestAsyncThunk'
 export { ReducerList, DynamicModuleLoader } from './lib/components/DynamicModuleLoader/DynamicModuleLoader'
 export { Text } from './ui/text/Text'

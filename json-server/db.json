@@ -25,5 +25,14 @@
 		"password": "123"
 	  }
 	],
-	"profile": { "name": "typicode" }
+	"profile": {
+		"first": "Юрий",
+		"lastname": "Антипов",
+		"age": 21,
+		"currency": "RUB",
+		"country": "Russia",
+		"city": "Новосибирск",
+		"username": "admin",
+		"avatar": "https://www.meme-arsenal.com/memes/79e641062a1808c6d7511e6ee008e0fc.jpg"
+	}
   }

@@ -1,9 +1,9 @@
-import { Button, classNames, Text } from 'shared'
+import { Button, classNames, Text, useAppDispatch } from 'shared'
 import cls from './LoginForm.module.scss'
 import { useTranslation } from 'react-i18next'
 import { Input } from 'shared/ui/Input/Input'
 import { ButtonTheme } from 'shared/ui/Button/Button'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { memo, useCallback, useEffect } from 'react'
 import { loginActions, loginReducer } from '../../model/slice/loginSlice'
 import { getUsername } from '../../model/selectors/getLoginState/getUsername/getUsername'
@@ -27,17 +27,12 @@ const initialReducers: ReducerList = {
 const LoginForm:React.FC<LoginFormProps> = memo((props) => {
 	const { className, onClose, ...otherProps } = props
 	const { t } = useTranslation()
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 
 	const username = useSelector(getUsername)
 	const password = useSelector(getPassword)
 	const isLoading = useSelector(getIsLoading)
 	const error = useSelector(getError)
-	const authData = useSelector(getUserAuthData)
-
-	useEffect(() => {
-		if(authData){onClose()}
-	},[authData, onClose])
 
 	const onChangeUsername = useCallback((value: string) => {
 		dispatch(loginActions.setUsername(value))
@@ -45,9 +40,14 @@ const LoginForm:React.FC<LoginFormProps> = memo((props) => {
 	const onChangePassword = useCallback((value: string) => {
 		dispatch(loginActions.setPassword(value))
 	}, [dispatch])
-	const onClickLogin = useCallback(() => {
-		dispatch(loginByUsername({ username, password }))
-	}, [dispatch, password, username])
+	const onClickLogin = useCallback(async () => {
+		const result = await dispatch(loginByUsername({ username, password }))
+		if(result.meta.requestStatus === 'fulfilled'){
+			onClose()
+			onChangeUsername('')
+			onChangePassword('')
+		}
+	}, [dispatch, onChangePassword, onChangeUsername, onClose, password, username])
 
 	return (
 		<DynamicModuleLoader reducers={initialReducers}>
