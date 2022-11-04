@@ -32,7 +32,12 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
 	// Если не используем тайпскрипт - нужен babel-loader
 	const typescriptLoader = {
 		test: /\.tsx?$/,
-		use: 'ts-loader',
+		use: [{
+			loader: 'ts-loader',
+			options: {
+				transpileOnly: true
+			}
+		}],
 		exclude: /node_modules/
 	}
 

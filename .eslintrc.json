@@ -36,6 +36,7 @@
         "default-case-last": "error",
         "no-self-compare": "error",
         "no-trailing-spaces": "error",
+        "no-undef": "off",
         "no-multi-spaces": "error",
         "react/react-in-js-scope": "off",
         "react/react-in-jsx-scope": "off",
