@@ -15,5 +15,8 @@
   "О сайте": "About site",
   "ЯзыкВыбор": "English",
   "Профиль": "Profile",
-  "Редактировать": "Edit"
+  "Редактировать": "Edit",
+  "Ошибка": "Error",
+  "Произошла ошибка при загрузке профилья": " An error occurred while loading the profile",
+  "Попробуйте обновить страницу": " Try refreshing the page"
 }
