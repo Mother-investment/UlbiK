@@ -1,0 +1,31 @@
+@font-face {
+	font-family: Analecta;
+	src: url('shared/assets/fonts/Analecta.otf');
+}
+
+.Navbar {
+	align-items: center;
+	display: flex;
+	height: var(--navbar-height);
+	height: 110px;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.navigation {
+	&Item {
+		font-family: Analecta, serif;
+		font-weight: 600;
+		margin-left: 15px;
+	}
+}
+
+.switchers {
+	align-items: center;
+	display: flex;
+
+	&Item {
+		color: var(--inverted-secondary-color);
+		margin-right: 10px;
+	}
+}

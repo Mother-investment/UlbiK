@@ -10,12 +10,65 @@
 }
 
 .app {
-	background: var(--bg-color);
+	align-items: center;
+	background: url('shared/assets/images/4k/dark/Body.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
 	min-height: 100vh;
+	position: relative;
+	width: 100%;
+
+	&::after {
+		background: url('shared/assets/images/4k/slider.png');
+		background-repeat: no-repeat;
+		background-size: cover;
+		content: '';
+		min-height: 100vh;
+		position: absolute;
+		width: 100%;
+		z-index: -1;
+	}
 }
 
 .contentPage {
+	background: url('shared/assets/images/4k/dark/Container.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 	display: flex;
+	margin-top: 10%;
+	min-height: 100vh;
+	width: 80%;
+	z-index: 9;
+
+	&::after {
+		background: url('shared/assets/images/4k/dark/header.png');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		content: '';
+		height: 215px;
+		left: 0;
+		margin-top: 0.41%;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+
+	&::before {
+		background: url('shared/assets/images/4k/dark/footer.png');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		bottom: 0;
+		content: '';
+		height: 210px;
+		left: 0;
+		position: absolute;
+		width: 100%;
+	}
 }
 
 .pageWrapper {

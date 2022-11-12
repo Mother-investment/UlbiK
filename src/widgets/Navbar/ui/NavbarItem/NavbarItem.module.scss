@@ -1,0 +1,15 @@
+.item {
+	align-items: center;
+	display: flex;
+	margin-top: 10px;
+}
+
+.link {
+	margin-left: 10px;
+	opacity: 1;
+	transition: 0.5s opacity;
+}
+
+.icon {
+	fill: var(--inverted-primary-color);
+}
