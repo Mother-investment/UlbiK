@@ -1,3 +1,8 @@
+@font-face {
+	font-family: Analecta;
+	src: url('shared/assets/fonts/Analecta.otf');
+}
+
 .Navbar {
 	align-items: center;
 	background: var(--inverted-bg-color);
@@ -10,6 +15,8 @@
 
 .navigation {
 	&Item {
+		font-family: Analecta, serif;
+		font-weight: 600;
 		margin-left: 15px;
 	}
 }

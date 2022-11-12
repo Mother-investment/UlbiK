@@ -14,7 +14,15 @@ export function buildCssLoader(isDev: boolean) {
 					}
 				}
 			},
-			'sass-loader'
+			// {
+			// 	loader: 'resolve-url-loader',
+			// },
+			{
+				loader: 'sass-loader',
+				options: {
+					sourceMap: true
+				}
+			}
 		]
 	}
 }
