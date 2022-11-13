@@ -1,10 +1,15 @@
 import { useTranslation } from 'react-i18next'
-import { Button, classNames, Text } from 'shared'
+import { Button, classNames, Text, useAppDispatch } from 'shared'
 import cls from './ProfileCard.module.scss'
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 import { ButtonTheme } from 'shared/ui/Button/Button'
 import { Profile } from '../../model/types/profile'
 import { TextAling, TextTheme } from 'shared/ui/text/Text'
+import { useSelector } from 'react-redux'
+import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData'
+import { getProfileData } from '../../model/selectors/getProfileData/getProfileData'
+import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading'
+import { getProfileError } from '../../model/selectors/getProfileError/getProfileError'
 
 interface ProfileCardProps {
 	className?: string
@@ -14,8 +19,17 @@ interface ProfileCardProps {
 }
 
 export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
-	const { className, data, error, isLoading } = props
+	const { className } = props
 	const { t } = useTranslation()
+	const dispatch = useAppDispatch()
+
+	useEffect(() => {
+		dispatch(fetchProfileData())
+	}, [dispatch])
+
+	const data = useSelector(getProfileData)
+	const isLoading = useSelector(getProfileIsLoading)
+	const error = useSelector(getProfileError)
 
 	if(isLoading) {
 		return (
