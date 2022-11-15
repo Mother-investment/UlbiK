@@ -1,7 +1,7 @@
 import { useTheme } from './providers/ThemeProvider'
 import { classNames } from 'shared'
 import { AppRouter } from './providers/Router'
-import { Navbar } from 'widgets/Navbar'
+import { Header } from 'widgets/Header'
 import { Sidebar } from 'widgets/Sidebar'
 import { Suspense, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -18,7 +18,7 @@ const App: React.FC = () => {
 	return (
 		<div className={classNames('app', {}, [theme])} id='app'>
 			<Suspense fallback=''>
-				<Navbar />
+				<Header />
 				<div className='contentPage'>
 					<Sidebar />
 					<AppRouter />

@@ -1,23 +1,24 @@
 import { LoginModal } from 'features/AuthByUsername'
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button, classNames } from 'shared'
+import { classNames } from 'shared'
 import { LangSwitcher } from 'widgets/LangSwitcher'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
-import cls from './Navbar.module.scss'
+import cls from './Header.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { getUserAuthData, userActions } from 'entities/User'
+import { getUserAvatar, userActions } from 'entities/User'
+import { Avatar } from 'shared/ui/Avatar/Avatar'
 
-interface NavbarProps {
+interface HeaderProps {
     className?: string
 }
 
-export const Navbar: React.FC<NavbarProps> = (props) => {
+export const Header: React.FC<HeaderProps> = (props) => {
 	const { className } = props
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const [isOpen, setIsOpen] = useState(false)
-	const authData = useSelector(getUserAuthData)
+	const avatarLink = useSelector(getUserAvatar)
 
 	const onCloseModal = useCallback(() => {
 		setIsOpen(false)
@@ -30,15 +31,16 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 	}, [dispatch])
 
 	return (
-		<div className={classNames(cls.Navbar, {}, [className])}>
-			<div className={cls.switchers}>
+		<header className={classNames(cls.Header, {}, [className])}>
+			<nav className={cls.switchers}>
 				<ThemeSwitcher className={cls.switchersItem} />
 				<LangSwitcher className={cls.switchersItem} />
-			</div>
-			<nav className={cls.navigation}>
-				<Button className={cls.item} onClick={authData ? onLogout : onShowModal}>{authData ? t('Выйти') : t('Войти')}</Button>
 			</nav>
+			<div className={cls.headerLogin}>
+				<Avatar />
+				{/* <Button className={cls.item} onClick={authData ? onLogout : onShowModal}>{authData ? t('Выйти') : t('Войти')}</Button> */}
+			</div>
 			{isOpen && <LoginModal isOpen={isOpen} onClose={onCloseModal} />}
-		</div>
+		</header>
 	)
 }

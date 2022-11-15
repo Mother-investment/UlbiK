@@ -10,17 +10,16 @@ import { getUsername } from '../../model/selectors/getLoginState/getUsername/get
 import { getPassword } from '../../model/selectors/getLoginState/getPassword/getPassword'
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername'
 import { TextTheme } from 'shared/ui/text/Text'
-import { getUserAuthData } from 'entities/User'
 import { getError } from '../../model/selectors/getLoginState/getError/getError'
 import { getIsLoading } from '../../model/selectors/getLoginState/getIsLoading/getIsLoading'
-import { DynamicModuleLoader, ReducerList } from 'shared'
+import { DynamicModuleLoader, ReducersList } from 'shared'
 
 export interface LoginFormProps {
 	className?: string
 	onClose: () => void
 }
 
-const initialReducers: ReducerList = {
+const initialReducers: ReducersList = {
 	loginForm: loginReducer
 }
 
