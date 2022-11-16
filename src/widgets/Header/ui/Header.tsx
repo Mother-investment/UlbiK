@@ -36,9 +36,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
 				<ThemeSwitcher className={cls.switchersItem} />
 				<LangSwitcher className={cls.switchersItem} />
 			</nav>
-			<div className={cls.headerLogin}>
-				<Avatar />
-				{/* <Button className={cls.item} onClick={authData ? onLogout : onShowModal}>{authData ? t('Выйти') : t('Войти')}</Button> */}
+			<div className={cls.loginMenu}>
+				<div className={cls.login}>
+					<Avatar src={avatarLink} className={cls.avatar}/>
+					{/* <Button className={cls.item} onClick={authData ? onLogout : onShowModal}>{authData ? t('Выйти') : t('Войти')}</Button> */}
+				</div>
 			</div>
 			{isOpen && <LoginModal isOpen={isOpen} onClose={onCloseModal} />}
 		</header>

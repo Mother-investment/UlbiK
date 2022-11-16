@@ -10,8 +10,8 @@ export enum AvatarSize {
 
 interface AvatarProps {
 	className?: string
-	size: AvatarSize
-	avatarLink?: string
+	size?: AvatarSize
+	src?: string
 	onClick?: () => void
 }
 
@@ -19,12 +19,12 @@ interface AvatarProps {
 export const Avatar:React.FC<AvatarProps> = memo((props) => {
 	const {
 		className,
-		size,
-		avatarLink = '',
+		size = AvatarSize.L,
+		src,
 		onClick
 	} = props
 
 	return (
-		<img onClick={onClick} className={classNames(cls.Avatar, {}, [className, cls[size]])} src={avatarLink} />
+		<img onClick={onClick} className={classNames(cls.Avatar, {}, [className, cls[size]])} src={src || 'https://media.steampowered.com/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg'} />
 	)
 })
