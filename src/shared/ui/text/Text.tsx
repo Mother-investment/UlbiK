@@ -1,5 +1,4 @@
-import { classNames } from 'shared'
-import { Mods } from 'shared/lib/classNames/classNames'
+import { classNames, Mods } from 'shared/lib/classNames/classNames'
 import cls from './Text.module.scss'
 
 export enum TextTheme {

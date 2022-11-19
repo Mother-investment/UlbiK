@@ -1,6 +1,6 @@
-import { classNames } from 'shared'
 import cls from './Avatar.module.scss'
 import { memo } from 'react'
+import { classNames } from 'shared/lib/classNames/classNames'
 
 export enum AvatarSize {
 	M = 'size_m',

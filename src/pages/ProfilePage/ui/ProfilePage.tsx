@@ -1,9 +1,10 @@
-import { classNames, DynamicModuleLoader, ReducersList, useAppDispatch } from 'shared'
 import cls from './ProfilePage.module.scss'
 import { useTranslation } from 'react-i18next'
 import { fetchProfileData, ProfileCard, profileReducer } from 'entities/Profile'
 import { useEffect } from 'react'
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader'
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import { classNames } from 'shared/lib/classNames/classNames'
 
 const redusers: ReducersList = {
 	profile: profileReducer

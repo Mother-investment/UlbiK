@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
-import { Button, classNames, Text } from 'shared'
 import cls from './ProfilePageHeader.module.scss'
 import { memo } from 'react'
-import { TextTheme } from 'shared/ui/text/Text'
-import { ButtonTheme } from 'shared/ui/Button/Button'
+import { Text, TextTheme } from 'shared/ui/Text/Text'
+import { Button, ButtonTheme } from 'shared/ui/Button/Button'
+import { classNames } from 'shared/lib/classNames/classNames'
 
 interface ProfilePageHeaderProps {
 	className?: string

@@ -1,23 +1,13 @@
-.body {
-	// background: url('/src/shared/assets/images/Body.png');
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+.MainPage {
+	align-items: center;
+	display: flex;
 	height: 100%;
-	width: 100%;
-}
-
-.header {
-	height: 250px;
+	justify-content: center;
 	width: 100%;
 }
 
 .container {
-	height: 800px;
-	width: 100%;
-}
-
-.footer {
-	height: 250px;
-	width: 100%;
+	background-color: var(--container);
+	height: 400px;
+	width: 600px;
 }

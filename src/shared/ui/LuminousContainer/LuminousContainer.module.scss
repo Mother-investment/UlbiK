@@ -1,0 +1,26 @@
+.LuminousContainer {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	z-index: 4;
+
+	&:hover {
+		box-shadow:
+			0 0 4px 4px var(--transparent-glow-color),
+			0 0 30px 0 var(--transparent-glow-color),
+			0 0 130px 20px var(--glow-color);
+		z-index: 10;
+	}
+}
+
+.defaultGlow {
+	box-shadow:
+		0 0 2px 2px var(--transparent-glow-color),
+		0 0 20px 0 var(--transparent-glow-color),
+		0 0 100px 10px var(--glow-color);
+}
+
+.skew {
+	transform: skew(15deg);
+}

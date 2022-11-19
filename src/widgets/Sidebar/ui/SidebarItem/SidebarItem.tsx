@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next'
-import { AppLink, classNames } from 'shared'
-import { AppLinkTheme } from 'shared/ui/AppLink/AppLink'
 import cls from './SidebarItem.module.scss'
 import { SidebarItemType } from '../../module/items'
 import { memo } from 'react'
+import { Link } from 'react-router-dom'
+import { classNames } from 'shared/lib/classNames/classNames'
+import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer'
+import { Text } from 'shared/ui/Text/Text'
 
 interface SidebarItemProps {
 	item: SidebarItemType
@@ -15,9 +17,11 @@ export const SidebarItem:React.FC<SidebarItemProps> = memo((props) => {
 	const { t } = useTranslation()
 
 	return (
-		<AppLink className={classNames(cls.item, { [cls.collapsed]: collapsed })} theme={AppLinkTheme.SECONDARY} to={item.path}>
-			<item.Icon className={cls.icon} />
-			<span className={cls.link} >{t(item.text)}</span>
-		</AppLink>
+		<LuminousContainer className={classNames(cls.SidebarItem, { [cls.collapsed]: collapsed })} >
+			<Link className={cls.link} to={item.path}>
+				<item.Icon className={cls.icon} />
+				{ collapsed && <Text className={cls.link} >{t(item.text)}</Text>}
+			</Link>
+		</LuminousContainer>
 	)
 })

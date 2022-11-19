@@ -1,6 +1,7 @@
 /* eslint-disable i18next/no-literal-string */
 import { Suspense } from 'react'
-import { classNames, Modal } from 'shared'
+import { classNames } from 'shared/lib/classNames/classNames'
+import { Modal } from 'shared/ui/Modal/Modal'
 import { LoginFormAsync } from '../LoginForm/LoginForm.async'
 import cls from './LoginModal.module.scss'
 

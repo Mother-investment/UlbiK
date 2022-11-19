@@ -1,13 +1,14 @@
 import { LoginModal } from 'features/AuthByUsername'
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { classNames } from 'shared'
 import { LangSwitcher } from 'widgets/LangSwitcher'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import cls from './Header.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { getUserAvatar, userActions } from 'entities/User'
 import { Avatar } from 'shared/ui/Avatar/Avatar'
+import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer'
+import { classNames } from 'shared/lib/classNames/classNames'
 
 interface HeaderProps {
     className?: string
@@ -33,12 +34,19 @@ export const Header: React.FC<HeaderProps> = (props) => {
 	return (
 		<header className={classNames(cls.Header, {}, [className])}>
 			<nav className={cls.switchers}>
-				<ThemeSwitcher className={cls.switchersItem} />
-				<LangSwitcher className={cls.switchersItem} />
+				<LuminousContainer className={cls.switchersItem} skew>
+					<ThemeSwitcher className={cls.switchersElement}/>
+				</LuminousContainer>
+				<LuminousContainer className={cls.switchersItem} skew>
+					<LangSwitcher className={cls.switchersElement}/>
+				</LuminousContainer>
+
 			</nav>
 			<div className={cls.loginMenu}>
 				<div className={cls.login}>
-					<Avatar src={avatarLink} className={cls.avatar}/>
+					<LuminousContainer defaultGlow>
+						<Avatar src={avatarLink} className={cls.avatar}/>
+					</LuminousContainer>
 					{/* <Button className={cls.item} onClick={authData ? onLogout : onShowModal}>{authData ? t('Выйти') : t('Войти')}</Button> */}
 				</div>
 			</div>

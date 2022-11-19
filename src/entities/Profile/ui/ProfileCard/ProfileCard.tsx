@@ -1,15 +1,16 @@
 import { useTranslation } from 'react-i18next'
-import { Button, classNames, Text, useAppDispatch } from 'shared'
 import cls from './ProfileCard.module.scss'
 import { memo, useEffect } from 'react'
 import { ButtonTheme } from 'shared/ui/Button/Button'
 import { Profile } from '../../model/types/profile'
-import { TextAling, TextTheme } from 'shared/ui/text/Text'
+import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
 import { useSelector } from 'react-redux'
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData'
 import { getProfileData } from '../../model/selectors/getProfileData/getProfileData'
 import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading'
 import { getProfileError } from '../../model/selectors/getProfileError/getProfileError'
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { classNames } from 'shared/lib/classNames/classNames'
 
 interface ProfileCardProps {
 	className?: string
