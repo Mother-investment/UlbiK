@@ -1,7 +1,8 @@
 .Header {
-	background: linear-gradient(to right, var(--black-dark), var(--black-light));
+	background: var(--bg-gradient);
 	height: 50px;
 	position: relative;
+	z-index: var(--z-header);
 }
 
 .loginMenu {
@@ -13,6 +14,7 @@
 	right: 200px;
 	top: 0;
 	width: 140px;
+	z-index: var(--z-liginMenu);
 
 	&::after {
 		background: var(--black-light);
@@ -23,7 +25,6 @@
 		right: -10px;
 		transform: skew(-15deg);
 		width: 30px;
-		z-index: 1;
 	}
 
 	&::before {
@@ -35,7 +36,6 @@
 		position: absolute;
 		transform: skew(15deg);
 		width: 30px;
-		z-index: 1;
 	}
 }
 
@@ -47,7 +47,6 @@
 	justify-content: center;
 	position: relative;
 	width: 100px;
-	z-index: 3;
 
 	&::after {
 		background: var(--black-light);
@@ -58,7 +57,7 @@
 		right: -10px;
 		transform: skew(-5deg);
 		width: 10px;
-		z-index: 2;
+		z-index: var(--z-login-figure);
 	}
 
 	&::before {
@@ -70,7 +69,7 @@
 		position: absolute;
 		transform: skew(5deg);
 		width: 30px;
-		z-index: 2;
+		z-index: var(--z-login-figure);
 	}
 }
 
@@ -92,7 +91,6 @@
 	&:hover {
 		color: var(--glow-color);
 		cursor: pointer;
-		z-index: 6;
 
 		svg {
 			fill: var(--glow-color);

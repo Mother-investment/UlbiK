@@ -1,10 +1,8 @@
 .Sidebar {
 	background: none;
-	margin-top: 20vh;
-	position: relative;
+	left: 0;
+	position: absolute;
+	top: 30vh;
 	transition: width 0.3s;
+	z-index: var(--z-sidebar);
 }
-
-// .container {
-// 	background-color: ;
-// }

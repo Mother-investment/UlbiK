@@ -3,9 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 import { routeConfig } from 'shared/config/routeConfig/routeConfig'
 
-interface IProps {}
-
-export const AppRouter: React.FC<IProps> = () => {
+export const AppRouter: React.FC = () => {
 	const { t } = useTranslation()
 	return (
 		<Suspense fallback={<div>{t('Загрузка')}</div>}>

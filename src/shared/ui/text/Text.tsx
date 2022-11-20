@@ -11,7 +11,6 @@ export enum TextAling {
 	LEFT = 'left',
 	CENTER = 'center'
 }
-
 interface TextProps {
 	className?: string
 	title?: string

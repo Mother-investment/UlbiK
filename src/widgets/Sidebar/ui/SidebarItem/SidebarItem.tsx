@@ -9,18 +9,17 @@ import { Text } from 'shared/ui/Text/Text'
 
 interface SidebarItemProps {
 	item: SidebarItemType
-	collapsed: boolean
 }
 
 export const SidebarItem:React.FC<SidebarItemProps> = memo((props) => {
-	const { item, collapsed } = props
+	const { item } = props
 	const { t } = useTranslation()
 
 	return (
-		<LuminousContainer className={classNames(cls.SidebarItem, { [cls.collapsed]: collapsed })} >
+		<LuminousContainer className={cls.SidebarItem} hover >
 			<Link className={cls.link} to={item.path}>
-				<item.Icon className={cls.icon} />
-				{ collapsed && <Text className={cls.link} >{t(item.text)}</Text>}
+				<div className={cls.icon}><item.Icon /></div>
+				<Text className={cls.text} text={t(item.text)} />
 			</Link>
 		</LuminousContainer>
 	)

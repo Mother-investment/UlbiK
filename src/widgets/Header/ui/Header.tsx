@@ -5,7 +5,7 @@ import { LangSwitcher } from 'widgets/LangSwitcher'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import cls from './Header.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { getUserAvatar, userActions } from 'entities/User'
+import { getUserAvatar, getUserUsername, userActions } from 'entities/User'
 import { Avatar } from 'shared/ui/Avatar/Avatar'
 import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer'
 import { classNames } from 'shared/lib/classNames/classNames'
@@ -20,6 +20,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
 	const dispatch = useDispatch()
 	const [isOpen, setIsOpen] = useState(false)
 	const avatarLink = useSelector(getUserAvatar)
+	const Username = useSelector(getUserUsername)
 
 	const onCloseModal = useCallback(() => {
 		setIsOpen(false)
@@ -34,18 +35,18 @@ export const Header: React.FC<HeaderProps> = (props) => {
 	return (
 		<header className={classNames(cls.Header, {}, [className])}>
 			<nav className={cls.switchers}>
-				<LuminousContainer className={cls.switchersItem} skew>
+				<LuminousContainer className={cls.switchersItem} skew hover>
 					<ThemeSwitcher className={cls.switchersElement}/>
 				</LuminousContainer>
-				<LuminousContainer className={cls.switchersItem} skew>
+				<LuminousContainer className={cls.switchersItem} skew hover>
 					<LangSwitcher className={cls.switchersElement}/>
 				</LuminousContainer>
 
 			</nav>
 			<div className={cls.loginMenu}>
 				<div className={cls.login}>
-					<LuminousContainer defaultGlow>
-						<Avatar src={avatarLink} className={cls.avatar}/>
+					<LuminousContainer defaultGlow hover>
+						<Avatar src={avatarLink} className={cls.avatar} onClick={Username ? onLogout : onShowModal} />
 					</LuminousContainer>
 					{/* <Button className={cls.item} onClick={authData ? onLogout : onShowModal}>{authData ? t('Выйти') : t('Войти')}</Button> */}
 				</div>

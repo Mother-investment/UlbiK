@@ -1,10 +1,17 @@
 .app_dark_theme {
 	--bg-color: #101427;
 	--inverted-bg-color: #cfcfd2;
-	--primary-color: #0ee40e;
+	--primary-color: #fff;
 	--secondary-color: #17ad17;
 	--inverted-primary-color: #1a3ff6;
 	--inverted-secondary-color: #0a2e77;
 	--glow-color: #3d68b0;
 	--transparent-glow-color: #3d68b07d;
+	--black-dark: #0b0c10;
+	--black-light: #262326;
+	--bg-gradient: linear-gradient(to right, var(--black-dark), var(--black-light));
+	--luminous-shadow:
+		0 0 2px 2px var(--transparent-glow-color),
+		0 0 20px 0 var(--transparent-glow-color),
+		0 0 100px 10px var(--glow-color);
 }

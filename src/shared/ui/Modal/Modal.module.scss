@@ -6,12 +6,12 @@
 	position: fixed;
 	right: 0;
 	top: 0;
-	z-index: -1;
+	z-index: var(--z-modal);
 }
 
 .overlay {
 	align-items: center;
-	background: rgb(28 28 28 / 74.2%);
+	background: var(--modal-bg);
 	display: flex;
 	height: 100%;
 	justify-content: center;
@@ -19,8 +19,7 @@
 }
 
 .content {
-	background: var(--inverted-bg-color);
-	border-radius: 12px;
+	background: var(--bg-gradient);
 	color: var(--inverted-secondary-color);
 	max-width: 60%;
 	padding: 20px;
@@ -31,7 +30,7 @@
 .opened {
 	opacity: 1;
 	pointer-events: auto;
-	z-index: 10;
+	z-index: var(--z-modal-active);
 
 	.content {
 		transform: scale(1);
