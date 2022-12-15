@@ -1,6 +1,7 @@
 /* eslint-disable i18next/no-literal-string */
 import { Suspense } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
+import { LoaderMini } from 'shared/ui/LoaderMini/LoaderMini'
 import { Modal } from 'shared/ui/Modal/Modal'
 import { LoginFormAsync } from '../LoginForm/LoginForm.async'
 import cls from './LoginModal.module.scss'
@@ -16,7 +17,7 @@ export const LoginModal:React.FC<LoginModalProps> = (props) => {
 
 	return (
 		<Modal className={classNames(cls.LoginModal, {}, [className])} isOpen={isOpen} onClose={onClose} lazy>
-			<Suspense fallback={'Loading'}>
+			<Suspense fallback={<LoaderMini />}>
 				<LoginFormAsync onClose={onClose} />
 			</Suspense>
 		</Modal>

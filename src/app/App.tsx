@@ -6,6 +6,7 @@ import { Suspense, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { userActions } from 'entities/User'
 import { classNames } from 'shared/lib/classNames/classNames'
+import { Loader } from 'shared/ui/Loader/Loader'
 
 const App: React.FC = () => {
 	const { theme } = useTheme()
@@ -17,7 +18,7 @@ const App: React.FC = () => {
 
 	return (
 		<div className={classNames('app', {}, [theme])} id='app'>
-			<Suspense fallback=''>
+			<Suspense fallback={<Loader />}>
 				<Header />
 				<div className='contentPage'>
 					<Sidebar />

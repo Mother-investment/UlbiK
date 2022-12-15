@@ -1,14 +1,10 @@
 .app_light_theme {
-	--bg-color: #cfcfd2;
-	--inverted-bg-color: #060651;
+	--bg-color: #fdfdff;
 	--primary-color: #fff;
-	--secondary-color: #0a2e77;
-	--inverted-primary-color: #0ee40e;
-	--inverted-secondary-color: #17ad17;
-	--themeIcon-color: #ffc700;
+	--secondary-color: #000;
 	--glow-color: #fd853b;
 	--transparent-glow-color: #fd853b7d;
-	--black-dark: #656a82;
-	--black-light: #818599;
-	--bg-gradient: linear-gradient(to right, var(--black-dark), var(--black-light));
+	--back-dark: #656a82;
+	--back-light: #818599;
+	--bg-gradient: linear-gradient(to right, var(--back-dark), var(--back-light));
 }

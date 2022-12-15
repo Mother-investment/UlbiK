@@ -8,9 +8,9 @@ const MainPage: React.FC<MainPageProps> = () => {
 	const { t } = useTranslation()
 	return (
 		<div className={cls.MainPage}>
-			<LuminousContainer backgroundPage defaultGlow>
+			{/* <LuminousContainer backgroundPage defaultGlow>
 
-			</LuminousContainer>
+			</LuminousContainer> */}
 		</div>
 	)
 }
