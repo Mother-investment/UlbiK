@@ -23,13 +23,9 @@ interface TextProps {
 export const Text:React.FC<TextProps> = (props) => {
 	const { className, title, text, theme = TextTheme.PRIMARY, aling = TextAling.LEFT } = props
 
-	const mods: Mods = {
-		[cls[theme]]: true,
-		[cls[aling]]: true
-	}
 
 	return (
-		<div className={classNames(cls.Text, mods, [className, cls[theme]])}>
+		<div className={classNames(cls.Text, {}, [className, cls[theme], cls[aling]])}>
 			{title && <h3 className={cls.title}>{title}</h3>}
 			{text && <p className={cls.text}>{text}</p>}
 		</div>
