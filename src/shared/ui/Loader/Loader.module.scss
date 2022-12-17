@@ -9,12 +9,12 @@
 
 .main {
 	animation: anim-main-back 1s linear infinite alternate;
-	background-color: #fff;
-	background-image: radial-gradient(ellipse at center, #fff 34%, #ff3d00 35%, #ff3d00 54%, #fff 55%), linear-gradient(#ff3d00 10px, transparent 0);
+	background-color: var(--back-light);
+	background-image: radial-gradient(ellipse at center, var(--back-light) 34%, var(--glow-color) 35%, var(--glow-color) 54%, var(--back-light) 55%), linear-gradient(var(--glow-color) 10px, transparent 0);
 	background-position: center 20px, center 2px;
 	background-repeat: no-repeat;
 	background-size: 28px 28px;
-	border-bottom: 10px solid #ff3d00;
+	border-bottom: 10px solid var(--glow-color);
 	border-radius: 50% 50% 0 0;
 	box-sizing: border-box;
 	display: block;
@@ -26,7 +26,7 @@
 
 .main::before {
 	border-radius: 50%;
-	box-shadow: 0 15px #ff3d00 inset;
+	box-shadow: 0 15px var(--glow-color) inset;
 	box-sizing: border-box;
 	content: '';
 	height: 44px;
@@ -84,5 +84,77 @@
 		box-shadow: 2px 2px 8px 0 rgb(255 61 0 / 50%);
 		height: 28px;
 		width: 30px;
+	}
+}
+
+.list {
+	animation: list-shadow-pulse 2s linear infinite;
+	background: #fff;
+	border-radius: 50%;
+	box-shadow: -24px 0 #fff, 24px 0 #fff;
+	box-sizing: border-box;
+	display: block;
+	height: 16px;
+	margin: 15px auto;
+	position: relative;
+	width: 16px;
+}
+
+.list.size_m {
+	box-shadow: -24px 0 #fff, 24px 0 #fff;
+	height: 16px;
+	margin: 15px auto;
+	width: 16px;
+}
+
+@keyframes list-shadow-pulse {
+	33% {
+		background: #fff;
+		box-shadow: -24px 0 var(--glow-color), 24px 0 #fff;
+	}
+
+	66% {
+		background: var(--glow-color);
+		box-shadow: -24px 0 #fff, 24px 0 #fff;
+	}
+
+	100% {
+		background: #fff;
+		box-shadow: -24px 0 #fff, 24px 0 var(--glow-color);
+	}
+}
+
+.window {
+	animation: rotation 1s linear infinite;
+	border-radius: 50%;
+	border-right: 4px solid transparent;
+	border-top: 4px solid #fff;
+	box-sizing: border-box;
+	display: inline-block;
+	height: 48px;
+	width: 48px;
+}
+
+.window::after {
+	animation: rotation 0.5s linear infinite reverse;
+	border-bottom: 4px solid transparent;
+	border-left: 4px solid var(--glow-color);
+	border-radius: 50%;
+	box-sizing: border-box;
+	content: '';
+	height: 48px;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 48px;
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
 	}
 }
