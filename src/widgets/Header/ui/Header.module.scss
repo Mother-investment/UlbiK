@@ -18,7 +18,7 @@
 
 	&::after {
 		background: var(--back-light);
-		box-shadow: 3px -7px 2px 1px var(--shadow);
+		box-shadow: 3px -7px 2px 1px var(--col-shadow);
 		content: '';
 		height: 55px;
 		position: absolute;
@@ -29,7 +29,7 @@
 
 	&::before {
 		background: var(--back-light);
-		box-shadow: -3px -7px 2px 1px var(--shadow);
+		box-shadow: -3px -7px 2px 1px var(--col-shadow);
 		content: '';
 		height: 55px;
 		left: -10px;
@@ -47,22 +47,23 @@
 	justify-content: center;
 	position: relative;
 	width: 100px;
+	z-index: var(--z-login-figure);
 
 	&::after {
 		background: var(--back-light);
-		box-shadow: 3px -8px 2px 1px var(--shadow);
+		box-shadow: 3px -8px 2px 1px var(--col-shadow);
 		content: '';
 		height: 62px;
 		position: absolute;
 		right: -10px;
 		transform: skew(-5deg);
-		width: 10px;
+		width: 30px;
 		z-index: var(--z-login-figure);
 	}
 
 	&::before {
 		background: var(--back-light);
-		box-shadow: -3px -8px 2px 1px var(--shadow);
+		box-shadow: -3px -8px 2px 1px var(--col-shadow);
 		content: '';
 		height: 62px;
 		left: -10px;

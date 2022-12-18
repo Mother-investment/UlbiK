@@ -1,7 +1,7 @@
 import cls from './LoginForm.module.scss'
 import { useTranslation } from 'react-i18next'
 import { Input } from 'shared/ui/Input/Input'
-import { Button, ButtonTheme } from 'shared/ui/Button/Button'
+import { Button, ButtonColor, ButtonTheme } from 'shared/ui/Button/Button'
 import { useSelector } from 'react-redux'
 import { memo, useCallback, useEffect } from 'react'
 import { loginActions, loginReducer } from '../../model/slice/loginSlice'
@@ -53,8 +53,8 @@ const LoginForm:React.FC<LoginFormProps> = memo((props) => {
 	return (
 		<DynamicModuleLoader reducers={initialReducers}>
 			<div className={classNames(cls.LoginForm, {}, [className])}>
-				<Text title={t('Авторизация')}/>
-				{error && <Text theme={TextTheme.ERROR} text={t('Вы ввели неверный логин или пароль')} />}
+				<Text theme={TextTheme.PRIMARY} title={t('Авторизация')}/>
+				{error && <Text theme={TextTheme.ATTN} text={t('Вы ввели неверный логин или пароль')} />}
 				<div className={cls.item}>
 					<p className={cls.text}>{t('Логин')}</p>
 					<Input className={cls.input} type='text' onChange={onChangeUsername} value={username} />
@@ -63,7 +63,7 @@ const LoginForm:React.FC<LoginFormProps> = memo((props) => {
 					<p className={cls.text}>{t('Пароль')}</p>
 					<Input className={cls.input} type='password' onChange={onChangePassword} value={password} />
 				</div>
-				<Button disabled={isLoading} theme={ButtonTheme.OUTLINE_INVERTED} className={cls.loginBtn} onClick={onClickLogin} >{t('Войти')}</Button>
+				<Button disabled={isLoading} theme={ButtonTheme.OUTLINE} color={ButtonColor.PRIMARY} className={cls.loginBtn} onClick={onClickLogin} >{t('Войти')}</Button>
 			</div>
 		</DynamicModuleLoader>
 	)

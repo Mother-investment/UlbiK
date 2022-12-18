@@ -1,0 +1,14 @@
+.DropDownMenu {
+	background: var(--bg-gradient-up);
+	display: none;
+	height: 500px;
+	position: absolute;
+	top: -1000px;
+	width: 100%;
+	z-index: var(--z-drop-down-menu);
+}
+
+.opened {
+	display: flex;
+	top: 0;
+}

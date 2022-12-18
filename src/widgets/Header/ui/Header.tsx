@@ -9,6 +9,7 @@ import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer
 import { classNames } from 'shared/lib/classNames/classNames'
 import { ThemeSwitcher } from 'features/ThemeSwitcher/ui/ThemeSwitcher'
 import { LangSwitcher } from 'features/LangSwitcher'
+import { DropDownMenu, DropDownMenuDirection } from 'shared/ui/DropDownMenu/DropDownMenu'
 
 interface HeaderProps {
     className?: string
@@ -18,16 +19,18 @@ export const Header: React.FC<HeaderProps> = (props) => {
 	const { className } = props
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
-	const [isOpen, setIsOpen] = useState(false)
+	const [isOpenModal, setIsOpenModal] = useState(false)
+	const [isOpenOptions, setIsOpenOptions] = useState(false)
 	const avatarLink = useSelector(getUserAvatar)
 	const Username = useSelector(getUserUsername)
 
 	const onCloseModal = useCallback(() => {
-		setIsOpen(false)
+		setIsOpenModal(false)
 	}, [])
 	const onShowModal = useCallback(() => {
-		setIsOpen(true)
+		setIsOpenModal(true)
 	}, [])
+
 	const onLogout = useCallback(() => {
 		dispatch(userActions.logout())
 	}, [dispatch])
@@ -50,8 +53,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
 					</LuminousContainer>
 					{/* <Button className={cls.item} onClick={authData ? onLogout : onShowModal}>{authData ? t('Выйти') : t('Войти')}</Button> */}
 				</div>
+				<DropDownMenu className={cls.dropDownMenu} direction={DropDownMenuDirection.TOP}>
+
+				</DropDownMenu>
 			</div>
-			{isOpen && <LoginModal isOpen={isOpen} onClose={onCloseModal} />}
+			{isOpenModal && <LoginModal isOpen={isOpenModal} onClose={onCloseModal} />}
 		</header>
 	)
 }

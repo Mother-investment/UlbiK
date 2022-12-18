@@ -16,7 +16,7 @@ export const ProfilePageHeader:React.FC<ProfilePageHeaderProps> = memo((props) =
 	return (
 		<div className={classNames(cls.ProfilePageHeader, {}, [className])}>
 			<div className={cls.header}>
-				<Text theme={TextTheme.PRIMARY} title={t('Профиль')}/>
+				<Text title={t('Профиль')}/>
 				<Button theme={ButtonTheme.OUTLINE} >{t('Редактировать')}</Button>
 			</div>
 		</div>

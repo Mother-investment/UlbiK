@@ -4,6 +4,24 @@
 	padding: 6px 15px;
 }
 
+.primary {
+	background-color: var(--secondary-color);
+	border: 1px solid var(--primary-color);
+	color: var(--primary-color);
+}
+
+.secondary {
+	background-color: var(--primary-color);
+	border: 1px solid var(--secondary-color);
+	color: var(--secondary-color);
+}
+
+.attn {
+	background-color: var(--primary-color);
+	border: 1px solid var(--col-attn);
+	color: var(--col-attn);
+}
+
 .clear {
 	background: none;
 	border: none;
@@ -14,25 +32,10 @@
 
 .outline {
 	background: none;
-	border: 1px solid var(--primary-color);
-	color: var(--primary-color);
-}
-
-.outlineInverted {
-	background: none;
-	border: 1px solid var(--primary-color);
-	color: var(--primary-color);
 }
 
 .background {
-	background: var(--bg-color);
 	border: none;
-	color: var(--primary-color);
-}
-
-.backgroundInverted {
-	border: none;
-	color: var(--primary-color);
 }
 
 .square {

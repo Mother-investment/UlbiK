@@ -4,7 +4,7 @@ import cls from './Text.module.scss'
 export enum TextTheme {
 	PRIMARY = 'primary',
 	SECONDARY = 'secondary',
-	ERROR = 'error'
+	ATTN = 'attn'
 }
 
 export enum TextAling {
@@ -21,7 +21,7 @@ interface TextProps {
 }
 
 export const Text:React.FC<TextProps> = (props) => {
-	const { className, title, text, theme = TextTheme.PRIMARY, aling = TextAling.LEFT } = props
+	const { className, title, text, theme = TextTheme.SECONDARY, aling = TextAling.LEFT } = props
 
 
 	return (

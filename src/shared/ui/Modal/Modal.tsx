@@ -15,7 +15,7 @@ interface ModalProps {
 const ANIMATION_DELAY = 300
 
 export const Modal:React.FC<ModalProps> = (props) => {
-	const { className, children, isOpen, onClose, lazy, ...otherProps } = props
+	const { className, children, isOpen, onClose, lazy } = props
 
 	const [isClosing, setIsClosing] = useState(false)
 	const [isMounted, setIsMounted] = useState(false)
@@ -68,9 +68,9 @@ export const Modal:React.FC<ModalProps> = (props) => {
 
 	return (
 		<Portal>
-			<div className={classNames(cls.Modal, mods, [className, theme, 'app_modal'])} onMouseDown={closeHandler}>
+			<div className={classNames(cls.Modal, mods, [theme, 'app_modal'])} onMouseDown={closeHandler}>
 				<div className={cls.overlay}>
-					<div className={cls.content} onMouseDown={onContentClick}>
+					<div className={classNames(cls.content, {}, [className])} onMouseDown={onContentClick}>
 						{children}
 					</div>
 				</div>

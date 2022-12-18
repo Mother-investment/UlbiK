@@ -1,7 +1,3 @@
-.Text {
-	color: var(--primary-color);
-}
-
 .title {
 	font: var(--font-l);
 }
@@ -14,14 +10,12 @@
 	color: var(--secondary-color);
 }
 
-.error {
-	.title {
-		color: var(--red-light);
-	}
+.primary {
+	color: var(--primary-color);
+}
 
-	.text {
-		color: var(--red-dark);
-	}
+.attn {
+	color: var(--col-attn);
 }
 
 .left {

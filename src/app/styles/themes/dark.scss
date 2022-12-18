@@ -4,9 +4,10 @@
 	--secondary-color: #fff;
 	--glow-color: #3d68b0;
 	--transparent-glow-color: #3d68b07d;
-	--back-dark: #0b0c10;
+	--back-dark: #151315;
 	--back-light: #262326;
 	--bg-gradient: linear-gradient(to right, var(--back-dark), var(--back-light));
+	--bg-gradient-up: linear-gradient(to bottom, var(--back-light), var(--back-dark));
 	--luminous-shadow:
 		0 0 2px 2px var(--transparent-glow-color),
 		0 0 20px 0 var(--transparent-glow-color),

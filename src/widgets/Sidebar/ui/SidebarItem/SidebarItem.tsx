@@ -15,17 +15,21 @@ interface SidebarItemProps {
 export const SidebarItem:React.FC<SidebarItemProps> = memo((props) => {
 	const { item } = props
 	const { t } = useTranslation()
-
 	const [description, setDescription] = useState(false)
-	const ontoggleDescription = useCallback(() => {
-		setDescription(!description)
-	}, [description])
+
+	const showDescription = useCallback(() => {
+		setDescription(true)
+	}, [])
+	const hideDescription = useCallback(() => {
+		setDescription(false)
+	}, [])
+
 	return (
-		<LuminousContainer className={cls.SidebarItem} hover >
-			<Link className={cls.link} to={item.path} onMouseEnter={ontoggleDescription} onMouseLeave={ontoggleDescription}>
+		<Link className={cls.link} to={item.path} onMouseEnter={showDescription} onMouseLeave={hideDescription}>
+			<LuminousContainer className={cls.SidebarItem} hover >
 				<div className={cls.icon}><item.Icon /></div>
 				<Text className={classNames(cls.text, { [cls.opened]: description }, [])} text={t(item.text)} theme={TextTheme.SECONDARY}/>
-			</Link>
-		</LuminousContainer>
+			</LuminousContainer>
+		</Link>
 	)
 })
