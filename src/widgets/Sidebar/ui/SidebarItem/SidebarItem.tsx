@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import cls from './SidebarItem.module.scss'
-import { SidebarItemType } from '../../module/items'
+import { SidebarItemType } from '../../modulef/items'
 import { memo, useCallback, useState } from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
 import { classNames } from 'shared/lib/classNames/classNames'

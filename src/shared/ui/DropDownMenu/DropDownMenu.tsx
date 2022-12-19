@@ -12,13 +12,14 @@ export enum DropDownMenuDirection {
 interface DropDownMenuProps {
 	className?: string
 	direction: DropDownMenuDirection
+	onClose?: () => void
 }
 
 export const DropDownMenu:React.FC<DropDownMenuProps> = memo((props) => {
-	const { className, children, direction } = props
+	const { className, children, direction, onClose, ...otherProps } = props
 
 	return (
-		<div className={classNames(cls.DropDownMenu, {}, [className, cls[direction]])}>
+		<div className={classNames(cls.DropDownMenu, {}, [className, cls[direction]])} {...otherProps}>
 			{children}
 		</div>
 	)

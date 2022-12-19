@@ -42,7 +42,7 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 		return (
 			<div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
 				<Text
-					theme={TextTheme.ERROR}
+					theme={TextTheme.ATTN}
 					title={t('Произошла ошибка при загрузке профилья')}
 					text={t('Попробуйте обновить страницу')}
 					aling={TextAling.CENTER}

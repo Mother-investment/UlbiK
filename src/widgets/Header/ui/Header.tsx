@@ -3,13 +3,14 @@ import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import cls from './Header.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { getUserAvatar, getUserUsername, userActions } from 'entities/User'
+import { getUserAuthData, userActions } from 'entities/User'
 import { Avatar } from 'shared/ui/Avatar/Avatar'
 import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { ThemeSwitcher } from 'features/ThemeSwitcher/ui/ThemeSwitcher'
 import { LangSwitcher } from 'features/LangSwitcher'
 import { DropDownMenu, DropDownMenuDirection } from 'shared/ui/DropDownMenu/DropDownMenu'
+import { Text, TextTheme } from 'shared/ui/Text/Text'
 
 interface HeaderProps {
     className?: string
@@ -21,14 +22,20 @@ export const Header: React.FC<HeaderProps> = (props) => {
 	const dispatch = useDispatch()
 	const [isOpenModal, setIsOpenModal] = useState(false)
 	const [isOpenOptions, setIsOpenOptions] = useState(false)
-	const avatarLink = useSelector(getUserAvatar)
-	const Username = useSelector(getUserUsername)
+	const userData = useSelector(getUserAuthData)
 
 	const onCloseModal = useCallback(() => {
 		setIsOpenModal(false)
 	}, [])
 	const onShowModal = useCallback(() => {
 		setIsOpenModal(true)
+	}, [])
+
+	const onCloseOptions = useCallback(() => {
+		setIsOpenOptions(false)
+	}, [])
+	const onShowOptions = useCallback(() => {
+		setIsOpenOptions(true)
 	}, [])
 
 	const onLogout = useCallback(() => {
@@ -44,18 +51,16 @@ export const Header: React.FC<HeaderProps> = (props) => {
 				<LuminousContainer className={cls.switchersItem} skew hover>
 					<LangSwitcher className={cls.switchersElement}/>
 				</LuminousContainer>
-
 			</nav>
 			<div className={cls.loginMenu}>
 				<div className={cls.login}>
 					<LuminousContainer defaultGlow hover>
-						<Avatar src={avatarLink} className={cls.avatar} onClick={Username ? onLogout : onShowModal} />
+						<Avatar src={userData?.avatar} className={cls.avatar} onClick={userData?.username ? onShowOptions : onShowModal} />
 					</LuminousContainer>
-					{/* <Button className={cls.item} onClick={authData ? onLogout : onShowModal}>{authData ? t('Выйти') : t('Войти')}</Button> */}
 				</div>
-				<DropDownMenu className={cls.dropDownMenu} direction={DropDownMenuDirection.TOP}>
-
-				</DropDownMenu>
+				{isOpenOptions && <DropDownMenu className={cls.dropDownMenu} direction={DropDownMenuDirection.TOP}>
+					<Text text={t('Выйти')} theme={TextTheme.ATTN} onClick={onLogout}/>
+				</DropDownMenu>}
 			</div>
 			{isOpenModal && <LoginModal isOpen={isOpenModal} onClose={onCloseModal} />}
 		</header>
