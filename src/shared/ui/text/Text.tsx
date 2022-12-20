@@ -26,7 +26,7 @@ export const Text:React.FC<TextProps> = (props) => {
 
 
 	return (
-		<div className={classNames(cls.Text, { [cls.link]: !onClick }, [className, cls[theme], cls[aling]])} onClick={onClick}>
+		<div className={classNames(cls.Text, { [cls.link]: !!onClick }, [className, cls[theme], cls[aling]])} onClick={onClick}>
 			{title && <h3 className={cls.title}>{title}</h3>}
 			{text && <p className={cls.text}>{text}</p>}
 		</div>

@@ -10,7 +10,9 @@ import { classNames } from 'shared/lib/classNames/classNames'
 import { ThemeSwitcher } from 'features/ThemeSwitcher/ui/ThemeSwitcher'
 import { LangSwitcher } from 'features/LangSwitcher'
 import { DropDownMenu, DropDownMenuDirection } from 'shared/ui/DropDownMenu/DropDownMenu'
-import { Text, TextTheme } from 'shared/ui/Text/Text'
+import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
+import { Link } from 'react-router-dom'
+import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 
 interface HeaderProps {
     className?: string
@@ -37,6 +39,9 @@ export const Header: React.FC<HeaderProps> = (props) => {
 	const onShowOptions = useCallback(() => {
 		setIsOpenOptions(true)
 	}, [])
+	const onToggleOptions = useCallback(() => {
+		isOpenOptions ? setIsOpenOptions(false) : setIsOpenOptions(true)
+	}, [isOpenOptions])
 
 	const onLogout = useCallback(() => {
 		dispatch(userActions.logout())
@@ -55,11 +60,14 @@ export const Header: React.FC<HeaderProps> = (props) => {
 			<div className={cls.loginMenu}>
 				<div className={cls.login}>
 					<LuminousContainer defaultGlow hover>
-						<Avatar src={userData?.avatar} className={cls.avatar} onClick={userData?.username ? onShowOptions : onShowModal} />
+						<Avatar src={userData?.avatar} className={cls.avatar} onClick={userData?.username ? onToggleOptions : onShowModal} />
 					</LuminousContainer>
 				</div>
-				{isOpenOptions && <DropDownMenu className={cls.dropDownMenu} direction={DropDownMenuDirection.TOP}>
-					<Text text={t('Выйти')} theme={TextTheme.ATTN} onClick={onLogout}/>
+				{isOpenOptions && <DropDownMenu isOpen={isOpenOptions} className={cls.dropDownMenu} direction={DropDownMenuDirection.TOP}>
+					<Link className={cls.menuItem} to={RoutePath.profile}>
+						<Text className={cls.menuItem} text={t('Профиль')} theme={TextTheme.PRIMARY} aling={TextAling.CENTER}/>
+					</Link>
+					<Text className={cls.menuItem} text={t('Выйти')} theme={TextTheme.ATTN} onClick={onLogout} aling={TextAling.CENTER}/>
 				</DropDownMenu>}
 			</div>
 			{isOpenModal && <LoginModal isOpen={isOpenModal} onClose={onCloseModal} />}

@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import cls from './SidebarItem.module.scss'
-import { SidebarItemType } from '../../modulef/items'
 import { memo, useCallback, useState } from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
 import { routeConfig } from 'shared/config/routeConfig/routeConfig'
+import { SidebarItemType } from '../../module/types/sidebar'
 
 interface SidebarItemProps {
 	item: SidebarItemType
