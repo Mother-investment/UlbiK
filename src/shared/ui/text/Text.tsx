@@ -18,15 +18,16 @@ interface TextProps {
 	text?: string
 	theme?: TextTheme
 	aling?: TextAling
+	link?: boolean
 	onClick?: () => void
 }
 
 export const Text:React.FC<TextProps> = (props) => {
-	const { className, title, text, theme = TextTheme.SECONDARY, aling = TextAling.LEFT, onClick } = props
+	const { className, title, text, theme = TextTheme.SECONDARY, aling = TextAling.LEFT, onClick, link } = props
 
 
 	return (
-		<div className={classNames(cls.Text, { [cls.link]: !!onClick }, [className, cls[theme], cls[aling]])} onClick={onClick}>
+		<div className={classNames(cls.Text, { [cls.link]: !!onClick || link }, [className, cls[theme], cls[aling]])} onClick={onClick}>
 			{title && <h3 className={cls.title}>{title}</h3>}
 			{text && <p className={cls.text}>{text}</p>}
 		</div>

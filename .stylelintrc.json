@@ -11,6 +11,7 @@
         "indentation": "tab",
         "no-missing-end-of-source-newline": null,
         "custom-property-pattern": null,
-        "max-nesting-depth":null
+        "max-nesting-depth":null,
+        "property-no-vendor-prefix": null
     }
 }

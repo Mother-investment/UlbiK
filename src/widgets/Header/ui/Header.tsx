@@ -65,7 +65,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
 				</div>
 				{isOpenOptions && <DropDownMenu isOpen={isOpenOptions} className={cls.dropDownMenu} direction={DropDownMenuDirection.TOP}>
 					<Link className={cls.menuItem} to={RoutePath.profile}>
-						<Text className={cls.menuItem} text={t('Профиль')} theme={TextTheme.PRIMARY} aling={TextAling.CENTER}/>
+						<Text className={cls.menuItem} text={t('Профиль')} theme={TextTheme.PRIMARY} aling={TextAling.CENTER} link={true}/>
 					</Link>
 					<Text className={cls.menuItem} text={t('Выйти')} theme={TextTheme.ATTN} onClick={onLogout} aling={TextAling.CENTER}/>
 				</DropDownMenu>}
