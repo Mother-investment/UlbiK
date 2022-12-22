@@ -7,17 +7,20 @@
 }
 
 .directionTop {
-	padding: 70px 0 20px;
+	padding: 0;
 	top: -1000px;
+	transition: top 1s;
+	transition: padding 1s ease;
 }
 
 .opened {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 }
 
 .directionTop.opened {
+	padding: 70px 0 20px;
 	top: 0;
+	transition: padding 1s ease;
 }

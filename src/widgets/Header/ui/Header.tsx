@@ -1,5 +1,5 @@
 import { LoginModal } from 'features/AuthByUsername'
-import { useCallback, useState } from 'react'
+import { MutableRefObject, useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import cls from './Header.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
@@ -26,22 +26,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
 	const [isOpenOptions, setIsOpenOptions] = useState(false)
 	const userData = useSelector(getUserAuthData)
 
-	const onCloseModal = useCallback(() => {
-		setIsOpenModal(false)
-	}, [])
-	const onShowModal = useCallback(() => {
-		setIsOpenModal(true)
-	}, [])
+	const onShowModal = useCallback(() => setIsOpenModal(true), [])
+	const onCloseModal = useCallback(() => setIsOpenModal(false), [])
 
-	const onCloseOptions = useCallback(() => {
-		setIsOpenOptions(false)
-	}, [])
-	const onShowOptions = useCallback(() => {
-		setIsOpenOptions(true)
-	}, [])
-	const onToggleOptions = useCallback(() => {
-		isOpenOptions ? setIsOpenOptions(false) : setIsOpenOptions(true)
-	}, [isOpenOptions])
+	const onShowOptions = useCallback(() => setIsOpenOptions(true), [])
+	const onCloseOptions = useCallback(() => setIsOpenOptions(false), [])
 
 	const onLogout = useCallback(() => {
 		dispatch(userActions.logout())
@@ -60,10 +49,10 @@ export const Header: React.FC<HeaderProps> = (props) => {
 			<div className={cls.loginMenu}>
 				<div className={cls.login}>
 					<LuminousContainer defaultGlow hover>
-						<Avatar src={userData?.avatar} className={cls.avatar} onClick={userData?.username ? onToggleOptions : onShowModal} />
+						<Avatar src={userData?.avatar} className={cls.avatar} onClick={userData?.username ? onShowOptions : onShowModal}/>
 					</LuminousContainer>
 				</div>
-				{isOpenOptions && <DropDownMenu isOpen={isOpenOptions} className={cls.dropDownMenu} direction={DropDownMenuDirection.TOP}>
+				{isOpenOptions && <DropDownMenu isOpen={isOpenOptions} className={cls.dropDownMenu} direction={DropDownMenuDirection.TOP} onClose={onCloseOptions}>
 					<Link className={cls.menuItem} to={RoutePath.profile}>
 						<Text className={cls.menuItem} text={t('Профиль')} theme={TextTheme.PRIMARY} aling={TextAling.CENTER} link={true}/>
 					</Link>
