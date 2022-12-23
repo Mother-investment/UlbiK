@@ -9,7 +9,7 @@ import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer
 import { classNames } from 'shared/lib/classNames/classNames'
 import { ThemeSwitcher } from 'features/ThemeSwitcher/ui/ThemeSwitcher'
 import { LangSwitcher } from 'features/LangSwitcher'
-import { DropDownMenu, DropDownMenuDirection } from 'shared/ui/DropDownMenu/DropDownMenu'
+import { DropDownMenu } from 'shared/ui/DropDownMenu/DropDownMenu'
 import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
 import { Link } from 'react-router-dom'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
@@ -34,6 +34,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
 	const onLogout = useCallback(() => {
 		dispatch(userActions.logout())
+		setIsOpenOptions(false)
 	}, [dispatch])
 
 	return (
@@ -52,7 +53,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
 						<Avatar src={userData?.avatar} className={cls.avatar} onClick={userData?.username ? onShowOptions : onShowModal}/>
 					</LuminousContainer>
 				</div>
-				{isOpenOptions && <DropDownMenu isOpen={isOpenOptions} className={cls.dropDownMenu} direction={DropDownMenuDirection.TOP} onClose={onCloseOptions}>
+				{isOpenOptions && <DropDownMenu isOpen={isOpenOptions} className={cls.dropDownMenu} onClose={onCloseOptions}>
 					<Link className={cls.menuItem} to={RoutePath.profile}>
 						<Text className={cls.menuItem} text={t('Профиль')} theme={TextTheme.PRIMARY} aling={TextAling.CENTER} link={true}/>
 					</Link>

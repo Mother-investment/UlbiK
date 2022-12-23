@@ -22,12 +22,6 @@ export const Modal:React.FC<ModalProps> = (props) => {
 	const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>
 	const { theme } = useTheme()
 
-	useEffect(() => {
-		if (isOpen) {
-			setIsMounted(true)
-		}
-	}, [isOpen])
-
 	const closeHandler = useCallback(() => {
 		if (onClose) {
 			setIsClosing(true)
@@ -37,6 +31,7 @@ export const Modal:React.FC<ModalProps> = (props) => {
 			}, ANIMATION_DELAY)
 		}
 	}, [onClose])
+
 	const onkeydown = useCallback((e:KeyboardEvent) => {
 		if(e.key === 'Escape'){
 			closeHandler()
@@ -47,15 +42,17 @@ export const Modal:React.FC<ModalProps> = (props) => {
 	}
 
 	useEffect(() => {
-		if (isOpen) {
-			window.addEventListener('keydown', onkeydown)
-		}
+		window.addEventListener('keydown', onkeydown)
 
 		return () => {
 			clearTimeout(timerRef.current)
 			window.removeEventListener('keydown', onkeydown)
 		}
-	}, [isOpen, onkeydown])
+	}, [onkeydown])
+
+	useEffect(() => {
+		setIsMounted(true)
+	}, [])
 
 	const mods: Mods = {
 		[cls.opened]: isOpen,

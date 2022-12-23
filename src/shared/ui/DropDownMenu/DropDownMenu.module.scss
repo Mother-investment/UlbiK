@@ -1,26 +1,28 @@
 .DropDownMenu {
+	align-items: center;
 	background: var(--bg-gradient-up);
-	display: none;
+	display: flex;
+	flex-direction: column;
+	height: 0;
+	padding: 0;
 	position: absolute;
+	top: 0;
+	transition: padding 1s;
 	width: 100%;
 	z-index: var(--z-drop-down-menu);
 }
 
-.directionTop {
-	padding: 0;
-	top: -1000px;
-	transition: top 1s;
-	transition: padding 1s ease;
-}
-
 .opened {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
+	height: auto;
+	padding: 70px 0 20px;
 }
 
-.directionTop.opened {
+.isOpening {
+	height: auto;
 	padding: 70px 0 20px;
-	top: 0;
-	transition: padding 1s ease;
+}
+
+.isClosing {
+	height: 0;
+	padding: 0;
 }
