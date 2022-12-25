@@ -1,18 +1,33 @@
-import { Suspense } from 'react'
-import { useTranslation } from 'react-i18next'
+import { memo, Suspense, useCallback } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { routeConfig } from 'shared/config/routeConfig/routeConfig'
+import { AppRoutesProps, routeConfig } from 'shared/config/routeConfig/routeConfig'
 import { Loader } from 'shared/ui/Loader/Loader'
+import { RequireAuth } from './RequireAuth'
 
-export const AppRouter: React.FC = () => {
-	const { t } = useTranslation()
+const AppRouter: React.FC = () => {
+	const renderWithWrapper = useCallback((route: AppRoutesProps) => {
+		const element = (
+			<Suspense fallback={<Loader />}>
+				<div className="page-wrapper">
+					{route.element}
+				</div>
+			</Suspense>
+		)
+
+		return (
+			<Route
+				key={route.path}
+				path={route.path}
+				element={route.authOnly ? <RequireAuth>{element}</RequireAuth> : element}
+			/>
+		)
+	},[])
+
 	return (
-		<Suspense fallback={<Loader />}>
-			<Routes>
-				{Object.values(routeConfig).map(({ element, path }) => (
-					<Route key={path} path={path} element={<div className="pageWrapper">{element}</div>} />
-				))}
-			</Routes>
-		</Suspense>
+		<Routes>
+			{Object.values(routeConfig).map(renderWithWrapper)}
+		</Routes>
 	)
 }
+
+export default memo(AppRouter)

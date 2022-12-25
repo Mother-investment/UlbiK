@@ -1,7 +1,7 @@
 import { LoginModal } from 'features/AuthByUsername'
 import { MutableRefObject, useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import cls from './Header.module.scss'
+import cls from './Navbar.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { getUserAuthData, userActions } from 'entities/User'
 import { Avatar } from 'shared/ui/Avatar/Avatar'
@@ -14,11 +14,11 @@ import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
 import { Link } from 'react-router-dom'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 
-interface HeaderProps {
+interface NavbarProps {
     className?: string
 }
 
-export const Header: React.FC<HeaderProps> = (props) => {
+export const Navbar: React.FC<NavbarProps> = (props) => {
 	const { className } = props
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
@@ -38,7 +38,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
 	}, [dispatch])
 
 	return (
-		<header className={classNames(cls.Header, {}, [className])}>
+		<header className={classNames(cls.Navbar, {}, [className])}>
 			<nav className={cls.switchers}>
 				<LuminousContainer className={cls.switchersItem} skew hover>
 					<ThemeSwitcher className={cls.switchersElement}/>

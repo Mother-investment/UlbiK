@@ -1,8 +1,8 @@
-.Header {
+.Navbar {
 	background: var(--bg-gradient);
-	height: 50px;
+	height: var(--navbar-heigh);
 	position: relative;
-	z-index: var(--z-header);
+	z-index: var(--z-Navbar);
 }
 
 .loginMenu {

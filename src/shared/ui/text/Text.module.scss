@@ -18,28 +18,20 @@
 	color: var(--col-attn);
 }
 
-.primary.link {
-	background-image: linear-gradient(to right, var(--col-attn), var(--primary-color));
-}
+.link {
+	cursor: pointer;
+	transition: 0.2s;
 
-.secondary.link {
-	background-color: var(--secondary-color);
+	&:hover {
+		color: #fff;
+		text-shadow: var(--luminous-shadow-text);
+	}
 }
 
 .attn.link {
-	background-color: var(--col-attn);
-}
-
-.link {
-	-webkit-background-clip: text;
-	background-clip: text;
-	color: transparent;
-	cursor: pointer;
-	transition: 1s;
-
 	&:hover {
-		background-image: linear-gradient(to right, var(--primary-color), var(--col-attn));
-		transition: 1s;
+		color: var(--col-attn);
+		text-shadow: var(--luminous-shadow-text-attn);
 	}
 }
 

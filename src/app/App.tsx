@@ -1,16 +1,17 @@
 import { useTheme } from './providers/ThemeProvider'
 import { AppRouter } from './providers/Router'
-import { Header } from 'widgets/Header'
 import { Sidebar } from 'widgets/Sidebar'
 import { Suspense, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { userActions } from 'entities/User'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserInited, userActions } from 'entities/User'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Loader } from 'shared/ui/Loader/Loader'
+import { Navbar } from 'widgets/Navbar'
 
 const App: React.FC = () => {
 	const { theme } = useTheme()
 	const dispatch = useDispatch()
+	const inited = useSelector(getUserInited)
 
 	useEffect(() => {
 		dispatch(userActions.initAuthData())
@@ -19,10 +20,10 @@ const App: React.FC = () => {
 	return (
 		<div className={classNames('app', {}, [theme])} id='app'>
 			<Suspense fallback={<Loader/>}>
-				<Header />
+				<Navbar />
 				<div className='contentPage'>
 					<Sidebar />
-					<AppRouter />
+					{inited && <AppRouter />}
 				</div>
 			</Suspense>
 		</div>

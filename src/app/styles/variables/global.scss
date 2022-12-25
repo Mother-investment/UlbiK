@@ -11,9 +11,7 @@
 	--font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
 	// Размеры
-	--header-height: 50px;
-	--sidebar-width: 300px;
-	--sidebar-width-collapsed: 80px;
+	--navbar-height: 50px;
 
 	// z - Индексы
 	--z-LuminousContainerPage: 1;
@@ -22,7 +20,7 @@
 	--z-LuminousContainer: 4;
 	--z-sidebar: 4;
 	--z-loginMenu: 5;
-	--z-header: 5;
+	--z-navbar: 5;
 	--z-sidebarItem-text: 6;
 	--z-sidebarItem-icon: 7;
 	--z-modal-active: 10;
@@ -37,4 +35,9 @@
 	--col-modal-bg: #0b0c109d;
 	--col-container: #0b0c103d;
 	--col-attn: #f44;
+	--luminous-shadow-text-attn:
+		0 0 5px var(--col-attn),
+		0 0 25px var(--col-attn),
+		0 0 50px var(--col-attn),
+		0 0 100px var(--col-attn);
 }

@@ -8,8 +8,13 @@
 	--back-light: #262326;
 	--bg-gradient: linear-gradient(to right, var(--back-dark), var(--back-light));
 	--bg-gradient-up: linear-gradient(to bottom, var(--back-light), var(--back-dark));
-	--luminous-shadow:
+	--luminous-shadow-container:
 		0 0 2px 2px var(--transparent-glow-color),
 		0 0 20px 0 var(--transparent-glow-color),
 		0 0 100px 10px var(--glow-color);
+	--luminous-shadow-text:
+		0 0 5px var(--glow-color),
+		0 0 25px var(--glow-color),
+		0 0 50px var(--glow-color),
+		0 0 100px var(--glow-color);
 }

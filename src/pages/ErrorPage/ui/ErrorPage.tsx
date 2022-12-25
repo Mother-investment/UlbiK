@@ -8,7 +8,7 @@ interface ErrorPageProps {
 }
 
 const ErrorPage:React.FC<ErrorPageProps> = (props) => {
-	const { className, ...otherProps } = props
+	const { className } = props
 	const { t } = useTranslation()
 
 	const reloadPage = () => {
