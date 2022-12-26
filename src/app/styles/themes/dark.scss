@@ -1,11 +1,9 @@
 .app_dark_theme {
-	--bg-color: #101427;
-	--primary-color: #fff;
+	--body-color: #101427;
+	--bg-color: #262326;
 	--secondary-color: #fff;
 	--glow-color: #3d68b0;
 	--transparent-glow-color: #3d68b07d;
-	--back-dark: #151315;
-	--back-light: #262326;
 	--bg-gradient: linear-gradient(to right, var(--back-dark), var(--back-light));
 	--bg-gradient-up: linear-gradient(to bottom, var(--back-light), var(--back-dark));
 	--luminous-shadow-container:

@@ -17,7 +17,7 @@ export const LangSwitcher: React.FC<LangSwitcherProps> = (props) => {
 
 	return (
 		<div className={classNames(cls.LangSwitcher, {}, [className])} onClick={toggle}>
-			{t('ЯзыкВыбор')}
+			<h3>{t('ЯзыкВыбор')}</h3>
 		</div>
 	)
 }

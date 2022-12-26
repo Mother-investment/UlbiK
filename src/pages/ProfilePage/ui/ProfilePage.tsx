@@ -1,10 +1,11 @@
 import cls from './ProfilePage.module.scss'
 import { useTranslation } from 'react-i18next'
-import { fetchProfileData, ProfileCard, profileReducer } from 'entities/Profile'
+import { fetchProfileData, getProfileData, getProfileError, getProfileIsLoading, ProfileCard, profileReducer } from 'entities/Profile'
 import { useEffect } from 'react'
-import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader'
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { classNames } from 'shared/lib/classNames/classNames'
+import { useSelector } from 'react-redux'
+import { PageContainer } from 'shared/ui/PageContainer/PageContainer'
 
 const redusers: ReducersList = {
 	profile: profileReducer
@@ -17,13 +18,15 @@ className?: string
 const ProfilePage:React.FC<ProfilePageProps> = (props) => {
 	const { className } = props
 	const { t } = useTranslation()
+	const data = useSelector(getProfileData)
+	const isLoading = useSelector(getProfileIsLoading)
+	const error = useSelector(getProfileError)
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<div className={classNames(cls.ProfilePage, {}, [className])}>
-				<ProfilePageHeader />
-				<ProfileCard />
-			</div>
+			<PageContainer className={classNames(cls.ProfilePage, {}, [className])}>
+				<ProfileCard data={data} isLoading={isLoading} error={error} />
+			</PageContainer>
 		</DynamicModuleLoader>
 	)
 }

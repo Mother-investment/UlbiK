@@ -1,9 +1,13 @@
 .title {
 	font: var(--font-l);
+	font-weight: 300;
+	letter-spacing: 1px;
 }
 
 .text {
 	font: var(--font-m);
+	font-weight: 600;
+	letter-spacing: 0.6px;
 }
 
 .primary {
@@ -12,6 +16,10 @@
 
 .secondary {
 	color: var(--secondary-color);
+}
+
+.white {
+	color: #fff;
 }
 
 .attn {
@@ -30,7 +38,7 @@
 
 .attn.link {
 	&:hover {
-		color: var(--col-attn);
+		color: #fff;
 		text-shadow: var(--luminous-shadow-text-attn);
 	}
 }

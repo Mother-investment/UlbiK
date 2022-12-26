@@ -8,7 +8,7 @@
 .text {
 	align-items: center;
 	display: flex;
-	margin-left: -11px;
+	margin-left: -110px;
 	opacity: 0;
 	white-space: nowrap;
 	z-index: var(--z-sidebarItem-text);
@@ -29,6 +29,7 @@
 .icon {
 	align-items: center;
 	background-color: var(--back-light);
+	border: 1px solid var(--border-color);
 	display: flex;
 	flex: 0 0 45px;
 	height: 50px;

@@ -1,7 +1,7 @@
 .Sidebar {
 	background: none;
 	left: 0;
-	position: absolute;
+	position: fixed;
 	top: 30vh;
 	transition: width 0.3s;
 	z-index: 4;

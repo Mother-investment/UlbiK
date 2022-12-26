@@ -53,7 +53,7 @@ const LoginForm:React.FC<LoginFormProps> = memo((props) => {
 	return (
 		<DynamicModuleLoader reducers={initialReducers}>
 			<div className={classNames(cls.LoginForm, {}, [className])}>
-				<Text theme={TextTheme.PRIMARY} title={t('Авторизация')}/>
+				<Text theme={TextTheme.SECONDARY} title={t('Авторизация')}/>
 				{error && <Text theme={TextTheme.ATTN} text={t('Вы ввели неверный логин или пароль')} />}
 				<div className={cls.item}>
 					<p className={cls.text}>{t('Логин')}</p>
@@ -63,7 +63,7 @@ const LoginForm:React.FC<LoginFormProps> = memo((props) => {
 					<p className={cls.text}>{t('Пароль')}</p>
 					<Input className={cls.input} type='password' onChange={onChangePassword} value={password} />
 				</div>
-				<Button disabled={isLoading} theme={ButtonTheme.OUTLINE} color={ButtonColor.PRIMARY} className={cls.loginBtn} onClick={onClickLogin} >{t('Войти')}</Button>
+				<Button disabled={isLoading} theme={ButtonTheme.OUTLINE} color={ButtonColor.SECONDARY} className={cls.loginBtn} onClick={onClickLogin} >{t('Войти')}</Button>
 			</div>
 		</DynamicModuleLoader>
 	)

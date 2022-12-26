@@ -5,21 +5,22 @@
 
 .app,
 .app_modal {
-	color: var(--primary-color);
+	color: var(--secondary-color);
 	font: var(--font-m);
 }
 
 .app {
-	background: var(--bg-color);
+	background: var(--body-color);
 	min-height: 100vh;
 }
 
 .contentPage {
 	display: flex;
 	margin: 0 auto;
-	width: 85%;
+	min-height: calc(100vh - 50px);
+	width: 85vw;
 }
 
 .pageWrapper {
-	flex-grow: 1;
+	margin-top: 100px;
 }

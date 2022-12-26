@@ -1,11 +1,9 @@
 .app_light_theme {
-	--bg-color: #fdfdff;
-	--primary-color: #fff;
+	--body-color: #9d9c9c;
+	--bg-color: #fff;
 	--secondary-color: #000;
 	--glow-color: #fd853b;
 	--transparent-glow-color: #fd853b7d;
-	--back-dark: #656a82;
-	--back-light: #818599;
 	--bg-gradient: linear-gradient(to right, var(--back-dark), var(--back-light));
 	--bg-gradient-up: linear-gradient(to bottom, var(--back-light), var(--back-dark));
 	--luminous-shadow:
