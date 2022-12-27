@@ -15,3 +15,12 @@ select {
 a {
 	text-decoration: none;
 }
+
+body {
+	min-height: 100vh;
+}
+
+/* stylelint-disable-next-line selector-max-id */
+#root {
+	min-height: 100vh;
+}

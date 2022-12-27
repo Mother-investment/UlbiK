@@ -16,11 +16,7 @@
 
 .contentPage {
 	display: flex;
+	min-height: 100vh;
 	margin: 0 auto;
-	min-height: calc(100vh - 50px);
 	width: 85vw;
-}
-
-.pageWrapper {
-	margin-top: 100px;
 }

@@ -1,5 +1,11 @@
 .PageContainer {
 	background-color: var(--bg-color);
 	border: 1px solid var(--border-color);
-	height: 1000px;
+	min-height: 100vh;
+	width: 85vw;
+}
+
+.marginTop {
+	margin-top: 180px;
+	min-height: calc(100vh - 180px);
 }

@@ -6,6 +6,7 @@ import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { classNames } from 'shared/lib/classNames/classNames'
+import { Avatar, AvatarSize } from 'shared/ui/Avatar/Avatar'
 
 interface ProfileCardProps {
 	className?: string
@@ -45,6 +46,12 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 	return (
 		<div className={classNames(cls.ProfileCard, {}, [className])}>
 			<div className={cls.header}>
+				<Avatar size={AvatarSize.XL} className={cls.avatar}/>
+				<div className={cls.main}>
+					<div className={cls.info}>
+						<Text theme={TextTheme.SECONDARY} title={`${data?.first} ${data?.lastname}`}/>
+					</div>
+				</div>
 			</div>
 		</div>
 	)

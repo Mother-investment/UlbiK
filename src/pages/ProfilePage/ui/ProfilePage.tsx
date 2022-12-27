@@ -24,7 +24,7 @@ const ProfilePage:React.FC<ProfilePageProps> = (props) => {
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
-			<PageContainer className={classNames(cls.ProfilePage, {}, [className])}>
+			<PageContainer className={classNames(cls.ProfilePage, {}, [className])} marginTop>
 				<ProfileCard data={data} isLoading={isLoading} error={error} />
 			</PageContainer>
 		</DynamicModuleLoader>
