@@ -12,7 +12,7 @@ export const Container:React.FC<ContainerProps> = memo((props) => {
 
 	return (
 		<div className={classNames(cls.Container, {}, [className])}>
-
+			{children}
 		</div>
 	)
 })

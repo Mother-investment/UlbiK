@@ -7,6 +7,7 @@ import { fetchProfileData } from '../../model/services/fetchProfileData/fetchPro
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Avatar, AvatarSize } from 'shared/ui/Avatar/Avatar'
+import { Container } from 'shared/ui/Container/Container'
 
 interface ProfileCardProps {
 	className?: string
@@ -44,15 +45,16 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 	}
 
 	return (
-		<div className={classNames(cls.ProfileCard, {}, [className])}>
+		<Container className={classNames(cls.ProfileCard, {}, [className])}>
 			<div className={cls.header}>
 				<Avatar size={AvatarSize.XL} className={cls.avatar}/>
 				<div className={cls.main}>
 					<div className={cls.info}>
+						123
 						<Text theme={TextTheme.SECONDARY} title={`${data?.first} ${data?.lastname}`}/>
 					</div>
 				</div>
 			</div>
-		</div>
+		</Container>
 	)
 })
