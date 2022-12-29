@@ -25,7 +25,7 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 		dispatch(fetchProfileData())
 	}, [dispatch])
 
-	if(isLoading) {
+	if(isLoading || data == undefined) {
 		return (
 			<div className={classNames(cls.ProfileCard, {}, [className, cls.loading])}>{t('Загрузка')}</div>
 		)
@@ -47,11 +47,12 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 	return (
 		<Container className={classNames(cls.ProfileCard, {}, [className])}>
 			<div className={cls.header}>
-				<Avatar size={AvatarSize.XL} className={cls.avatar}/>
+				<Avatar size={AvatarSize.XL} className={cls.avatar} src={data.avatar} />
 				<div className={cls.main}>
+					<Text theme={TextTheme.SECONDARY} title={`${data?.first} ${data?.lastname}`}/>
 					<div className={cls.info}>
-						123
-						<Text theme={TextTheme.SECONDARY} title={`${data?.first} ${data?.lastname}`}/>
+						<Text theme={TextTheme.SECONDARY} text={`${data?.age}`}/>
+						<Text theme={TextTheme.SECONDARY} text={data?.city}/>
 					</div>
 				</div>
 			</div>
