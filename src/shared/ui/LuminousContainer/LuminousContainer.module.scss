@@ -31,3 +31,11 @@
 .skew {
 	transform: skew(15deg);
 }
+
+.radius {
+	border-radius: 10px;
+}
+
+.border {
+	border: 2px solid var(--glow-color);
+}

@@ -8,6 +8,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Avatar, AvatarSize } from 'shared/ui/Avatar/Avatar'
 import { Container } from 'shared/ui/Container/Container'
+import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer'
 
 interface ProfileCardProps {
 	className?: string
@@ -47,7 +48,9 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 	return (
 		<Container className={classNames(cls.ProfileCard, {}, [className])}>
 			<div className={cls.header}>
-				<Avatar size={AvatarSize.XL} className={cls.avatar} src={data.avatar} />
+				<LuminousContainer border radius>
+					<Avatar size={AvatarSize.XL} className={cls.avatar} src={data.avatar} radius />
+				</LuminousContainer>
 				<div className={cls.main}>
 					<Text theme={TextTheme.SECONDARY} title={`${data?.first} ${data?.lastname}`}/>
 					<div className={cls.info}>

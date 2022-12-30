@@ -9,6 +9,8 @@ interface LuminousContainerProps {
 	skew?: boolean
 	hover?: boolean
 	background?: boolean
+	radius?: boolean
+	border?: boolean
 }
 
 export const LuminousContainer:React.FC<LuminousContainerProps> = memo((props) => {
@@ -18,14 +20,18 @@ export const LuminousContainer:React.FC<LuminousContainerProps> = memo((props) =
 		defaultGlow,
 		skew,
 		hover,
-		background
+		background,
+		radius,
+		border
 	} = props
 
 	const mods: Mods = {
 		[cls.skew]: skew,
 		[cls.defaultGlow]: defaultGlow,
 		[cls.hover]: hover,
-		[cls.background]: background
+		[cls.background]: background,
+		[cls.radius]: radius,
+		[cls.border]: border
 	}
 	return (
 		<div className={classNames(cls.LuminousContainer, mods, [className])}>
