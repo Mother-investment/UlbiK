@@ -26,4 +26,30 @@
 }
 
 .info {
+	align-items: center;
+	display: flex;
+}
+
+.itemInfo {
+	align-items: center;
+	display: flex;
+	margin-right: 10px;
+}
+
+.iconInfo {
+	fill: var(--secondary-color);
+}
+
+.learnMore {
+	cursor: pointer;
+
+	&:hover {
+		.iconInfo {
+			fill: var(--glow-color);
+		}
+
+		.textInfo {
+			color: var(--glow-color);
+		}
+	}
 }

@@ -19,15 +19,20 @@ interface TextProps {
 	theme?: TextTheme
 	aling?: TextAling
 	link?: boolean
+	spacing?: boolean
 	onClick?: () => void
 }
 
 export const Text:React.FC<TextProps> = (props) => {
-	const { className, title, text, theme = TextTheme.SECONDARY, aling = TextAling.LEFT, onClick, link } = props
+	const { className, title, text, theme = TextTheme.SECONDARY, aling = TextAling.LEFT, onClick, link, spacing } = props
 
+	const mods: Mods = {
+		[cls.link]: !!onClick || link,
+		[cls.spacing]: spacing
+	}
 
 	return (
-		<div className={classNames(cls.Text, { [cls.link]: !!onClick || link }, [className, cls[theme], cls[aling]])} onClick={onClick}>
+		<div className={classNames(cls.Text, mods, [className, cls[theme], cls[aling]])} onClick={onClick}>
 			{title && <h3 className={cls.title}>{title}</h3>}
 			{text && <p className={cls.text}>{text}</p>}
 		</div>

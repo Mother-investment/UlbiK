@@ -1,13 +1,11 @@
 .title {
-	font: var(--font-l);
-	font-weight: 300;
-	letter-spacing: 1px;
+	font: var(--font-xl);
+	font-weight: 600;
 }
 
 .text {
 	font: var(--font-m);
 	font-weight: 600;
-	letter-spacing: 0.6px;
 }
 
 .primary {
@@ -37,6 +35,10 @@
 		color: #fff;
 		text-shadow: var(--luminous-shadow-text-attn);
 	}
+}
+
+.spacing {
+	letter-spacing: 0.6px;
 }
 
 .left {

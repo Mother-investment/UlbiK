@@ -9,6 +9,8 @@ import { classNames } from 'shared/lib/classNames/classNames'
 import { Avatar, AvatarSize } from 'shared/ui/Avatar/Avatar'
 import { Container } from 'shared/ui/Container/Container'
 import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer'
+import CityIcon from 'shared/assets/icons/cityIcon.svg'
+import InfoIcon from 'shared/assets/icons/infoIcon.svg'
 
 interface ProfileCardProps {
 	className?: string
@@ -54,8 +56,14 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 				<div className={cls.main}>
 					<Text theme={TextTheme.SECONDARY} title={`${data?.first} ${data?.lastname}`}/>
 					<div className={cls.info}>
-						<Text theme={TextTheme.SECONDARY} text={`${data?.age}`}/>
-						<Text theme={TextTheme.SECONDARY} text={data?.city}/>
+						<div className={cls.itemInfo}>
+							<CityIcon className={cls.iconInfo}/>
+							<Text className={cls.textInfo} theme={TextTheme.SECONDARY} text={data?.city}/>
+						</div>
+						<div className={classNames(cls.learnMore, {}, [cls.itemInfo]) }>
+							<InfoIcon className={cls.iconInfo}/>
+							<Text className={cls.textInfo} theme={TextTheme.SECONDARY} text={t('Подробнее')}/>
+						</div>
 					</div>
 				</div>
 			</div>
