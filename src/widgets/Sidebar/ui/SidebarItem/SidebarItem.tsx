@@ -31,10 +31,10 @@ export const SidebarItem:React.FC<SidebarItemProps> = memo((props) => {
 	}
 
 	return (
-		<Link className={cls.link} to={item.path} onMouseEnter={showDescription} onMouseLeave={hideDescription}>
+		<Link className={cls.link} to={item.path} onMouseEnter={showDescription} onPointerLeave={hideDescription} onMouseDown={hideDescription} >
 			<LuminousContainer className={cls.SidebarItem} background hover >
 				<div className={cls.icon}><item.Icon /></div>
-				<Text className={classNames(cls.text, { [cls.opened]: description }, [])} text={t(item.text)} theme={TextTheme.WHITE}/>
+				<Text className={classNames(cls.text, { [cls.opened]: description }, [])} text={t(item.text)} theme={TextTheme.PRIMARY}/>
 			</LuminousContainer>
 		</Link>
 	)

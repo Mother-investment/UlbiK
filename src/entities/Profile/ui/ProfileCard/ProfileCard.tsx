@@ -11,6 +11,7 @@ import { Container } from 'shared/ui/Container/Container'
 import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer'
 import CityIcon from 'shared/assets/icons/cityIcon.svg'
 import InfoIcon from 'shared/assets/icons/infoIcon.svg'
+import { Loader } from 'shared/ui/Loader/Loader'
 
 interface ProfileCardProps {
 	className?: string
@@ -30,7 +31,7 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 
 	if(isLoading || data == undefined) {
 		return (
-			<div className={classNames(cls.ProfileCard, {}, [className, cls.loading])}>{t('Загрузка')}</div>
+			<div className={classNames(cls.ProfileCard, {}, [className, cls.loading])}><Loader /></div>
 		)
 	}
 
