@@ -1,9 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import cls from './ProfileCard.module.scss'
 import { memo, useEffect } from 'react'
-import { Profile } from '../../model/types/profile'
 import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
-import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Avatar, AvatarSize } from 'shared/ui/Avatar/Avatar'
@@ -12,6 +10,7 @@ import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer
 import CityIcon from 'shared/assets/icons/cityIcon.svg'
 import InfoIcon from 'shared/assets/icons/infoIcon.svg'
 import { Loader } from 'shared/ui/Loader/Loader'
+import { fetchProfileData, Profile } from 'entities/Profile'
 
 interface ProfileCardProps {
 	className?: string

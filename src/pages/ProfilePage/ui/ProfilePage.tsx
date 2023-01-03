@@ -1,9 +1,10 @@
 import cls from './ProfilePage.module.scss'
 import { useTranslation } from 'react-i18next'
-import { fetchProfileData, getProfileData, getProfileError, getProfileIsLoading, ProfileCard, profileReducer } from 'entities/Profile'
+import { getProfileData, getProfileError, getProfileIsLoading, profileReducer } from 'entities/Profile'
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { useSelector } from 'react-redux'
+import { ProfileCard } from 'widgets/ProfileWidgets/ProfileCard'
 
 const redusers: ReducersList = {
 	profile: profileReducer

@@ -53,12 +53,14 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 						<Avatar src={userData?.avatar} className={cls.avatar} onClick={userData?.username ? onShowOptions : onShowModal}/>
 					</LuminousContainer>
 				</div>
+
 				{isOpenOptions && <DropDownMenu isOpen={isOpenOptions} className={cls.dropDownMenu} onClose={onCloseOptions}>
 					<Link className={cls.menuItem} to={RoutePath.profile}>
 						<Text className={cls.menuItem} text={t('Профиль')} theme={TextTheme.PRIMARY} aling={TextAling.CENTER} link={true} spacing/>
 					</Link>
 					<Text className={cls.menuItem} text={t('Выйти')} theme={TextTheme.ATTN} onClick={onLogout} aling={TextAling.CENTER} spacing/>
 				</DropDownMenu>}
+
 			</div>
 			{isOpenModal && <LoginModal isOpen={isOpenModal} onClose={onCloseModal} />}
 		</header>
