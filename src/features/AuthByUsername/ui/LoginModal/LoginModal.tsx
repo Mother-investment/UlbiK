@@ -1,4 +1,3 @@
-/* eslint-disable i18next/no-literal-string */
 import { Suspense } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Loader } from 'shared/ui/Loader/Loader'
@@ -13,7 +12,7 @@ interface LoginModalProps {
 }
 
 export const LoginModal:React.FC<LoginModalProps> = (props) => {
-	const { className, isOpen, onClose, ...otherProps } = props
+	const { className, isOpen, onClose } = props
 
 	return (
 		<Suspense fallback={<Loader />}>

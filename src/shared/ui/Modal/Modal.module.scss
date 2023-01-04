@@ -23,6 +23,8 @@
 	border: 1px solid var(--border-color);
 	color: var(--secondary-color);
 	max-width: 60%;
+	min-height: 20%;
+	min-width: 30%;
 	padding: 20px;
 	transform: scale(0.5);
 	transition: 0.3s transform;

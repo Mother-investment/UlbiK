@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import cls from './ProfileCard.module.scss'
-import { memo, useEffect } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { classNames } from 'shared/lib/classNames/classNames'
@@ -11,6 +11,7 @@ import CityIcon from 'shared/assets/icons/cityIcon.svg'
 import InfoIcon from 'shared/assets/icons/infoIcon.svg'
 import { Loader } from 'shared/ui/Loader/Loader'
 import { fetchProfileData, Profile } from 'entities/Profile'
+import { ProfileCardModal } from './../ProfileCardModal/ProfileCardModal'
 
 interface ProfileCardProps {
 	className?: string
@@ -23,10 +24,18 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 	const { className, data, isLoading, error } = props
 	const { t } = useTranslation()
 	const dispatch = useAppDispatch()
+	const [isOpen, setIsOpen] = useState(false)
 
 	useEffect(() => {
 		dispatch(fetchProfileData())
 	}, [dispatch])
+
+	const openInfo = () => {
+		setIsOpen(true)
+	}
+	const closeInfo = () => {
+		setIsOpen(false)
+	}
 
 	if(isLoading || data == undefined) {
 		return (
@@ -60,13 +69,14 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 							<CityIcon className={cls.iconInfo}/>
 							<Text className={cls.textInfo} theme={TextTheme.SECONDARY} text={data?.city}/>
 						</div>
-						<div className={classNames(cls.learnMore, {}, [cls.itemInfo]) }>
+						<div className={classNames(cls.learnMore, {}, [cls.itemInfo]) } onClick={openInfo}>
 							<InfoIcon className={cls.iconInfo}/>
 							<Text className={cls.textInfo} theme={TextTheme.SECONDARY} text={t('Подробнее')}/>
 						</div>
 					</div>
 				</div>
 			</div>
+			{isOpen && <ProfileCardModal isOpen={isOpen} data={data} onClose={closeInfo} />}
 		</Container>
 	)
 })

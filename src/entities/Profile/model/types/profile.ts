@@ -4,7 +4,7 @@ export interface Profile {
 	id: string
 	first: string
 	lastname: string
-	age: number
+	age: string
 	currency: Currency
 	country: Country
 	city: string

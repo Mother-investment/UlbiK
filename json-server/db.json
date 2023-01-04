@@ -30,7 +30,7 @@
 		"id": "1",
 		"first": "Юрий",
 		"lastname": "Антипов",
-		"age": 21,
+		"age": "30.05.2001",
 		"currency": "RUB",
 		"country": "Russia",
 		"city": "Новосибирск",
