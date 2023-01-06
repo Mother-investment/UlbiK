@@ -3,18 +3,16 @@ import cls from './ProfileCardInfo.module.scss'
 import { memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
-import BirthdayIcon from 'shared/assets/icons/birthdayIcon.svg'
-import { getProfileInfoItems, Profile } from 'entities/Profile'
 import { useSelector } from 'react-redux'
 import { ProfileCardInfoItem } from './../ProfileCardInfoItem/ProfileCardInfoItem'
+import { getProfileInfoItems } from '../../module/selectors/getProfileInfoItems/getProfileInfoItems'
 
 interface ProfileCardInfoProps {
 	className?: string
-	data?: Profile
 }
 
 export const ProfileCardInfo:React.FC<ProfileCardInfoProps> = memo((props) => {
-	const { className, data } = props
+	const { className } = props
 	const { t } = useTranslation()
 	const profileInfoItemsList = useSelector(getProfileInfoItems)
 

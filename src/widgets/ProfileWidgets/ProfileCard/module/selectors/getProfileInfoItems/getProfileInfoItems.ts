@@ -3,7 +3,7 @@ import BirthdayIcon from 'shared/assets/icons/birthdayIcon.svg'
 import HomeIcon from 'shared/assets/icons/homeIcon.svg'
 import CountryIcon from 'shared/assets/icons/countryIcon.svg'
 import { ProfileInfoItemType } from '../../types/profileInfoItem'
-import { getProfileData } from '../getProfileData/getProfileData'
+import { getProfileData } from 'entities/Profile'
 
 export const getProfileInfoItems = createSelector(
 	getProfileData,

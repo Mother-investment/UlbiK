@@ -12,6 +12,8 @@ import InfoIcon from 'shared/assets/icons/infoIcon.svg'
 import { Loader } from 'shared/ui/Loader/Loader'
 import { fetchProfileData, Profile } from 'entities/Profile'
 import { ProfileCardModal } from './../ProfileCardModal/ProfileCardModal'
+import { Button, ButtonTheme } from 'shared/ui/Button/Button'
+import { EditProfile } from 'features/EditProfile'
 
 interface ProfileCardProps {
 	className?: string
@@ -58,13 +60,13 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 
 	return (
 		<Container className={classNames(cls.ProfileCard, {}, [className])}>
-			<div className={cls.header}>
-				<LuminousContainer border radius>
-					<Avatar size={AvatarSize.XL} className={cls.avatar} src={data.avatar} radius />
-				</LuminousContainer>
-				<div className={cls.main}>
+			<LuminousContainer border radius>
+				<Avatar size={AvatarSize.XL} className={cls.avatar} src={data.avatar} radius />
+			</LuminousContainer>
+			<div className={cls.main}>
+				<div className={cls.info}>
 					<Text theme={TextTheme.SECONDARY} title={`${data?.first} ${data?.lastname}`}/>
-					<div className={cls.info}>
+					<div className={cls.fullInfo}>
 						<div className={cls.itemInfo}>
 							<CityIcon className={cls.iconInfo}/>
 							<Text className={cls.textInfo} theme={TextTheme.SECONDARY} text={data?.city}/>
@@ -75,8 +77,11 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 						</div>
 					</div>
 				</div>
+				<div className={cls.actions}>
+					<EditProfile />
+				</div>
 			</div>
-			{isOpen && <ProfileCardModal isOpen={isOpen} data={data} onClose={closeInfo} />}
+			{isOpen && <ProfileCardModal isOpen={isOpen} onClose={closeInfo} />}
 		</Container>
 	)
 })

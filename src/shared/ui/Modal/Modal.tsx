@@ -1,8 +1,9 @@
 import cls from './Modal.module.scss'
-import { MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import { MutableRefObject, ReactNode, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useTheme } from 'app/providers/ThemeProvider'
 import { classNames, Mods } from 'shared/lib/classNames/classNames'
 import { Portal } from 'shared/ui/Portal/Portal'
+import { Loader } from 'shared/ui/Loader/Loader'
 
 interface ModalProps {
 	className?: string
@@ -12,7 +13,7 @@ interface ModalProps {
 	lazy?: boolean
 }
 
-const ANIMATION_DELAY = 300
+const ANIMATION_DELAY = 100
 
 export const Modal:React.FC<ModalProps> = (props) => {
 	const { className, children, isOpen, onClose, lazy } = props
@@ -64,14 +65,17 @@ export const Modal:React.FC<ModalProps> = (props) => {
 	}
 
 	return (
-		<Portal>
-			<div className={classNames(cls.Modal, mods, [theme, 'app_modal'])} onMouseDown={closeHandler}>
-				<div className={cls.overlay}>
-					<div className={classNames(cls.content, {}, [className])} onMouseDown={onContentClick}>
-						{children}
+		<Suspense fallback={<Loader />}>
+			<Portal>
+				<div className={classNames(cls.Modal, mods, [theme, 'app_modal'])} onMouseDown={closeHandler}>
+					<div className={cls.overlay}>
+						<div className={classNames(cls.content, {}, [className])} onMouseDown={onContentClick}>
+							{children}
+						</div>
 					</div>
 				</div>
-			</div>
-		</Portal>
+			</Portal>
+
+		</Suspense>
 	)
 }

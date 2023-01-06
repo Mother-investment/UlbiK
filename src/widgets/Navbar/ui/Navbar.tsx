@@ -1,10 +1,9 @@
-import { LoginModal } from 'features/AuthByUsername'
-import { MutableRefObject, useCallback, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import cls from './Navbar.module.scss'
-import { useSelector, useDispatch } from 'react-redux'
-import { getUserAuthData, userActions } from 'entities/User'
-import { Avatar } from 'shared/ui/Avatar/Avatar'
+import { useDispatch } from 'react-redux'
+import { userActions } from 'entities/User'
+import { Avatar, AvatarSize } from 'shared/ui/Avatar/Avatar'
 import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { ThemeSwitcher } from 'features/ThemeSwitcher/ui/ThemeSwitcher'
@@ -13,6 +12,7 @@ import { DropDownMenu } from 'shared/ui/DropDownMenu/DropDownMenu'
 import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
 import { Link } from 'react-router-dom'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
+import { AuthByUsername } from 'features/AuthByUsername/ui/AuthByUsername/AuthByUsername'
 
 interface NavbarProps {
     className?: string
@@ -21,13 +21,8 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = (props) => {
 	const { className } = props
 	const { t } = useTranslation()
-	const dispatch = useDispatch()
-	const [isOpenModal, setIsOpenModal] = useState(false)
 	const [isOpenOptions, setIsOpenOptions] = useState(false)
-	const userData = useSelector(getUserAuthData)
-
-	const onShowModal = useCallback(() => setIsOpenModal(true), [])
-	const onCloseModal = useCallback(() => setIsOpenModal(false), [])
+	const dispatch = useDispatch()
 
 	const onShowOptions = useCallback(() => setIsOpenOptions(true), [])
 	const onCloseOptions = useCallback(() => setIsOpenOptions(false), [])
@@ -50,19 +45,23 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 			<div className={cls.loginMenu}>
 				<div className={cls.login}>
 					<LuminousContainer defaultGlow hover>
-						<Avatar src={userData?.avatar} className={cls.avatar} onClick={userData?.username ? onShowOptions : onShowModal}/>
+						<AuthByUsername className={cls.avatar} onClick={onShowOptions} />
 					</LuminousContainer>
 				</div>
 
-				{isOpenOptions && <DropDownMenu isOpen={isOpenOptions} className={cls.dropDownMenu} onClose={onCloseOptions}>
-					<Link className={cls.menuItem} to={RoutePath.profile}>
-						<Text className={cls.menuItem} text={t('Профиль')} theme={TextTheme.PRIMARY} aling={TextAling.CENTER} link={true} spacing/>
-					</Link>
-					<Text className={cls.menuItem} text={t('Выйти')} theme={TextTheme.ATTN} onClick={onLogout} aling={TextAling.CENTER} spacing/>
-				</DropDownMenu>}
-
+				{isOpenOptions &&
+					<DropDownMenu isOpen={isOpenOptions} className={cls.dropDownMenu} onClose={onCloseOptions}>
+						<Link className={cls.menuItem} to={RoutePath.profile}>
+							<Text className={cls.menuItem} theme={TextTheme.PRIMARY} aling={TextAling.CENTER} link spacing
+								text={t('Профиль')}
+							/>
+						</Link>
+						<Text className={cls.menuItem} onClick={onLogout} theme={TextTheme.ATTN} aling={TextAling.CENTER} spacing
+							text={t('Выйти')}
+						/>
+					</DropDownMenu>
+				}
 			</div>
-			{isOpenModal && <LoginModal isOpen={isOpenModal} onClose={onCloseModal} />}
 		</header>
 	)
 }

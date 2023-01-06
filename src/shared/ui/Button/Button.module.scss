@@ -32,6 +32,11 @@
 
 .outline {
 	background: none;
+
+	&:hover {
+		border: 1px solid var(--glow-color);
+		color: var(--glow-color);
+	}
 }
 
 .background {

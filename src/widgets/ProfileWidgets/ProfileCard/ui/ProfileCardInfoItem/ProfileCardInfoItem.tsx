@@ -1,8 +1,8 @@
 import cls from './ProfileCardInfoItem.module.scss'
 import { memo } from 'react'
-import { ProfileInfoItemType } from 'entities/Profile/model/types/profileInfoItem'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
+import { ProfileInfoItemType } from '../../module/types/profileInfoItem'
 
 interface ProfileCardInfoItemProps {
 	className?: string
