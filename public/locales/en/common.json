@@ -21,5 +21,14 @@
   "Попробуйте обновить страницу": " Try refreshing the page",
   "Подробнее": "Learn more",
   "Дополнительная информация": "Additional info",
-  "Редактировать профиль": "Edit profile"
+  "Редактировать профиль": "Edit profile",
+  "Имя": "Firstname",
+  "Фамилия": "Lastname",
+  "День рождения": "Birthday",
+  "Город": "City",
+  "Новосибирск": "Novosibirsk",
+  "Москва": "Moscow",
+  "Страна": "Country",
+  "США": "USA",
+  "Россия": "Russia"
 }
