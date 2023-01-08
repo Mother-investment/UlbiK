@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import cls from './EditForm.module.scss'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Text } from 'shared/ui/Text/Text'
@@ -9,20 +10,27 @@ interface EditFormProps {
 	className?: string
 }
 
+type FormValues = {
+	firstName: string;
+	lastName: string;
+  }
+
 export const EditForm:React.FC<EditFormProps> = memo((props) => {
 	const { className } = props
 	const { t } = useTranslation()
+	const { register, handleSubmit } = useForm<FormValues>()
+	const onSubmit: SubmitHandler<FormValues> = data => console.log(data)
 
 	return (
-		<form className={classNames(cls.EditForm, {}, [className])}>
+		<form className={classNames(cls.EditForm, {}, [className])} onSubmit={handleSubmit(onSubmit)}>
 			<Text title={t('Редактировать профиль')} />
 			<div className={cls.item}>
 				<Text text={t('Имя')} />
-				<Input />
+				<input {...register('firstName')} />
 			</div>
 			<div className={cls.item}>
 				<Text text={t('Фамилия')} />
-				<Input />
+				<input {...register('lastName')} />
 			</div>
 			<div className={cls.item}>
 				<Text text={t('День рождения')} />
