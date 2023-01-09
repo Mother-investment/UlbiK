@@ -26,11 +26,11 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 			<Text title={t('Редактировать профиль')} />
 			<div className={cls.item}>
 				<Text text={t('Имя')} />
-				<input {...register('firstName')} />
+				<Input register={register('firstName')} />
 			</div>
 			<div className={cls.item}>
 				<Text text={t('Фамилия')} />
-				<input {...register('lastName')} />
+				<Input register={register('lastName')} />
 			</div>
 			<div className={cls.item}>
 				<Text text={t('День рождения')} />
@@ -38,9 +38,13 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 			</div>
 			<div className={cls.item}>
 				<Text text={t('Страна')} />
+				<select {...register('country')}>
+					<option value="russia">{t('Россия')}</option>
+					<option value="usa">{t('США')}</option>
+				</select>
 				<select>
-					<option>{t('Россия')}</option>
-					<option>{t('США')}</option>
+					<option></option>
+					<option></option>
 				</select>
 			</div>
 			<div className={cls.item}>
