@@ -1,4 +1,6 @@
+import { forwardRef } from 'react'
 import { InputHTMLAttributes, memo } from 'react'
+import { Message, Validate, ValidationRule } from 'react-hook-form'
 import { classNames, Mods } from 'shared/lib/classNames/classNames'
 import cls from './Input.module.scss'
 
@@ -10,10 +12,10 @@ interface InputProps extends HTMLInputProps{
 	onChange?: (value: string) => void
 	type?: string
 	readonly?: boolean
-	register?: any
+	register?: React.InputHTMLAttributes<HTMLInputElement>
 }
 
-export const Input:React.FC<InputProps> = memo((props) => {
+export const Input = memo(forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 	const { className, value, onChange, type='text', readonly=false, register } = props
 
 	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,4 +29,4 @@ export const Input:React.FC<InputProps> = memo((props) => {
 	return (
 		<input className={classNames(cls.Input, mods, [className])} type={type} value={value} onChange={onChangeHandler} readOnly={readonly} {...register}/>
 	)
-})
+}))

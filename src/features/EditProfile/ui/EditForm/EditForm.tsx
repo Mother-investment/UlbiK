@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import cls from './EditForm.module.scss'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { Resolver, SubmitHandler, useForm } from 'react-hook-form'
 import { memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Text } from 'shared/ui/Text/Text'
@@ -15,10 +15,24 @@ type FormValues = {
 	lastName: string;
   }
 
+const resolver: Resolver<FormValues> = async (values) => {
+	return {
+		values: values.firstName ? values : {},
+		errors: !values.firstName
+			? {
+				firstName: {
+					type: 'required',
+					message: 'This is required.'
+				}
+			}
+			: {}
+	}
+}
+
 export const EditForm:React.FC<EditFormProps> = memo((props) => {
 	const { className } = props
 	const { t } = useTranslation()
-	const { register, handleSubmit } = useForm<FormValues>()
+	const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver })
 	const onSubmit: SubmitHandler<FormValues> = data => console.log(data)
 
 	return (
@@ -27,6 +41,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 			<div className={cls.item}>
 				<Text text={t('Имя')} />
 				<Input register={register('firstName')} />
+				{errors?.firstName && <p>{errors.firstName.message}</p>}
 			</div>
 			<div className={cls.item}>
 				<Text text={t('Фамилия')} />
@@ -38,7 +53,11 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 			</div>
 			<div className={cls.item}>
 				<Text text={t('Страна')} />
-				<select {...register('country')}>
+				<select {...register('country')} options={[
+              { label: "Female", value: "female" },
+              { label: "Male", value: "male" },
+              { label: "Other", value: "other" }
+				]}>
 					<option value="russia">{t('Россия')}</option>
 					<option value="usa">{t('США')}</option>
 				</select>
