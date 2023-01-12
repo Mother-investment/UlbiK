@@ -27,6 +27,6 @@ export const Input = memo(forwardRef<HTMLInputElement, InputProps>((props, ref) 
 	}
 
 	return (
-		<input className={classNames(cls.Input, mods, [className])} type={type} value={value} onChange={onChangeHandler} readOnly={readonly} {...register}/>
+		<input className={classNames(cls.Input, mods, [className])} ref={ref} type={type} value={value} onChange={onChangeHandler} readOnly={readonly} {...register}/>
 	)
 }))

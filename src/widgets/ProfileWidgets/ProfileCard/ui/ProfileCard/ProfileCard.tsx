@@ -53,7 +53,7 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 					aling={TextAling.CENTER}
 					title={t('Произошла ошибка при загрузке профилья')}
 					text={t('Попробуйте обновить страницу')}
-				/>
+				/>{t('Антипов')}
 			</div>
 		)
 	}
@@ -65,11 +65,11 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 			</LuminousContainer>
 			<div className={cls.main}>
 				<div className={cls.info}>
-					<Text theme={TextTheme.SECONDARY} title={`${data?.first} ${data?.lastname}`}/>
+					<Text theme={TextTheme.SECONDARY} title={`${t(data?.first)} ${t(data?.lastname)}`}/>
 					<div className={cls.fullInfo}>
 						<div className={cls.itemInfo}>
 							<CityIcon className={cls.iconInfo}/>
-							<Text className={cls.textInfo} theme={TextTheme.SECONDARY} text={data?.city}/>
+							<Text className={cls.textInfo} theme={TextTheme.SECONDARY} text={t(data?.city)}/>
 						</div>
 						<div className={classNames(cls.learnMore, {}, [cls.itemInfo]) } onClick={openInfo}>
 							<InfoIcon className={cls.iconInfo}/>
