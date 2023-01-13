@@ -114,7 +114,8 @@
     "react-hook-form": "^7.41.5",
     "react-i18next": "^11.15.5",
     "react-redux": "^7.2.6",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.2.1",
+    "react-select": "^5.7.0"
   },
   "loki": {
     "fetchFailIgnore": ".*",
