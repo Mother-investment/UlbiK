@@ -2,15 +2,10 @@
 	background-color: transparent;
 	border: 1px solid var(--secondary-color);
 	color: var(--secondary-color);
-
-	&:active {
-		border: 1px solid var(--secondary-color);
-		border-radius: 0;
-	}
+	outline: none;
 
 	&:focus {
 		border: 1px solid var(--secondary-color);
-		border-radius: 0;
 	}
 }
 

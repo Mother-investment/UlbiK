@@ -1,30 +1,30 @@
 import { classNames } from 'shared/lib/classNames/classNames'
-import Select, { GroupBase } from 'react-select'
+import ReactSelect from 'react-select'
 import cls from './Select.module.scss'
 import { forwardRef, memo, SelectHTMLAttributes } from 'react'
 
 type HTMLSelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'value'>
 
-// type Option = {
-// 	label: React.ReactNode
-// 	value: string | number
-// 	readonly: (string | number | GroupBase<string | number>)[]
-//   }
+interface IOption {
+	label: string | number
+	value: string | number
+  }
 
-interface MySelectProps extends HTMLSelectProps{
+interface SelectProps extends HTMLSelectProps{
 	className?: string
 	register?: React.SelectHTMLAttributes<HTMLSelectElement>
-	options: Option
+	options: IOption[]
+	placeholder: string
 }
 
-export const MySelect:React.FC<MySelectProps> = memo(forwardRef<HTMLSelectElement, MySelectProps>((props, ref) => {
-	const { className, register, options } = props
+export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
+	const { className, register, options, placeholder } = props
 
 	return (
-		<Select
-			{...register}
-			ref={ref}
+		<ReactSelect
+			// {...register}
 			className={classNames(cls.Select, {}, [className])}
+			placeholder={placeholder}
 			options={options}
 		/>
 	)

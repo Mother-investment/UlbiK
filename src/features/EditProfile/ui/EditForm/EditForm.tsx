@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import cls from './EditForm.module.scss'
-import { Resolver, SubmitHandler, useForm } from 'react-hook-form'
+import { Controller, Resolver, SubmitHandler, useForm } from 'react-hook-form'
 import { memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
-import { Text } from 'shared/ui/Text/Text'
+import { Text, TextTheme } from 'shared/ui/Text/Text'
 import { Input } from 'shared/ui/Input/Input'
 import { Select } from 'shared/ui/Select/Select'
 
@@ -36,7 +36,7 @@ const resolver: Resolver<FormValues> = async (values) => {
 export const EditForm:React.FC<EditFormProps> = memo((props) => {
 	const { className } = props
 	const { t } = useTranslation()
-	const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver })
+	const { register, control, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver })
 	const onSubmit: SubmitHandler<FormValues> = data => console.log(data)
 
 	return (
@@ -45,31 +45,54 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 			<div className={cls.item}>
 				<Text text={t('Имя')} />
 				<Input register={register('firstName')} />
-				{errors?.firstName && <p>{errors.firstName.message}</p>}
+				{errors?.firstName && <Text text={errors.firstName.message} theme={TextTheme.ATTN} />}
 			</div>
 			<div className={cls.item}>
 				<Text text={t('Фамилия')} />
 				<Input register={register('lastName')} />
-				{errors?.lastName && <p>{errors.lastName.message}</p>}
+				{errors?.lastName && <Text text={errors.lastName.message} theme={TextTheme.ATTN} />}
 			</div>
 			<div className={cls.item}>
 				<Text text={t('День рождения')} />
 				<Input type='date' register={register('birthday')} />
-				{errors?.birthday && <p>{errors.birthday.message}</p>}
+				{errors?.birthday && <Text text={errors.birthday.message} theme={TextTheme.ATTN} />}
 			</div>
 			<div className={cls.item}>
 				<Text text={t('Страна')} />
-				<Select {...register('country')} options={[
-					{ label: t('Россия'), value: 'russia' },
-					{ label: t('США'), value: 'usa' }
-				]} />
+				<Controller
+					name='country'
+					control={control}
+					render={({ field: { onChange, value }, fieldState: { error } }) => <>
+						<Select
+							value={
+								value ? options.find((option) => option.value === value) : ''
+							}
+							options={[
+								{ label: t('Россия'), value: 'russia' },
+								{ label: t('США'), value: 'usa' }
+							]} />
+						{error && <Text text={error.message} theme={TextTheme.ATTN} />}
+					</>
+					}
+				/>
 			</div>
 			<div className={cls.item}>
 				<Text text={t('Город')} />
-				<Select {...register('city')} options={[
-					{ label: t('Новосибирск'), value: 'novosibirsk' },
-					{ label: t('Москва'), value: 'Moscow' }
-				]} />
+				<Controller
+					name='city'
+					control={control}
+					render={({ field, fieldState: { error } }) => <>
+						<Select
+							{...register('city')}
+							options={[
+								{ label: t('Новосибирск'), value: 'novosibirsk' },
+								{ label: t('Москва'), value: 'Moscow' }
+							]}
+						/>
+						{error && <Text text={error.message} theme={TextTheme.ATTN} />}
+					</>
+					}
+				/>
 			</div>
 		</form>
 	)
