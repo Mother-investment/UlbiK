@@ -5,7 +5,7 @@ import { forwardRef, memo, SelectHTMLAttributes } from 'react'
 
 type HTMLSelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'value'>
 
-interface IOption {
+export interface IOption {
 	label: string | number
 	value: string | number
   }
@@ -22,8 +22,8 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 
 	return (
 		<ReactSelect
-			// {...register}
-			className={classNames(cls.Select, {}, [className])}
+			classNamePrefix={cls.Select}
+			className={classNames(cls.selectContainer, {}, [className])}
 			placeholder={placeholder}
 			options={options}
 		/>
