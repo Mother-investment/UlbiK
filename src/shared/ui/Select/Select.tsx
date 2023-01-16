@@ -15,10 +15,11 @@ interface SelectProps extends HTMLSelectProps{
 	register?: React.SelectHTMLAttributes<HTMLSelectElement>
 	options: IOption[]
 	placeholder: string
+	value: string
 }
 
 export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
-	const { className, register, options, placeholder } = props
+	const { className, register, options, placeholder, value } = props
 
 	return (
 		<ReactSelect
@@ -26,6 +27,7 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 			className={classNames(cls.selectContainer, {}, [className])}
 			placeholder={placeholder}
 			options={options}
+			value={value}
 		/>
 	)
 }))

@@ -6,6 +6,7 @@ import { classNames } from 'shared/lib/classNames/classNames'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
 import { Input } from 'shared/ui/Input/Input'
 import { Select } from 'shared/ui/Select/Select'
+import { getValue, OptionName, OptionsItems } from './OptionsItems'
 
 interface EditFormProps {
 	className?: string
@@ -64,13 +65,8 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 					control={control}
 					render={({ field: { onChange, value }, fieldState: { error } }) => <>
 						<Select
-							value={
-								value ? options.find((option) => option.value === value) : ''
-							}
-							options={[
-								{ label: t('Россия'), value: 'russia' },
-								{ label: t('США'), value: 'usa' }
-							]} />
+							value={getValue(value, OptionName.COUNTRY)}
+							options={OptionsItems(OptionName.COUNTRY)} />
 						{error && <Text text={error.message} theme={TextTheme.ATTN} />}
 					</>
 					}

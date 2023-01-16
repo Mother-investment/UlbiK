@@ -1,23 +1,33 @@
-import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IOption } from 'shared/ui/Select/Select'
 
-interface IOptionsItems {
-	value: IOption
-	name: string
+export enum OptionName {
+    COUNTRY = 'country',
+	CITY = 'city'
 }
 
-export const OptionsItems = memo((props: IOptionsItems) => {
-	const [value, name] = props
+interface IOptions {
+	country: IOption[]
+	city: IOption[]
+}
+
+export const OptionsItems = (name : OptionName) => {
 	const { t } = useTranslation()
 
-	const options = {
+	const options: IOptions = {
 		country: [
 			{ label: t('Россия'), value: 'russia' },
 			{ label: t('США'), value: 'usa' }
+		],
+		city: [
+			{ label: t('Новосибирск'), value: 'novosibirsk' },
+			{ label: t('Москва'), value: 'Moscow' }
 		]
 	}
-	return 123
 
+	return options[name]
+}
 
-})
+export const getValue = (value: string, name: OptionName) => {
+	return value ? OptionsItems(name).find((option) => option.value === value) : ''
+}
