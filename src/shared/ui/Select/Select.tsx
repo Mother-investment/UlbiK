@@ -14,8 +14,8 @@ interface SelectProps extends HTMLSelectProps{
 	className?: string
 	register?: React.SelectHTMLAttributes<HTMLSelectElement>
 	options: IOption[]
-	placeholder: string
-	value: string
+	placeholder?: string
+	value: unknown
 }
 
 export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {

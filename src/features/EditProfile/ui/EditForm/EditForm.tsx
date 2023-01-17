@@ -65,7 +65,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 					control={control}
 					render={({ field: { onChange, value }, fieldState: { error } }) => <>
 						<Select
-							value={getValue(value, OptionName.COUNTRY)}
+							value={getValue(value, OptionName.COUNTRY) }
 							options={OptionsItems(OptionName.COUNTRY)} />
 						{error && <Text text={error.message} theme={TextTheme.ATTN} />}
 					</>
@@ -77,14 +77,10 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 				<Controller
 					name='city'
 					control={control}
-					render={({ field, fieldState: { error } }) => <>
+					render={({ field: { onChange, value }, fieldState: { error } }) => <>
 						<Select
-							{...register('city')}
-							options={[
-								{ label: t('Новосибирск'), value: 'novosibirsk' },
-								{ label: t('Москва'), value: 'Moscow' }
-							]}
-						/>
+							value={getValue(value, OptionName.CITY)}
+							options={OptionsItems(OptionName.CITY)} />
 						{error && <Text text={error.message} theme={TextTheme.ATTN} />}
 					</>
 					}
