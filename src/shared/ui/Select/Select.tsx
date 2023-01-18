@@ -16,10 +16,11 @@ interface SelectProps extends HTMLSelectProps{
 	options: IOption[]
 	placeholder?: string
 	value: unknown
+	onChange: (option: unknown) => void
 }
 
 export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
-	const { className, register, options, placeholder, value } = props
+	const { className, register, options, placeholder, value, onChange } = props
 
 	return (
 		<ReactSelect
@@ -28,6 +29,7 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 			placeholder={placeholder}
 			options={options}
 			value={value}
+			onChange={onChange}
 		/>
 	)
 }))
