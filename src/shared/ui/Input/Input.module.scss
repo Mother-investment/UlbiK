@@ -1,11 +1,12 @@
 .Input {
 	background-color: transparent;
 	border: 1px solid var(--secondary-color);
+	border-radius: var(--r-default);
 	color: var(--secondary-color);
 	outline: none;
+	padding: 2px 10px;
 
 	&:focus {
-		border: 1px solid var(--secondary-color);
 	}
 }
 

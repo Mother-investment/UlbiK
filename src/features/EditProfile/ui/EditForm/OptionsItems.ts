@@ -28,6 +28,7 @@ export const OptionsItems = (name : OptionName) => {
 	return options[name]
 }
 
+
 export const getValue = (value: string, name: OptionName) => {
 	return value ? OptionsItems(name).find((option) => option.value === value) : ''
 }

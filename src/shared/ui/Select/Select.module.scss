@@ -1,8 +1,43 @@
 .Select {
-	background-color: transparent;
-	color: var(--secondary-color);
+	border-radius: var(--r-default);
+	position: relative;
 }
 
-.readonly {
-	opacity: 0.7;
+.control {
+	width: 100%;
+
+	&:focus {
+	}
+}
+
+.controlActive {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.menu {
+	background-color: var(--bg-color);
+	border: 1px solid var(--secondary-color);
+	border-bottom-left-radius: var(--r-default);
+	border-bottom-right-radius: var(--r-default);
+	display: none;
+	position: absolute;
+	width: 100%;
+}
+
+.menuActive {
+	display: block;
+}
+
+.option {
+	cursor: pointer;
+	padding: 2px 10px;
+
+	&:hover {
+		background-color: var(--hover-color);
+	}
+
+	&:first-child {
+		border-top: 1px solid var(--secondary-color);
+	}
 }

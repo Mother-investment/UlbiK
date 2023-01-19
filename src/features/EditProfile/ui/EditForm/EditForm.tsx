@@ -5,8 +5,8 @@ import { memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
 import { Input } from 'shared/ui/Input/Input'
-import { IOption, Select } from 'shared/ui/Select/Select'
-import { getValue, OptionName, OptionsItems } from './OptionsItems'
+import { Select } from 'shared/ui/Select/Select'
+import { OptionName, OptionsItems } from './OptionsItems'
 
 interface EditFormProps {
 	className?: string
@@ -63,33 +63,40 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 				<Controller
 					name='country'
 					control={control}
+					rules={{
+						required: 'Поле обязательное'
+					}}
 					render={({ field: { onChange, value }, fieldState: { error } }) => <>
 						<Select
-							value={getValue(value, OptionName.COUNTRY)}
+							value={value}
 							options={OptionsItems(OptionName.COUNTRY)}
-							onChange={(newValue) => onChange((newValue as IOption).value)}
+							onChange={onChange}
 						/>
 						{error && <Text text={error.message} theme={TextTheme.ATTN} />}
 					</>
 					}
 				/>
 			</div>
-			<div className={cls.item}>
+			{/* <div className={cls.item}>
 				<Text text={t('Город')} />
 				<Controller
 					name='city'
 					control={control}
+					rules={{
+						required: 'Поле обязательное'
+					}}
 					render={({ field: { onChange, value }, fieldState: { error } }) => <>
 						<Select
-							value={getValue(value, OptionName.CITY)}
+							value={t('Москва')}
 							options={OptionsItems(OptionName.CITY)}
-							onChange={(newValue) => onChange((newValue as IOption).value)}
+							onChange={onChange}
 						/>
 						{error && <Text text={error.message} theme={TextTheme.ATTN} />}
 					</>
 					}
 				/>
-			</div>
+			</div> */}
+			<input type="submit" />
 		</form>
 	)
 })
