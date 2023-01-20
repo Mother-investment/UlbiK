@@ -24,22 +24,31 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 	const { className, register, options, placeholder, value, onChange } = props
 	const [openMenu, setOpenMenu] = useState(false)
 	const [selectedValue, setSelectedValue] = useState(value || '')
+	const [selectedLabel, setSelectedLabel] = useState('')
+	const [selectedSearchValue, setSelectedSearchValue] = useState('')
 	const selectRef = useRef() as MutableRefObject<HTMLDivElement>
-	const newOptions: IOption[] = options.filter(item => (item.label).toLowerCase().includes(selectedValue as string))
+	const newOptions: IOption[] = options.filter(item => (item.label).toLowerCase().includes(selectedSearchValue.toLowerCase() as string))
 
 	const onShowMenu = useCallback(() => setOpenMenu(true), [])
 	const onCloseMenu = useCallback(() => {
-		setOpenMenu(false)
-		setSelectedValue(options.find(option => option.value === value)?.label || '')
-	}, [options, value])
+		if(openMenu) {
+			setOpenMenu(false)
+			setSelectedLabel(options.find(option => option.value === selectedValue)?.label || '')
+			setSelectedSearchValue('')
+		}
+	}, [openMenu, options, selectedValue])
 
 	const onChangeInput = (v: string) => {
-		setSelectedValue(v)
+		setSelectedLabel(v)
+		setSelectedSearchValue(v)
 	}
 
-	const selectValue = (v: string) => {
-		onCloseMenu()
-		setSelectedValue(options.find(option => option.value === v)?.label || '')
+	const selectValue = (v: string, l: string) => {
+		setSelectedValue(v)
+		onChange(v)
+		setSelectedLabel(l)
+		setOpenMenu(false)
+		setSelectedSearchValue('')
 	}
 
 	useEffect(() => {
@@ -61,9 +70,9 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 
 	return (
 		<div className={classNames(cls.Select, {}, [className])} ref={selectRef}>
-			<Input className={classNames(cls.control, { [cls.controlActive]: openMenu }, [])} type='text' value={selectedValue} onChange={onChangeInput} onClick={() => setOpenMenu(true)}/>
+			<Input className={classNames(cls.control, { [cls.controlActive]: openMenu }, [])} type='text' value={selectedLabel} onChange={onChangeInput} onClick={() => setOpenMenu(true)}/>
 			<div className={classNames(cls.menu, mods, [])}>
-				{newOptions.map(item => <div className={cls.option} key={item.value} onClick={() => selectValue(item.value)}>{item.label}</div>)}
+				{newOptions.map(item => <div className={cls.option} key={item.value} onClick={() => selectValue(item.value, item.label)}>{item.label}</div>)}
 			</div>
 		</div>
 	)
