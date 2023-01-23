@@ -77,7 +77,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 					}
 				/>
 			</div>
-			{/* <div className={cls.item}>
+			<div className={cls.item}>
 				<Text text={t('Город')} />
 				<Controller
 					name='city'
@@ -87,7 +87,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 					}}
 					render={({ field: { onChange, value }, fieldState: { error } }) => <>
 						<Select
-							value={t('Москва')}
+							value={value}
 							options={OptionsItems(OptionName.CITY)}
 							onChange={onChange}
 						/>
@@ -95,7 +95,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 					</>
 					}
 				/>
-			</div> */}
+			</div>
 			<input type="submit" />
 		</form>
 	)

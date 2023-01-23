@@ -23,6 +23,7 @@
 	display: none;
 	position: absolute;
 	width: 100%;
+	z-index: var(--z-selectMenu);
 }
 
 .menuActive {
