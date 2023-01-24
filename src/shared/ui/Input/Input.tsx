@@ -12,18 +12,20 @@ interface InputProps extends HTMLInputProps{
 	onClick?: () => void
 	type?: string
 	readonly?: boolean
+	searchOffForSelect?: boolean
 	register?: React.InputHTMLAttributes<HTMLInputElement>
 }
 
 export const Input = memo(forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-	const { className, value, onChange, onClick, type='text', readonly=false, register } = props
+	const { className, value, onChange, onClick, type='text', readonly, searchOffForSelect, register } = props
 
 	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		onChange?.(e.target.value)
 	}
 
 	const mods: Mods = {
-		[cls.readonly]: readonly
+		[cls.readonly]: readonly,
+		[cls.searchOffForSelect]: searchOffForSelect
 	}
 
 	return (
@@ -33,7 +35,7 @@ export const Input = memo(forwardRef<HTMLInputElement, InputProps>((props, ref) 
 			type={type}
 			value={value}
 			onChange={onChangeHandler}
-			readOnly={readonly}
+			readOnly={readonly || searchOffForSelect}
 			onClick={onClick}
 			{...register}
 		/>

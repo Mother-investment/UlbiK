@@ -8,7 +8,7 @@ type HTMLSelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'value' | '
 export interface IOption {
 	value: string
 	label: string
-	isDisabled?: boolean;
+	isDisabled?: boolean
   }
 
 interface SelectProps extends HTMLSelectProps{
@@ -17,11 +17,12 @@ interface SelectProps extends HTMLSelectProps{
 	options: IOption[]
 	placeholder?: string
 	value?: string
+	searchOff?: boolean
 	onChange: (v: string) => void
 }
 
 export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
-	const { className, register, options, placeholder, value, onChange } = props
+	const { className, register, options, placeholder, value, searchOff, onChange } = props
 	const [openMenu, setOpenMenu] = useState(false)
 	const [selectedValue, setSelectedValue] = useState(value || '')
 	const [selectedLabel, setSelectedLabel] = useState('')
@@ -37,6 +38,13 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 			setSelectedSearchValue('')
 		}
 	}, [openMenu, options, selectedValue])
+	const onToggleMenu = useCallback(() => {
+		if(openMenu) {
+			onCloseMenu()
+		}else {
+			onShowMenu()
+		}
+	}, [onCloseMenu, onShowMenu, openMenu])
 
 	const onChangeInput = (v: string) => {
 		setSelectedLabel(v)
@@ -70,7 +78,14 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 
 	return (
 		<div className={classNames(cls.Select, {}, [className])} ref={selectRef}>
-			<Input className={classNames(cls.control, { [cls.controlActive]: openMenu }, [])} type='text' value={selectedLabel} onChange={onChangeInput} onClick={() => setOpenMenu(true)}/>
+			<Input
+				className={classNames(cls.control, { [cls.controlActive]: openMenu }, [])}
+				type='text'
+				value={selectedLabel}
+				searchOffForSelect={searchOff}
+				onChange={onChangeInput}
+				onClick={ searchOff ? onToggleMenu : onShowMenu}
+			/>
 			<div className={classNames(cls.menu, mods, [])}>
 				{newOptions.map(item => <div className={cls.option} key={item.value} onClick={() => selectValue(item.value, item.label)}>{item.label}</div>)}
 			</div>

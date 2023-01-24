@@ -1,5 +1,5 @@
 .Input {
-	background-color: transparent;
+	background-color: var(--bg-color);
 	border: 1px solid var(--secondary-color);
 	border-radius: var(--r-default);
 	color: var(--secondary-color);
@@ -11,5 +11,10 @@
 }
 
 .readonly {
+	cursor: auto;
 	opacity: 0.7;
+}
+
+.searchOffForSelect {
+	cursor: pointer;
 }

@@ -15,7 +15,9 @@ interface EditFormProps {
 type FormValues = {
 	firstName: string
 	lastName: string
-	birthday: number
+	dayBirth: string
+	monthBirth: string
+	yearBirth: string
 	country: string
 	city: string
   }
@@ -43,22 +45,76 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 	return (
 		<form className={classNames(cls.EditForm, {}, [className])} onSubmit={handleSubmit(onSubmit)}>
 			<Text title={t('Редактировать профиль')} />
-			<div className={cls.item}>
+			<div className={cls.formItem}>
 				<Text text={t('Имя')} />
 				<Input register={register('firstName')} />
 				{errors?.firstName && <Text text={errors.firstName.message} theme={TextTheme.ATTN} />}
 			</div>
-			<div className={cls.item}>
+			<div className={cls.formItem}>
 				<Text text={t('Фамилия')} />
 				<Input register={register('lastName')} />
 				{errors?.lastName && <Text text={errors.lastName.message} theme={TextTheme.ATTN} />}
 			</div>
-			<div className={cls.item}>
+			<div className={cls.formItem}>
 				<Text text={t('День рождения')} />
-				<Input type='date' register={register('birthday')} />
-				{errors?.birthday && <Text text={errors.birthday.message} theme={TextTheme.ATTN} />}
+				<div className={cls.birthday}>
+					<Controller
+						name='dayBirth'
+						control={control}
+						rules={{
+							required: 'Поле обязательное'
+						}}
+						render={({ field: { onChange, value }, fieldState: { error } }) => <>
+							<Select
+								className={cls.birthdayItem}
+								value={value}
+								searchOff
+								options={OptionsItems(OptionName.COUNTRY)}
+								onChange={onChange}
+							/>
+							{error && <Text text={error.message} theme={TextTheme.ATTN} />}
+						</>
+						}
+					/>
+					<Controller
+						name='monthBirth'
+						control={control}
+						rules={{
+							required: 'Поле обязательное'
+						}}
+						render={({ field: { onChange, value }, fieldState: { error } }) => <>
+							<Select
+								className={cls.birthdayItem}
+								value={value}
+								searchOff
+								options={OptionsItems(OptionName.COUNTRY)}
+								onChange={onChange}
+							/>
+							{error && <Text text={error.message} theme={TextTheme.ATTN} />}
+						</>
+						}
+					/>
+					<Controller
+						name='yearBirth'
+						control={control}
+						rules={{
+							required: 'Поле обязательное'
+						}}
+						render={({ field: { onChange, value }, fieldState: { error } }) => <>
+							<Select
+								className={cls.birthdayItem}
+								value={value}
+								searchOff
+								options={OptionsItems(OptionName.COUNTRY)}
+								onChange={onChange}
+							/>
+							{error && <Text text={error.message} theme={TextTheme.ATTN} />}
+						</>
+						}
+					/>
+				</div>
 			</div>
-			<div className={cls.item}>
+			<div className={cls.formItem}>
 				<Text text={t('Страна')} />
 				<Controller
 					name='country'
@@ -77,7 +133,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 					}
 				/>
 			</div>
-			<div className={cls.item}>
+			<div className={cls.formItem}>
 				<Text text={t('Город')} />
 				<Controller
 					name='city'
