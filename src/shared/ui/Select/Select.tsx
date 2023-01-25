@@ -2,6 +2,7 @@ import cls from './Select.module.scss'
 import { classNames, Mods } from 'shared/lib/classNames/classNames'
 import { forwardRef, memo, MutableRefObject, SelectHTMLAttributes, useCallback, useEffect, useRef, useState } from 'react'
 import { Input } from '../Input/Input'
+import ArrowIcon from 'shared/assets/icons/arrowForSelectIcon.svg'
 
 type HTMLSelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'value' | 'onChange'>
 
@@ -72,21 +73,22 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 		}
 	}, [onCloseMenu, onShowMenu])
 
-	const mods: Mods = {
-		[cls.menuActive]: openMenu
-	}
-
 	return (
-		<div className={classNames(cls.Select, {}, [className])} ref={selectRef}>
-			<Input
-				className={classNames(cls.control, { [cls.controlActive]: openMenu }, [])}
-				type='text'
-				value={selectedLabel}
-				searchOffForSelect={searchOff}
-				onChange={onChangeInput}
-				onClick={ searchOff ? onToggleMenu : onShowMenu}
-			/>
-			<div className={classNames(cls.menu, mods, [])}>
+		<div className={classNames(cls.Select, { [cls.selectActive]: openMenu }, [className])} ref={selectRef}>
+			<div className={cls.control}>
+				<Input
+					className={cls.input}
+					type='text'
+					value={selectedLabel}
+					searchOffForSelect={searchOff}
+					onChange={onChangeInput}
+					onClick={ searchOff ? onToggleMenu : onShowMenu}
+				/>
+				<div className={cls.arrowContainer} onClick={onToggleMenu}>
+					<ArrowIcon className={classNames(cls.arrow, { [cls.arrowActive]: openMenu }, [])}/>
+				</div>
+			</div>
+			<div className={classNames(cls.menu, { [cls.menuActive]: openMenu }, [])}>
 				{newOptions.map(item => <div className={cls.option} key={item.value} onClick={() => selectValue(item.value, item.label)}>{item.label}</div>)}
 			</div>
 		</div>

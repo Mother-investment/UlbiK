@@ -1,18 +1,42 @@
 .Select {
+	background-color: var(--bg-color);
+	border: 1px solid var(--secondary-color);
 	border-radius: var(--r-default);
 	position: relative;
 }
 
-.control {
-	width: 100%;
-
-	&:focus {
-	}
+.selectActive {
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
-.controlActive {
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
+.control {
+	align-items: center;
+	display: flex;
+}
+
+.input {
+	border: none;
+	width: 100%;
+}
+
+.arrowContainer {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	padding: 0 8px;
+}
+
+.arrow {
+	fill: var(--secondary-color);
+	transform: rotate(0deg);
+	transition: transform 0.8s;
+}
+
+.arrowActive {
+	transform: rotate(540deg);
+	transition: transform 0.8s;
 }
 
 .menu {
