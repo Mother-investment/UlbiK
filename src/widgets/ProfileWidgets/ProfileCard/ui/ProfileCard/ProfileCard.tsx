@@ -12,12 +12,11 @@ import InfoIcon from 'shared/assets/icons/infoIcon.svg'
 import { Loader } from 'shared/ui/Loader/Loader'
 import { fetchProfileData, Profile } from 'entities/Profile'
 import { ProfileCardModal } from './../ProfileCardModal/ProfileCardModal'
-import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import { EditProfile } from 'features/EditProfile'
 
 interface ProfileCardProps {
 	className?: string
-	data?: Profile
+	data: Profile
 	isLoading?: boolean
 	error?: string
 }
@@ -65,11 +64,11 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 			</LuminousContainer>
 			<div className={cls.main}>
 				<div className={cls.info}>
-					<Text theme={TextTheme.SECONDARY} title={`${t(data?.first)} ${t(data?.lastname)}`}/>
+					<Text theme={TextTheme.SECONDARY} title={`${t(data.first)} ${t(data.lastname)}`}/>
 					<div className={cls.fullInfo}>
 						<div className={cls.itemInfo}>
 							<CityIcon className={cls.iconInfo}/>
-							<Text className={cls.textInfo} theme={TextTheme.SECONDARY} text={t(data?.city)}/>
+							<Text className={cls.textInfo} theme={TextTheme.SECONDARY} text={t(data.city)}/>
 						</div>
 						<div className={classNames(cls.learnMore, {}, [cls.itemInfo]) } onClick={openInfo}>
 							<InfoIcon className={cls.iconInfo}/>
