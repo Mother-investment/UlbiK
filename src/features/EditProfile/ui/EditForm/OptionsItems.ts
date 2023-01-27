@@ -16,12 +16,12 @@ export const OptionsItems = (name : OptionName) => {
 
 	const options: IOptions = {
 		country: [
-			{ label: t('Россия'), value: 'russia' },
-			{ label: t('США'), value: 'usa' }
+			{ label: t('Россия'), value: 'россия' },
+			{ label: t('США'), value: 'сша' }
 		],
 		city: [
-			{ label: t('Новосибирск'), value: 'novosibirsk' },
-			{ label: t('Москва'), value: 'Moscow' }
+			{ label: t('Новосибирск'), value: 'новосибирск' },
+			{ label: t('Москва'), value: 'москва' }
 		]
 	}
 
