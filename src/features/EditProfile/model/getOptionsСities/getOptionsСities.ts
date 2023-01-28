@@ -4,29 +4,29 @@ import { useTranslation } from 'react-i18next'
 import { regOnlyLowerLetters } from 'shared/const/regularExpressions'
 import { IOption } from 'shared/ui/Select/Select'
 
-export interface ICitiesInTheCountry {
+export interface IСitiesInTheCountry {
 	country: string,
-	sities: IOption[]
+	сities: IOption[]
 }
 
-export const getOptionsSities = createSelector(
+export const getOptionsСities = createSelector(
 	getAddresses,
 	(addresses) => {
 		if(addresses) {
 			const { t } = useTranslation()
-			const sities: ICitiesInTheCountry[] = addresses.map(address => (
+			const сities: IСitiesInTheCountry[] = addresses.map(address => (
 				{
 					country: address.country.replace(regOnlyLowerLetters, ''),
-					sities: address.cities.map(sity =>(
+					сities: address.cities.map(сity =>(
 						{
-							label: t(sity),
-							value: sity.replace(regOnlyLowerLetters, '')
+							label: t(сity),
+							value: сity.replace(regOnlyLowerLetters, '')
 						}
 					))
 				}
 			))
 
-			return sities
+			return сities
 		}
-	},
+	}
 )

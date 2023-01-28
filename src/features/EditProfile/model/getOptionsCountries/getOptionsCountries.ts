@@ -18,5 +18,5 @@ export const getOptionsCountries = createSelector(
 
 			return countries
 		}
-	},
+	}
 )

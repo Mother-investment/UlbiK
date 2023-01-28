@@ -5,9 +5,11 @@ import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/Dynamic
 import { classNames } from 'shared/lib/classNames/classNames'
 import { useSelector } from 'react-redux'
 import { ProfileCard } from 'widgets/ProfileWidgets/ProfileCard'
+import { addressesReducer } from 'entities/Addresses'
 
 const redusers: ReducersList = {
-	profile: profileReducer
+	profile: profileReducer,
+	addresses: addressesReducer
 }
 
 interface ProfilePageProps {

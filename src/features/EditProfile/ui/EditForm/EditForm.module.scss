@@ -1,3 +1,10 @@
+.loading,
+.error {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
 .birthday {
 	display: flex;
 	justify-content: space-between;

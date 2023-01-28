@@ -16,7 +16,7 @@ import { EditProfile } from 'features/EditProfile'
 
 interface ProfileCardProps {
 	className?: string
-	data: Profile
+	data?: Profile
 	isLoading?: boolean
 	error?: string
 }
@@ -52,7 +52,7 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 					aling={TextAling.CENTER}
 					title={t('Произошла ошибка при загрузке профилья')}
 					text={t('Попробуйте обновить страницу')}
-				/>{t('Антипов')}
+				/>
 			</div>
 		)
 	}

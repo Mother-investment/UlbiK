@@ -1,12 +1,25 @@
 import { useTranslation } from 'react-i18next'
 import cls from './EditForm.module.scss'
 import { Controller, Resolver, SubmitHandler, useForm } from 'react-hook-form'
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
-import { Text, TextTheme } from 'shared/ui/Text/Text'
+import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
 import { Input } from 'shared/ui/Input/Input'
-import { Select } from 'shared/ui/Select/Select'
+import { IOption, Select } from 'shared/ui/Select/Select'
 import { OptionName, OptionsItems } from './OptionsItems'
+import { useSelector } from 'react-redux'
+import { getOptionsCountries } from './../../model/getOptionsCountries/getOptionsCountries'
+import { getOptionsСities, IСitiesInTheCountry } from 'features/EditProfile/model/getOptionsСities/getOptionsСities'
+import { addressesReducer, getAddressesStatus } from 'entities/Addresses'
+import { fetchAddressesData } from 'entities/Addresses/model/services/fetchProfileData/fetchAddressesData'
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import { Status } from 'shared/const/common'
+import { Loader } from 'shared/ui/Loader/Loader'
+
+const redusers: ReducersList = {
+	addresses: addressesReducer
+}
 
 interface EditFormProps {
 	className?: string
@@ -39,8 +52,34 @@ const resolver: Resolver<FormValues> = async (values) => {
 export const EditForm:React.FC<EditFormProps> = memo((props) => {
 	const { className } = props
 	const { t } = useTranslation()
+	const dispatch = useAppDispatch()
+
+	// const status: Status | undefined = useSelector(getAddressesStatus)
+	const countries: IOption[] | undefined = useSelector(getOptionsCountries)
+	const сities: IСitiesInTheCountry[] | undefined = useSelector(getOptionsСities)
+
+
 	const { register, control, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver })
 	const onSubmit: SubmitHandler<FormValues> = data => console.log(data)
+
+	if(status === 'loading' || countries == undefined || сities == undefined) {
+		return (
+			<div className={classNames(cls.EditForm, {}, [className, cls.loading])}><Loader /></div>
+		)
+	}
+
+	if(status === 'error' || undefined) {
+		return (
+			<div className={classNames(cls.EditForm, {}, [className, cls.error])}>
+				<Text
+					theme={TextTheme.ATTN}
+					aling={TextAling.CENTER}
+					title={t('Произошла ошибка при загрузке настроек')}
+					text={t('Попробуйте обновить страницу')}
+				/>
+			</div>
+		)
+	}
 
 	return (
 		<form className={classNames(cls.EditForm, {}, [className])} onSubmit={handleSubmit(onSubmit)}>
@@ -125,7 +164,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 					render={({ field: { onChange, value }, fieldState: { error } }) => <>
 						<Select
 							value={value}
-							options={OptionsItems(OptionName.COUNTRY)}
+							options={countries}
 							onChange={onChange}
 						/>
 						{error && <Text text={error.message} theme={TextTheme.ATTN} />}
