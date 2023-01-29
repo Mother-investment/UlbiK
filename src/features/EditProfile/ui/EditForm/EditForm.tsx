@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import cls from './EditForm.module.scss'
 import { Controller, Resolver, SubmitHandler, useForm } from 'react-hook-form'
-import { memo, useEffect } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
 import { Input } from 'shared/ui/Input/Input'
@@ -10,16 +10,9 @@ import { OptionName, OptionsItems } from './OptionsItems'
 import { useSelector } from 'react-redux'
 import { getOptionsCountries } from './../../model/getOptionsCountries/getOptionsCountries'
 import { getOptionsСities, IСitiesInTheCountry } from 'features/EditProfile/model/getOptionsСities/getOptionsСities'
-import { addressesReducer, getAddressesStatus } from 'entities/Addresses'
-import { fetchAddressesData } from 'entities/Addresses/model/services/fetchProfileData/fetchAddressesData'
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { Status } from 'shared/const/common'
 import { Loader } from 'shared/ui/Loader/Loader'
-
-const redusers: ReducersList = {
-	addresses: addressesReducer
-}
+import { Status } from 'shared/const/common'
+import { getAddressesStatus } from 'entities/Addresses'
 
 interface EditFormProps {
 	className?: string
@@ -52,17 +45,19 @@ const resolver: Resolver<FormValues> = async (values) => {
 export const EditForm:React.FC<EditFormProps> = memo((props) => {
 	const { className } = props
 	const { t } = useTranslation()
-	const dispatch = useAppDispatch()
 
-	// const status: Status | undefined = useSelector(getAddressesStatus)
+	const [cities, setCities] = useState([])
+
+	const status: Status | undefined = useSelector(getAddressesStatus)
 	const countries: IOption[] | undefined = useSelector(getOptionsCountries)
-	const сities: IСitiesInTheCountry[] | undefined = useSelector(getOptionsСities)
+	const сitiesInit: IСitiesInTheCountry[] | undefined = useSelector(getOptionsСities)
 
 
-	const { register, control, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver })
+
+	const { register, control, handleSubmit, formState: { errors, dirtyFields } } = useForm<FormValues>({ resolver })
 	const onSubmit: SubmitHandler<FormValues> = data => console.log(data)
 
-	if(status === 'loading' || countries == undefined || сities == undefined) {
+	if(status === 'loading' || countries == undefined || сitiesInit == undefined) {
 		return (
 			<div className={classNames(cls.EditForm, {}, [className, cls.loading])}><Loader /></div>
 		)
@@ -144,7 +139,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 								className={cls.birthdayItem}
 								value={value}
 								searchOff
-								options={OptionsItems(OptionName.COUNTRY)}
+								options={countries}
 								onChange={onChange}
 							/>
 							{error && <Text text={error.message} theme={TextTheme.ATTN} />}
@@ -183,7 +178,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 					render={({ field: { onChange, value }, fieldState: { error } }) => <>
 						<Select
 							value={value}
-							options={OptionsItems(OptionName.CITY)}
+							options={cities}
 							onChange={onChange}
 						/>
 						{error && <Text text={error.message} theme={TextTheme.ATTN} />}

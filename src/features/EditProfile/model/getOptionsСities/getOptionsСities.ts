@@ -16,11 +16,11 @@ export const getOptionsСities = createSelector(
 			const { t } = useTranslation()
 			const сities: IСitiesInTheCountry[] = addresses.map(address => (
 				{
-					country: address.country.replace(regOnlyLowerLetters, ''),
+					country: address.country.toLocaleLowerCase().replace(regOnlyLowerLetters, ''),
 					сities: address.cities.map(сity =>(
 						{
 							label: t(сity),
-							value: сity.replace(regOnlyLowerLetters, '')
+							value: сity.toLocaleLowerCase().replace(regOnlyLowerLetters, '')
 						}
 					))
 				}

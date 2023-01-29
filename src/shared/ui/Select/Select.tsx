@@ -24,11 +24,14 @@ interface SelectProps extends HTMLSelectProps{
 
 export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
 	const { className, register, options, placeholder, value, searchOff, onChange } = props
+
 	const [openMenu, setOpenMenu] = useState(false)
 	const [selectedValue, setSelectedValue] = useState(value || '')
 	const [selectedLabel, setSelectedLabel] = useState('')
 	const [selectedSearchValue, setSelectedSearchValue] = useState('')
+
 	const selectRef = useRef() as MutableRefObject<HTMLDivElement>
+
 	const newOptions: IOption[] = options.filter(item => (item.label).toLowerCase().includes(selectedSearchValue.toLowerCase() as string))
 
 	const onShowMenu = useCallback(() => setOpenMenu(true), [])

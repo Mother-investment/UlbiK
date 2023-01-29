@@ -12,7 +12,7 @@ export const getOptionsCountries = createSelector(
 			const countries: IOption[] = addresses.map(address => (
 				{
 					label: t(address.country),
-					value: address.country.replace(regOnlyLowerLetters, '')
+					value: address.country.toLocaleLowerCase().replace(regOnlyLowerLetters, '')
 				}
 			))
 
