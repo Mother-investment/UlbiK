@@ -3,6 +3,7 @@ import { classNames, Mods } from 'shared/lib/classNames/classNames'
 import { forwardRef, memo, MutableRefObject, SelectHTMLAttributes, useCallback, useEffect, useRef, useState } from 'react'
 import { Input } from '../Input/Input'
 import ArrowIcon from 'shared/assets/icons/arrowForSelectIcon.svg'
+import { TFunction } from 'react-i18next'
 
 type HTMLSelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'value' | 'onChange'>
 
@@ -19,11 +20,12 @@ interface SelectProps extends HTMLSelectProps{
 	placeholder?: string
 	value?: string
 	searchOff?: boolean
+	t?: (string: string) => string
 	onChange: (v: string) => void
 }
 
 export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
-	const { className, register, options, placeholder, value, searchOff, onChange } = props
+	const { className, register, options, placeholder, value, searchOff, onChange, t } = props
 
 	const [openMenu, setOpenMenu] = useState(false)
 	const [selectedValue, setSelectedValue] = useState(value || '')
@@ -32,7 +34,7 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 
 	const selectRef = useRef() as MutableRefObject<HTMLDivElement>
 
-	const newOptions: IOption[] = options.filter(item => (item.label).toLowerCase().includes(selectedSearchValue.toLowerCase() as string))
+	const newOptions: IOption[] = options.filter(item => (t(item.label)).toLowerCase().includes(t(selectedSearchValue).toLowerCase() as string))
 
 	const onShowMenu = useCallback(() => setOpenMenu(true), [])
 	const onCloseMenu = useCallback(() => {
@@ -92,7 +94,7 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 				</div>
 			</div>
 			<div className={classNames(cls.menu, { [cls.menuActive]: openMenu }, [])}>
-				{newOptions.map(item => <div className={cls.option} key={item.value} onClick={() => selectValue(item.value, item.label)}>{item.label}</div>)}
+				{newOptions.map(item => <div className={cls.option} key={item.value} onClick={() => selectValue(item.value, item.label)}>{t(item.label)}</div>)}
 			</div>
 		</div>
 	)
