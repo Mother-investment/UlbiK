@@ -66,3 +66,16 @@
 		border-top: 1px solid var(--secondary-color);
 	}
 }
+
+.selectDisabled {
+	border: 1px solid var(--disabled-color);
+
+	.input,
+	.arrowContainer {
+		cursor: default;
+	}
+
+	.arrow {
+		fill: var(--disabled-color);
+	}
+}

@@ -3,7 +3,7 @@ import { classNames, Mods } from 'shared/lib/classNames/classNames'
 import { forwardRef, memo, MutableRefObject, SelectHTMLAttributes, useCallback, useEffect, useRef, useState } from 'react'
 import { Input } from '../Input/Input'
 import ArrowIcon from 'shared/assets/icons/arrowForSelectIcon.svg'
-import { TFunction } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 type HTMLSelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'value' | 'onChange'>
 
@@ -18,15 +18,15 @@ interface SelectProps extends HTMLSelectProps{
 	register?: React.SelectHTMLAttributes<HTMLSelectElement>
 	options: IOption[]
 	placeholder?: string
+	isDisabled?: boolean
 	value?: string
 	searchOff?: boolean
-	t?: (string: string) => string
 	onChange: (v: string) => void
 }
 
 export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
-	const { className, register, options, placeholder, value, searchOff, onChange, t } = props
-
+	const { className, register, options, placeholder, value, searchOff, onChange, isDisabled } = props
+	const { t } = useTranslation()
 	const [openMenu, setOpenMenu] = useState(false)
 	const [selectedValue, setSelectedValue] = useState(value || '')
 	const [selectedLabel, setSelectedLabel] = useState('')
@@ -66,6 +66,12 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 	}
 
 	useEffect(() => {
+		if(value === undefined) {
+			setSelectedLabel('')
+		}
+	}, [value])
+
+	useEffect(() => {
 		const handler = ({ target }: MouseEvent) => {
 			if(selectRef.current && !selectRef.current?.contains(target as Node)) {
 				onCloseMenu()
@@ -79,17 +85,18 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 	}, [onCloseMenu, onShowMenu])
 
 	return (
-		<div className={classNames(cls.Select, { [cls.selectActive]: openMenu }, [className])} ref={selectRef}>
+		<div className={classNames(cls.Select, { [cls.selectActive]: openMenu, [cls.selectDisabled]: isDisabled }, [className])} ref={selectRef}>
 			<div className={cls.control}>
 				<Input
 					className={cls.input}
 					type='text'
-					value={selectedLabel}
+					value={t(selectedLabel)}
 					searchOffForSelect={searchOff}
 					onChange={onChangeInput}
-					onClick={ searchOff ? onToggleMenu : onShowMenu}
+					readonly={isDisabled}
+					onClick={ !isDisabled ? (searchOff ? onToggleMenu : onShowMenu) : undefined}
 				/>
-				<div className={cls.arrowContainer} onClick={onToggleMenu}>
+				<div className={cls.arrowContainer} onClick={!isDisabled ? onToggleMenu : undefined}>
 					<ArrowIcon className={classNames(cls.arrow, { [cls.arrowActive]: openMenu }, [])}/>
 				</div>
 			</div>

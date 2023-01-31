@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import cls from './EditForm.module.scss'
 import { Controller, Resolver, SubmitHandler, useForm, useFormState, useWatch } from 'react-hook-form'
-import { memo, useCallback, useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
 import { Input } from 'shared/ui/Input/Input'
@@ -46,9 +46,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 	const { className } = props
 	const { t } = useTranslation()
 
-	const translate = useCallback((string: string): string => t(string), [t])
-
-	const [cities, setCities] = useState([])
+	const [cities, setCities] = useState<IOption[]>([])
 
 	const status: Status | undefined = useSelector(getAddressesStatus)
 	const countries: IOption[] | undefined = useSelector(getOptionsCountries)
@@ -56,10 +54,10 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 
 
 
-	const { register, watch, control, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver })
+	const { register, watch, resetField, control, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver })
 	const onSubmit: SubmitHandler<FormValues> = data => console.log(data)
-	// const asw = watch(['country', 'city'])
-	console.log(watch())
+	const countryValue = watch('country')
+
 	if(status === 'loading' || countries == undefined || сitiesInit == undefined) {
 		return (
 			<div className={classNames(cls.EditForm, {}, [className, cls.loading])}><Loader /></div>
@@ -77,6 +75,13 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 				/>
 			</div>
 		)
+	}
+	if(сitiesInit && countryValue) {
+		const newCities = сitiesInit.find(item => item.country === countryValue)?.сities || []
+		if(cities != newCities) {
+			setCities(newCities)
+			resetField('city')
+		}
 	}
 
 	return (
@@ -108,7 +113,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 								searchOff
 								options={OptionsItems(OptionName.COUNTRY)}
 								onChange={onChange}
-								t={translate}
+
 							/>
 							{error && <Text text={error.message} theme={TextTheme.ATTN} />}
 						</>
@@ -127,7 +132,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 								searchOff
 								options={OptionsItems(OptionName.COUNTRY)}
 								onChange={onChange}
-								t={translate}
+
 							/>
 							{error && <Text text={error.message} theme={TextTheme.ATTN} />}
 						</>
@@ -146,7 +151,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 								searchOff
 								options={countries}
 								onChange={onChange}
-								t={translate}
+
 							/>
 							{error && <Text text={error.message} theme={TextTheme.ATTN} />}
 						</>
@@ -167,7 +172,6 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 							value={value}
 							options={countries}
 							onChange={onChange}
-							t={translate}
 						/>
 						{error && <Text text={error.message} theme={TextTheme.ATTN} />}
 					</>
@@ -187,7 +191,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 							value={value}
 							options={cities}
 							onChange={onChange}
-							t={translate}
+							isDisabled={!countryValue}
 						/>
 						{error && <Text text={error.message} theme={TextTheme.ATTN} />}
 					</>
