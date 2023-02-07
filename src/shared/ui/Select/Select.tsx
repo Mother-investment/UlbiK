@@ -101,7 +101,13 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 				</div>
 			</div>
 			<div className={classNames(cls.menu, { [cls.menuActive]: openMenu }, [])}>
-				{newOptions.map(item => <div className={cls.option} key={item.value} onClick={() => selectValue(item.value, item.label)}>{t(item.label)}</div>)}
+				<div className={cls.menuContainer}>
+					{newOptions.map(item =>
+						<div className={cls.option} key={item.value} onClick={() => selectValue(item.value, item.label)}>
+							{t(item.label)}
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	)

@@ -13,12 +13,13 @@ import { getOptionsСities, IСitiesInTheCountry } from 'features/EditProfile/mo
 import { Loader } from 'shared/ui/Loader/Loader'
 import { Status } from 'shared/const/common'
 import { getAddressesStatus } from 'entities/Addresses'
+import { useBirthDateCreator } from 'shared/lib/hooks/useBirthDateCreator/useBirthDateCreator'
 
 interface EditFormProps {
 	className?: string
 }
 
-type FormValues = {
+interface FormValues {
 	firstName: string
 	lastName: string
 	dayBirth: string
@@ -47,16 +48,20 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 	const { t } = useTranslation()
 
 	const [cities, setCities] = useState<IOption[]>([])
+	const [dayBirth, setDayBirth] = useState<IOption[]>([])
+	const [birthDate, getDaysBirthDate] = useBirthDateCreator()
 
 	const status: Status | undefined = useSelector(getAddressesStatus)
 	const countries: IOption[] | undefined = useSelector(getOptionsCountries)
 	const сitiesInit: IСitiesInTheCountry[] | undefined = useSelector(getOptionsСities)
 
 
-
 	const { register, watch, resetField, control, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver })
 	const onSubmit: SubmitHandler<FormValues> = data => console.log(data)
+	const birthDatValues = watch(['monthBirth', 'yearBirth'])
+	const dayBirthValue = watch('dayBirth')
 	const countryValue = watch('country')
+
 
 	if(status === 'loading' || countries == undefined || сitiesInit == undefined) {
 		return (
@@ -76,6 +81,16 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 			</div>
 		)
 	}
+
+	if(birthDatValues) {
+		getDaysBirthDate(...birthDatValues)
+	}
+	if(birthDate.days.length !== dayBirth.length) {
+		setDayBirth(birthDate.days)
+	}
+	if(+dayBirthValue > dayBirth.length) {
+		resetField('dayBirth')
+	}
 	if(сitiesInit && countryValue) {
 		const newCities = сitiesInit.find(item => item.country === countryValue)?.сities || []
 		if(cities != newCities) {
@@ -87,16 +102,19 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 	return (
 		<form className={classNames(cls.EditForm, {}, [className])} onSubmit={handleSubmit(onSubmit)}>
 			<Text title={t('Редактировать профиль')} />
+
 			<div className={cls.formItem}>
 				<Text text={t('Имя')} />
 				<Input register={register('firstName')} />
 				{errors?.firstName && <Text text={errors.firstName.message} theme={TextTheme.ATTN} />}
 			</div>
+
 			<div className={cls.formItem}>
 				<Text text={t('Фамилия')} />
 				<Input register={register('lastName')} />
 				{errors?.lastName && <Text text={errors.lastName.message} theme={TextTheme.ATTN} />}
 			</div>
+
 			<div className={cls.formItem}>
 				<Text text={t('День рождения')} />
 				<div className={cls.birthday}>
@@ -111,11 +129,10 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 								className={cls.birthdayItem}
 								value={value}
 								searchOff
-								options={OptionsItems(OptionName.COUNTRY)}
+								options={dayBirth}
 								onChange={onChange}
 
 							/>
-							{error && <Text text={error.message} theme={TextTheme.ATTN} />}
 						</>
 						}
 					/>
@@ -130,11 +147,10 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 								className={cls.birthdayItem}
 								value={value}
 								searchOff
-								options={OptionsItems(OptionName.COUNTRY)}
+								options={birthDate.months}
 								onChange={onChange}
 
 							/>
-							{error && <Text text={error.message} theme={TextTheme.ATTN} />}
 						</>
 						}
 					/>
@@ -149,16 +165,16 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 								className={cls.birthdayItem}
 								value={value}
 								searchOff
-								options={countries}
+								options={birthDate.years}
 								onChange={onChange}
 
 							/>
-							{error && <Text text={error.message} theme={TextTheme.ATTN} />}
 						</>
 						}
 					/>
 				</div>
 			</div>
+
 			<div className={cls.formItem}>
 				<Text text={t('Страна')} />
 				<Controller
@@ -178,6 +194,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 					}
 				/>
 			</div>
+
 			<div className={cls.formItem}>
 				<Text text={t('Город')} />
 				<Controller
@@ -198,6 +215,7 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 					}
 				/>
 			</div>
+
 			<input type="submit" />
 		</form>
 	)

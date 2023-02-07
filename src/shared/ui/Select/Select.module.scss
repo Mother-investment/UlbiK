@@ -45,9 +45,29 @@
 	border-bottom-left-radius: var(--r-default);
 	border-bottom-right-radius: var(--r-default);
 	display: none;
+	max-height: 200px;
 	position: absolute;
 	width: 100%;
 	z-index: var(--z-selectMenu);
+}
+
+.menuContainer {
+	margin-bottom: 10px;
+	max-height: 190px;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: 3px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: var(--bg-color);
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--glow-color);
+		border-radius: 20px;
+	}
 }
 
 .menuActive {
