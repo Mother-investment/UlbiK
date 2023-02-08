@@ -3,7 +3,7 @@ import { memo, Suspense } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Loader } from 'shared/ui/Loader/Loader'
 import { Modal } from 'shared/ui/Modal/Modal'
-import { ProfileCardInfo } from '../ProfileCardInfo/ProfileCardInfo'
+import { ProfileCardInfo } from 'entities/Profile'
 
 interface ProfileCardModalProps {
 	className?: string

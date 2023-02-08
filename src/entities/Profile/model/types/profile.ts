@@ -1,11 +1,10 @@
-import { Country } from 'shared/const/common'
 
 export interface Profile {
 	id: number
 	first: string
 	lastname: string
 	age: string
-	country: Country
+	country: string
 	city: string
 	username: string
 	avatar?: string
@@ -16,4 +15,9 @@ export interface ProfileSchema {
 	isLoading: boolean
 	error?: string
 	readonly: boolean
+}
+
+export interface ProfileInfoItemType {
+    Text: string
+    Icon: React.VFC<React.SVGProps<SVGSVGElement>>
 }

@@ -2,8 +2,8 @@ import { createSelector } from '@reduxjs/toolkit'
 import BirthdayIcon from 'shared/assets/icons/birthdayIcon.svg'
 import HomeIcon from 'shared/assets/icons/homeIcon.svg'
 import CountryIcon from 'shared/assets/icons/countryIcon.svg'
+import { getProfileData } from '../getProfileData/getProfileData'
 import { ProfileInfoItemType } from '../../types/profileInfoItem'
-import { getProfileData } from 'entities/Profile'
 
 export const getProfileInfoItems = createSelector(
 	getProfileData,

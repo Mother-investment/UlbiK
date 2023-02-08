@@ -51,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 
 				{isOpenOptions &&
 					<DropDownMenu isOpen={isOpenOptions} className={cls.dropDownMenu} onClose={onCloseOptions}>
-						<Link className={cls.menuItem} to={RoutePath.profile}>
+						<Link className={cls.menuItem} to={RoutePath.profile} onClick={onCloseOptions}>
 							<Text className={cls.menuItem} theme={TextTheme.PRIMARY} aling={TextAling.CENTER} link spacing
 								text={t('Профиль')}
 							/>

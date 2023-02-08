@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next'
 import cls from './ProfileCardInfo.module.scss'
 import { memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
-import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
+import { Text, TextTheme } from 'shared/ui/Text/Text'
 import { useSelector } from 'react-redux'
-import { ProfileCardInfoItem } from './../ProfileCardInfoItem/ProfileCardInfoItem'
-import { getProfileInfoItems } from '../../module/selectors/getProfileInfoItems/getProfileInfoItems'
+import { ProfileCardInfoItem } from '../ProfileCardInfoItem/ProfileCardInfoItem'
+import { getProfileInfoItems } from '../../model/selectors/getProfileInfoItems/getProfileInfoItems'
 
 interface ProfileCardInfoProps {
 	className?: string
