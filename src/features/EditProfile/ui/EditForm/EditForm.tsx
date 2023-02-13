@@ -8,12 +8,14 @@ import { Input } from 'shared/ui/Input/Input'
 import { IOption, Select } from 'shared/ui/Select/Select'
 import { OptionName, OptionsItems } from './OptionsItems'
 import { useSelector } from 'react-redux'
-import { getOptionsCountries } from './../../model/getOptionsCountries/getOptionsCountries'
-import { getOptionsСities, IСitiesInTheCountry } from 'features/EditProfile/model/getOptionsСities/getOptionsСities'
+import { getOptionsCountries } from '../../model/selectors/getOptionsCountries/getOptionsCountries'
+import { getOptionsСities, IСitiesInTheCountry } from 'features/EditProfile/model/selectors/getOptionsСities/getOptionsСities'
 import { Loader } from 'shared/ui/Loader/Loader'
 import { Status } from 'shared/const/common'
 import { getAddressesStatus } from 'entities/Addresses'
 import { useBirthDateCreator } from 'shared/lib/hooks/useBirthDateCreator/useBirthDateCreator'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 interface EditFormProps {
 	className?: string
@@ -29,19 +31,10 @@ interface FormValues {
 	city: string
   }
 
-const resolver: Resolver<FormValues> = async (values) => {
-	return {
-		values: values.firstName ? values : {},
-		errors: !values.firstName
-			? {
-				firstName: {
-					type: 'required',
-					message: 'This is required.'
-				}
-			}
-			: {}
-	}
-}
+const schema = z.object({
+	firstName: z.string(),
+	lastName: z.string(),
+})
 
 export const EditForm:React.FC<EditFormProps> = memo((props) => {
 	const { className } = props
@@ -51,13 +44,22 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 	const [dayBirth, setDayBirth] = useState<IOption[]>([])
 	const [birthDate, getDaysBirthDate] = useBirthDateCreator()
 
-	const status: Status | undefined = useSelector(getAddressesStatus)
-	const countries: IOption[] | undefined = useSelector(getOptionsCountries)
-	const сitiesInit: IСitiesInTheCountry[] | undefined = useSelector(getOptionsСities)
+	const status = useSelector(getAddressesStatus)
+	const countries = useSelector(getOptionsCountries)
+	const сitiesInit = useSelector(getOptionsСities)
 
 
-	const { register, watch, resetField, control, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver })
+	const {
+		register,
+		watch,
+		resetField,
+		control,
+		handleSubmit,
+		formState: { errors }
+	} = useForm<FormValues>({ resolver: zodResolver(schema) })
+
 	const onSubmit: SubmitHandler<FormValues> = data => console.log(data)
+
 	const birthDatValues = watch(['monthBirth', 'yearBirth'])
 	const dayBirthValue = watch('dayBirth')
 	const countryValue = watch('country')
@@ -105,7 +107,9 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 
 			<div className={cls.formItem}>
 				<Text text={t('Имя')} />
-				<Input register={register('firstName')} />
+				<Input
+					register={register('firstName')}
+				/>
 				{errors?.firstName && <Text text={errors.firstName.message} theme={TextTheme.ATTN} />}
 			</div>
 
