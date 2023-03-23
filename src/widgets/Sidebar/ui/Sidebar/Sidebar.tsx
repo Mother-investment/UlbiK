@@ -2,7 +2,8 @@ import { memo, useMemo } from 'react'
 import cls from './Sidebar.module.scss'
 import { SidebarItem } from '../SidebarItem/SidebarItem'
 import { classNames } from 'shared/lib/classNames/classNames'
-import { SidebarItemsList } from '../../module/items'
+import { useSelector } from 'react-redux'
+import { getSidebarItems } from '../../module/selectors/getSidebarItems'
 
 interface SidebarProps {
     className?: string
@@ -10,17 +11,18 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = memo((props) => {
 	const { className } = props
+	const sidebarItemsList = useSelector(getSidebarItems)
 
-	const itemsList = useMemo(() => SidebarItemsList.map((item) => (
+	const itemsList = useMemo(() => sidebarItemsList.map((item) => (
 		<SidebarItem
 			key={item.path}
 			item={item}
 		/>
-	)), [])
+	)), [sidebarItemsList])
 
 	return (
-		<div data-testid='sidebar' className={classNames(cls.Sidebar, {}, [className])}>
+		<aside data-testid='sidebar' className={classNames(cls.Sidebar, {}, [className])}>
 			{itemsList}
-		</div>
+		</aside>
 	)
 })

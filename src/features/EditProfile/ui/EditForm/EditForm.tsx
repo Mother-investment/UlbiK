@@ -1,44 +1,31 @@
 import { useTranslation } from 'react-i18next'
 import cls from './EditForm.module.scss'
-import { Controller, Resolver, SubmitHandler, useForm, useFormState, useWatch } from 'react-hook-form'
-import { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { memo, useState } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
 import { Input } from 'shared/ui/Input/Input'
 import { IOption, Select } from 'shared/ui/Select/Select'
-import { OptionName, OptionsItems } from './OptionsItems'
 import { useSelector } from 'react-redux'
 import { getOptionsCountries } from '../../model/selectors/getOptionsCountries/getOptionsCountries'
-import { getOptionsСities, IСitiesInTheCountry } from 'features/EditProfile/model/selectors/getOptionsСities/getOptionsСities'
+import { getOptionsСities } from 'features/EditProfile/model/selectors/getOptionsСities/getOptionsСities'
 import { Loader } from 'shared/ui/Loader/Loader'
-import { Status } from 'shared/const/common'
-import { getAddressesStatus } from 'entities/Addresses'
 import { useBirthDateCreator } from 'shared/lib/hooks/useBirthDateCreator/useBirthDateCreator'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { Button, ButtonColor, ButtonTheme } from 'shared/ui/Button/Button'
+import { getAddressesStatus } from 'entities/Addresses'
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData'
+import { FormValues } from '../../model/types/EditProfileTypes'
 
 interface EditFormProps {
 	className?: string
 }
 
-interface FormValues {
-	firstName: string
-	lastName: string
-	dayBirth: string
-	monthBirth: string
-	yearBirth: string
-	country: string
-	city: string
-  }
-
-const schema = z.object({
-	firstName: z.string(),
-	lastName: z.string(),
-})
-
 export const EditForm:React.FC<EditFormProps> = memo((props) => {
 	const { className } = props
 	const { t } = useTranslation()
+
+	const dispatch = useAppDispatch()
 
 	const [cities, setCities] = useState<IOption[]>([])
 	const [dayBirth, setDayBirth] = useState<IOption[]>([])
@@ -56,9 +43,9 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 		control,
 		handleSubmit,
 		formState: { errors }
-	} = useForm<FormValues>({ resolver: zodResolver(schema) })
+	} = useForm<FormValues>({ mode: 'onChange' })
 
-	const onSubmit: SubmitHandler<FormValues> = data => console.log(data)
+	const onSubmit: SubmitHandler<FormValues> = data => dispatch(updateProfileData(data))
 
 	const birthDatValues = watch(['monthBirth', 'yearBirth'])
 	const dayBirthValue = watch('dayBirth')
@@ -108,15 +95,43 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 			<div className={cls.formItem}>
 				<Text text={t('Имя')} />
 				<Input
-					register={register('firstName')}
+					className={errors.firstName ? cls.errorField : t('Тут будет ошибка')}
+					placeholder={t('Введите имя')}
+					register={register(
+						'firstName',
+						{ required: true, maxLength: 50, pattern: /^[a-zа-яё\s]+$/i }
+					)}
 				/>
-				{errors?.firstName && <Text text={errors.firstName.message} theme={TextTheme.ATTN} />}
+				{<Text
+					hidden={!errors.firstName}
+					text={
+						errors.firstName?.type === 'required' ? t('Заполните поле') :
+							errors.firstName?.type === 'pattern' ? t('Поле заполнено не верно') :
+								errors.firstName?.type === 'maxLength' ? t('Превышено допустимое количество символов') : t('Тут будет ошибка')
+					}
+					theme={TextTheme.ATTN}
+				/>}
 			</div>
 
 			<div className={cls.formItem}>
 				<Text text={t('Фамилия')} />
-				<Input register={register('lastName')} />
-				{errors?.lastName && <Text text={errors.lastName.message} theme={TextTheme.ATTN} />}
+				<Input
+					className={errors.lastName ? cls.errorField : t('Тут будет ошибка')}
+					placeholder={t('Ведите фамилию')}
+					register={register(
+						'lastName',
+						{ required: true, maxLength: 50, pattern: /^[a-zа-яё\s]+$/i }
+					)}
+				/>
+				{<Text
+					hidden={!errors.lastName}
+					text={
+						errors.lastName?.type === 'required' ? t('Заполните поле') :
+							errors.lastName?.type === 'pattern' ? t('Поле заполнено не верно') :
+								errors.lastName?.type === 'maxLength' ? t('Превышено допустимое количество символов') : t('Тут будет ошибка')
+					}
+					theme={TextTheme.ATTN}
+				/>}
 			</div>
 
 			<div className={cls.formItem}>
@@ -126,10 +141,11 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 						name='dayBirth'
 						control={control}
 						rules={{
-							required: 'Поле обязательное'
+							required: t('Поле обязательное')
 						}}
-						render={({ field: { onChange, value }, fieldState: { error } }) => <>
+						render={({ field: { onChange, value } }) => (
 							<Select
+								placeholder={t('День')}
 								className={cls.birthdayItem}
 								value={value}
 								searchOff
@@ -137,17 +153,17 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 								onChange={onChange}
 
 							/>
-						</>
-						}
+						)}
 					/>
 					<Controller
 						name='monthBirth'
 						control={control}
 						rules={{
-							required: 'Поле обязательное'
+							required: t('Поле обязательное')
 						}}
-						render={({ field: { onChange, value }, fieldState: { error } }) => <>
+						render={({ field: { onChange, value } }) => (
 							<Select
+								placeholder={t('Месяц')}
 								className={cls.birthdayItem}
 								value={value}
 								searchOff
@@ -155,17 +171,17 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 								onChange={onChange}
 
 							/>
-						</>
-						}
+						)}
 					/>
 					<Controller
 						name='yearBirth'
 						control={control}
 						rules={{
-							required: 'Поле обязательное'
+							required: t('Поле обязательное')
 						}}
-						render={({ field: { onChange, value }, fieldState: { error } }) => <>
+						render={({ field: { onChange, value } }) => (
 							<Select
+								placeholder={t('Год')}
 								className={cls.birthdayItem}
 								value={value}
 								searchOff
@@ -173,10 +189,24 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 								onChange={onChange}
 
 							/>
-						</>
-						}
+						)}
 					/>
 				</div>
+				{<Text
+					hidden={
+						!(errors.dayBirth?.type === 'required' ||
+						errors.monthBirth?.type === 'required' ||
+						errors.yearBirth?.type === 'required')
+					}
+					text={
+						(
+							errors.dayBirth?.type === 'required' ||
+							errors.monthBirth?.type === 'required' ||
+							errors.yearBirth?.type === 'required'
+						) ? t('Поле обязательное') : t('Тут будет ошибка')
+					}
+					theme={TextTheme.ATTN}
+				/>}
 			</div>
 
 			<div className={cls.formItem}>
@@ -185,17 +215,23 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 					name='country'
 					control={control}
 					rules={{
-						required: 'Поле обязательное'
+						required: t('Поле обязательное')
 					}}
-					render={({ field: { onChange, value }, fieldState: { error } }) => <>
-						<Select
-							value={value}
-							options={countries}
-							onChange={onChange}
-						/>
-						{error && <Text text={error.message} theme={TextTheme.ATTN} />}
-					</>
-					}
+					render={({ field: { onChange, value }, fieldState: { error } }) => (
+						<div>
+							<Select
+								placeholder={t('Выберите страну')}
+								value={value}
+								options={countries}
+								onChange={onChange}
+							/>
+							{<Text
+								hidden={!error}
+								text={error?.message || t('Тут будет ошибка')}
+								theme={TextTheme.ATTN}
+							/>}
+						</div>
+					)}
 				/>
 			</div>
 
@@ -205,22 +241,28 @@ export const EditForm:React.FC<EditFormProps> = memo((props) => {
 					name='city'
 					control={control}
 					rules={{
-						required: 'Поле обязательное'
+						required: t('Поле обязательное')
 					}}
-					render={({ field: { onChange, value }, fieldState: { error } }) => <>
-						<Select
-							value={value}
-							options={cities}
-							onChange={onChange}
-							isDisabled={!countryValue}
-						/>
-						{error && <Text text={error.message} theme={TextTheme.ATTN} />}
-					</>
-					}
+					render={({ field: { onChange, value }, fieldState: { error } }) => (
+						<div>
+							<Select
+								placeholder={t('Выберите город')}
+								value={value}
+								options={cities}
+								onChange={onChange}
+								isDisabled={!countryValue}
+							/>
+							{<Text
+								hidden={!error}
+								text={error?.message || t('Тут будет ошибка')}
+								theme={TextTheme.ATTN}
+							/>}
+						</div>
+					)}
 				/>
 			</div>
 
-			<input type="submit" />
+			<Button type='submit' theme={ButtonTheme.OUTLINE} color={ButtonColor.SECONDARY}>{t('Сохранить')}</Button>
 		</form>
 	)
 })

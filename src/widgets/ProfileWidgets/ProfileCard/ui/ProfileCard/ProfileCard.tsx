@@ -10,26 +10,35 @@ import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer
 import CityIcon from 'shared/assets/icons/cityIcon.svg'
 import InfoIcon from 'shared/assets/icons/infoIcon.svg'
 import { Loader } from 'shared/ui/Loader/Loader'
-import { fetchProfileData, Profile } from 'entities/Profile'
+import { fetchProfileData, getProfileData, getProfileError, getProfileIsLoading, Profile } from 'entities/Profile'
 import { ProfileCardModal } from './../ProfileCardModal/ProfileCardModal'
 import { EditProfile } from 'features/EditProfile'
+import { useSelector } from 'react-redux'
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 
 interface ProfileCardProps {
 	className?: string
 	data?: Profile
 	isLoading?: boolean
 	error?: string
+	id?: string
 }
 
 export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
-	const { className, data, isLoading, error } = props
+	const { className, id } = props
 	const { t } = useTranslation()
 	const dispatch = useAppDispatch()
 	const [isOpen, setIsOpen] = useState(false)
 
-	useEffect(() => {
-		dispatch(fetchProfileData())
-	}, [dispatch])
+	const data = useSelector(getProfileData)
+	const isLoading = useSelector(getProfileIsLoading)
+	const error = useSelector(getProfileError)
+
+	useInitialEffect(() => {
+		if (id) {
+			dispatch(fetchProfileData(id))
+		}
+	})
 
 	const openInfo = () => {
 		setIsOpen(true)
@@ -64,7 +73,7 @@ export const ProfileCard:React.FC<ProfileCardProps> = memo((props) => {
 			</LuminousContainer>
 			<div className={cls.main}>
 				<div className={cls.info}>
-					<Text theme={TextTheme.SECONDARY} title={`${t(data.first)} ${t(data.lastname)}`}/>
+					<Text theme={TextTheme.SECONDARY} title={`${t(data.firstName)} ${t(data.lastName)}`}/>
 					<div className={cls.fullInfo}>
 						<div className={cls.itemInfo}>
 							<CityIcon className={cls.iconInfo}/>

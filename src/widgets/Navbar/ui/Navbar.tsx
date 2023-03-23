@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import cls from './Navbar.module.scss'
-import { useDispatch } from 'react-redux'
-import { userActions } from 'entities/User'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserId, userActions } from 'entities/User'
 import { Avatar, AvatarSize } from 'shared/ui/Avatar/Avatar'
 import { LuminousContainer } from 'shared/ui/LuminousContainer/LuminousContainer'
 import { classNames } from 'shared/lib/classNames/classNames'
@@ -11,8 +11,8 @@ import { LangSwitcher } from 'features/LangSwitcher'
 import { DropDownMenu } from 'shared/ui/DropDownMenu/DropDownMenu'
 import { Text, TextAling, TextTheme } from 'shared/ui/Text/Text'
 import { Link } from 'react-router-dom'
-import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 import { AuthByUsername } from 'features/AuthByUsername/ui/AuthByUsername/AuthByUsername'
+import { getRouteProfile } from 'shared/const/router'
 
 interface NavbarProps {
     className?: string
@@ -23,6 +23,8 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 	const { t } = useTranslation()
 	const [isOpenOptions, setIsOpenOptions] = useState(false)
 	const dispatch = useDispatch()
+
+	const userId = useSelector(getUserId)
 
 	const onShowOptions = useCallback(() => setIsOpenOptions(true), [])
 	const onCloseOptions = useCallback(() => setIsOpenOptions(false), [])
@@ -51,7 +53,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 
 				{isOpenOptions &&
 					<DropDownMenu isOpen={isOpenOptions} className={cls.dropDownMenu} onClose={onCloseOptions}>
-						<Link className={cls.menuItem} to={RoutePath.profile} onClick={onCloseOptions}>
+						<Link className={cls.menuItem} to={getRouteProfile(userId)} onClick={onCloseOptions}>
 							<Text className={cls.menuItem} theme={TextTheme.PRIMARY} aling={TextAling.CENTER} link spacing
 								text={t('Профиль')}
 							/>

@@ -20,13 +20,16 @@ export enum ButtonSize {
 	XL = 'size_xl'
 }
 
+type ButtonType = 'submit' | 'reset' | 'button' | undefined
+
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
 	className?: string
 	theme?: ButtonTheme
-	color?: ButtonColor;
+	color?: ButtonColor
 	square?: boolean
 	size?: ButtonSize
 	disabled?: boolean
+	type?: ButtonType
 }
 
 export const Button:React.FC<ButtonProps> = (props) => {
@@ -36,6 +39,7 @@ export const Button:React.FC<ButtonProps> = (props) => {
 		color = ButtonColor.SECONDARY,
 		theme = ButtonTheme.CLEAR,
 		square,
+		type,
 		disabled,
 		size = ButtonSize.M,
 		...otherProps
@@ -47,7 +51,12 @@ export const Button:React.FC<ButtonProps> = (props) => {
 	}
 
 	return (
-		<button className={classNames(cls.Button, mods, [className, cls[size], cls[theme], cls[color]])} disabled={disabled} {...otherProps}>
+		<button
+			className={classNames(cls.Button, mods, [className, cls[size], cls[theme], cls[color]])}
+			disabled={disabled}
+			type={type}
+			{...otherProps}
+		>
 			{children}
 		</button>
 	)

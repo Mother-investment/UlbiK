@@ -94,6 +94,7 @@ export const Select:React.FC<SelectProps> = memo(forwardRef<HTMLSelectElement, S
 					searchOffForSelect={searchOff}
 					onChange={onChangeInput}
 					readonly={isDisabled}
+					placeholder={placeholder}
 					onClick={ !isDisabled ? (searchOff ? onToggleMenu : onShowMenu) : undefined}
 				/>
 				<div className={cls.arrowContainer} onClick={!isDisabled ? onToggleMenu : undefined}>

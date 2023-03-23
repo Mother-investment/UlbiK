@@ -1,7 +1,8 @@
 import { memo, Suspense, useCallback } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { AppRoutesProps, routeConfig } from 'shared/config/routeConfig/routeConfig'
+import { AppRoutesProps } from 'shared/types/router'
 import { Loader } from 'shared/ui/Loader/Loader'
+import { routeConfig } from '../config/routeConfig'
 import { RequireAuth } from './RequireAuth'
 
 const AppRouter: React.FC = () => {

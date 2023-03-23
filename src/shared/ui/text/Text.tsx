@@ -25,6 +25,7 @@ interface TextProps {
 	text?: string
 	theme?: TextTheme
 	size?: TextSize
+	hidden?: boolean
 	aling?: TextAling
 	link?: boolean
 	spacing?: boolean
@@ -32,11 +33,12 @@ interface TextProps {
 }
 
 export const Text:React.FC<TextProps> = (props) => {
-	const { className, title, text, theme = TextTheme.SECONDARY, size = TextSize.M, aling = TextAling.LEFT, onClick, link, spacing } = props
+	const { className, title, hidden, text, theme = TextTheme.SECONDARY, size = TextSize.M, aling = TextAling.LEFT, onClick, link, spacing } = props
 
 	const mods: Mods = {
 		[cls.link]: !!onClick || link,
-		[cls.spacing]: spacing
+		[cls.spacing]: spacing,
+		[cls.hidden]: hidden
 	}
 
 	return (

@@ -1,9 +1,11 @@
 
 export interface Profile {
 	id: number
-	first: string
-	lastname: string
-	age: string
+	firstName: string
+	lastName: string
+	dayBirth: string
+	monthBirth: string
+	yearBirth: string
 	country: string
 	city: string
 	username: string
@@ -12,6 +14,7 @@ export interface Profile {
 
 export interface ProfileSchema {
 	data?: Profile
+	form?: Profile
 	isLoading: boolean
 	error?: string
 	readonly: boolean

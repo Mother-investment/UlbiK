@@ -1,58 +1,99 @@
 {
-	"posts": [
-	  {
-		"id": "1",
-		"title": "json-server",
-		"userId": "1"
-	  },
-	  {
-		"id": "2",
-		"title": "json-server",
-		"userId": "2"
-	  }
-	],
-	"comments": [
-	  {
-		"id": "1",
-		"body": "some comment",
-		"postId": "1"
-	  }
-	],
-	"users": [
-	  {
-		"id": 1,
-		"username": "admin",
-		"password": "123",
-		"avatar": "https://www.meme-arsenal.com/memes/79e641062a1808c6d7511e6ee008e0fc.jpg"
-	  }
-	],
-	"profile": {
-		"id": 1,
-		"first": "Юрий",
-		"lastname": "Антипов",
-		"age": "30.05.2001",
-		"currency": "RUB",
-		"country": "Россия",
-		"city": "Новосибирск",
-		"username": "admin",
-		"avatar": "https://www.meme-arsenal.com/memes/79e641062a1808c6d7511e6ee008e0fc.jpg"
-	},
-	"addresses": [
-		{
-			"country": "Россия",
-			"cities": ["Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург", "Казань"]
-		},
-		{
-			"country": "США",
-			"cities": ["Нью-Йорк", "Лос-Анджелес", "Чикаго", "Хьюстон", "Филадельфия"]
-		},
-		{
-			"country": "Великобритания",
-			"cities": ["Лондон", "Бирмингем", "Лидс", "Глазго", "Шеффилд"]
-		},
-		{
-			"country": "Япония",
-			"cities": ["Токио", "Йокогама", "Осака", "Нагоя", "Саппоро"]
-		}
-	]
-  }
+  "posts": [
+    {
+      "id": "1",
+      "title": "json-server",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "title": "json-server",
+      "userId": "2"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "body": "some comment",
+      "postId": "1"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "123",
+      "avatar": "https://www.meme-arsenal.com/memes/79e641062a1808c6d7511e6ee008e0fc.jpg"
+    }
+  ],
+  "profile": [
+    {
+      "id": 1,
+      "firstName": "Арсений",
+      "lastName": "Антипов",
+      "dayBirth": "30",
+      "monthBirth": "5",
+      "yearBirth": "2001",
+      "currency": "RUB",
+      "country": "россия",
+      "city": "новосибирск",
+      "username": "admin",
+      "avatar": "https://www.meme-arsenal.com/memes/79e641062a1808c6d7511e6ee008e0fc.jpg"
+    },
+    {
+      "id": 2,
+      "firstName": "Юрий",
+      "lastName": "Антипов",
+      "dayBirth": "30",
+      "monthBirth": "05",
+      "yearBirth": "2001",
+      "currency": "RUB",
+      "country": "Россия",
+      "city": "Новосибирск",
+      "username": "admin",
+      "avatar": "https://www.meme-arsenal.com/memes/79e641062a1808c6d7511e6ee008e0fc.jpg"
+    }
+  ],
+  "addresses": [
+    {
+      "country": "Россия",
+      "cities": [
+        "Москва",
+        "Санкт-Петербург",
+        "Новосибирск",
+        "Екатеринбург",
+        "Казань"
+      ]
+    },
+    {
+      "country": "США",
+      "cities": [
+        "Нью-Йорк",
+        "Лос-Анджелес",
+        "Чикаго",
+        "Хьюстон",
+        "Филадельфия"
+      ]
+    },
+    {
+      "country": "Великобритания",
+      "cities": [
+        "Лондон",
+        "Бирмингем",
+        "Лидс",
+        "Глазго",
+        "Шеффилд"
+      ]
+    },
+    {
+      "country": "Япония",
+      "cities": [
+        "Токио",
+        "Йокогама",
+        "Осака",
+        "Нагоя",
+        "Саппоро"
+      ]
+    }
+  ]
+}

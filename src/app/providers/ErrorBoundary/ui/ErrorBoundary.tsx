@@ -33,6 +33,6 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
 			return <Suspense fallback=''><ErrorPage /></Suspense>
 		}
 
-		return this.props.children
+		return children
 	}
 }

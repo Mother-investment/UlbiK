@@ -1,4 +1,7 @@
 
+
+export { getUserId } from './model/selectors/getUserId/getUserId'
+export { UserRole } from './model/consts/userConsts'
 export { getUserInited } from './model/selectors/getUserInited/getUserInited'
 export { getUserAuthData } from './model/selectors/getUserAuthData/getUserAuthData'
 export { getUserAuth } from './model/selectors/getUserAuth/getUserAuth'

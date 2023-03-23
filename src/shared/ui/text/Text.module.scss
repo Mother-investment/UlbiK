@@ -41,6 +41,14 @@
 	letter-spacing: 0.6px;
 }
 
+.hidden {
+	.title,
+	.text {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
 .left {
 	text-align: left;
 }

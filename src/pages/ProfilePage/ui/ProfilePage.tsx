@@ -6,6 +6,7 @@ import { classNames } from 'shared/lib/classNames/classNames'
 import { useSelector } from 'react-redux'
 import { ProfileCard } from 'widgets/ProfileWidgets/ProfileCard'
 import { addressesReducer } from 'entities/Addresses'
+import { useParams } from 'react-router-dom'
 
 const redusers: ReducersList = {
 	profile: profileReducer,
@@ -17,15 +18,13 @@ className?: string
 }
 
 const ProfilePage:React.FC<ProfilePageProps> = () => {
-	const { t } = useTranslation()
-	const data = useSelector(getProfileData)
-	const isLoading = useSelector(getProfileIsLoading)
-	const error = useSelector(getProfileError)
+
+	const { id } = useParams<{ id: string }>()
 
 	return (
 		<DynamicModuleLoader reducers={redusers} removeAfterUnmount>
 			<div className={classNames(cls.ProfilePage, {}, [])}>
-				<ProfileCard data={data} isLoading={isLoading} error={error} />
+				<ProfileCard id={id}/>
 			</div>
 		</DynamicModuleLoader>
 	)

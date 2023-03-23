@@ -3,7 +3,7 @@ import BirthdayIcon from 'shared/assets/icons/birthdayIcon.svg'
 import HomeIcon from 'shared/assets/icons/homeIcon.svg'
 import CountryIcon from 'shared/assets/icons/countryIcon.svg'
 import { getProfileData } from '../getProfileData/getProfileData'
-import { ProfileInfoItemType } from '../../types/profileInfoItem'
+import { ProfileInfoItemType } from '../../types/profile'
 
 export const getProfileInfoItems = createSelector(
 	getProfileData,
@@ -11,7 +11,7 @@ export const getProfileInfoItems = createSelector(
 		if(profileData) {
 			const profileInfoItemsList: ProfileInfoItemType[] = [
 				{
-					Text: profileData?.age,
+					Text: `${profileData?.dayBirth}.${profileData?.monthBirth}.${profileData?.yearBirth}`,
 					Icon: BirthdayIcon
 				},
 				{
